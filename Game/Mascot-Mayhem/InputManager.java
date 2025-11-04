@@ -1,30 +1,67 @@
+import greenfoot.*;
 /**
- * Write a description of class InputManager here.
+ * Allows other clases to get player inputs through static methods
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @version 4/11/2025
  */
 public class InputManager  
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class InputManager
-     */
+    
     public InputManager()
     {
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+    /** 
+     * @return String with p1 input
      */
-    public int sampleMethod(int y)
+    public static String playerOneInput()
     {
-        // put your code here
-        return x + y;
+        String input = null;
+        if(Greenfoot.isKeyDown("C")){
+            input = "ultimate";
+        }
+        else if(Greenfoot.isKeyDown("z")){
+            input = "attack";
+        }
+        else if(Greenfoot.isKeyDown("w")){
+            input = "up";
+        }
+        else if(Greenfoot.isKeyDown("d")){
+            input = "left";
+        }
+        else if(Greenfoot.isKeyDown("a")){
+            input = "right";
+        }
+        else if(Greenfoot.isKeyDown("s")){
+            input = "crouch";
+        }
+        return input;
+    }
+    
+    /** 
+     * @return String with p2 input
+     */
+    public static String playerTwoInput()
+    {
+        String input = null;
+        if(Greenfoot.isKeyDown(".")){
+            input = "ultimate";
+        }
+        else if(Greenfoot.isKeyDown("/")){
+            input = "attack";
+        }
+        else if(Greenfoot.isKeyDown("up")){
+            input = "up";
+        }
+        else if(Greenfoot.isKeyDown("right")){
+            input = "right";
+        }
+        else if(Greenfoot.isKeyDown("left")){
+            input = "left";
+        }
+        else if(Greenfoot.isKeyDown("down")){
+            input = "crouch";
+        }
+        return input;
     }
 }
