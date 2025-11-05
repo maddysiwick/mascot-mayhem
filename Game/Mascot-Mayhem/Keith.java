@@ -14,6 +14,8 @@ public class Keith extends Player
      */
     public void act()
     {
-        // Add your action code here.
+        player=2;
+        barPosition=1000;
+        actions();
     }
 }

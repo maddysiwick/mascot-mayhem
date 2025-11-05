@@ -14,6 +14,8 @@ public class Duke extends Player
      */
     public void act()
     {
-        // Add your action code here.
+        player = 1;
+        barPosition = 50;
+        actions();
     }
 }
