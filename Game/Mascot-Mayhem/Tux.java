@@ -12,8 +12,12 @@ public class Tux extends Player
      * Act - do whatever the Tux wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public Tux(){
+        health=10;
+    }
     public void act()
     {
-        // Add your action code here.
+        badHit("images/tuxKickTEMP.png","shift",5,"tux.png");
+        badMove("left","right");
     }
 }

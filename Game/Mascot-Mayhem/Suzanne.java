@@ -12,8 +12,12 @@ public class Suzanne extends Player
      * Act - do whatever the Suzanne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public Suzanne(){
+        health=10;
+    }
     public void act()
     {
-        // Add your action code here.
+        badHit("images/suzannePunchTemp.png","control",5,"lemur.png");
+        badMove("a","d");
     }
 }
