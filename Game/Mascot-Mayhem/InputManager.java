@@ -16,7 +16,7 @@ public class InputManager
      */
     public static String getPlayerOneInput()
     {
-        String input = null;
+        String input = "do nothing";
         if(Greenfoot.isKeyDown("C")){
             input = "ultimate";
         }
@@ -43,7 +43,7 @@ public class InputManager
      */
     public static String getPlayerTwoInput()
     {
-        String input = null;
+        String input = "do nothing";
         if(Greenfoot.isKeyDown(".")){
             input = "ultimate";
         }
@@ -54,10 +54,10 @@ public class InputManager
             input = "up";
         }
         else if(Greenfoot.isKeyDown("right")){
-            input = "right";
+            input = "left";
         }
         else if(Greenfoot.isKeyDown("left")){
-            input = "left";
+            input = "right";
         }
         else if(Greenfoot.isKeyDown("down")){
             input = "crouch";
