@@ -14,7 +14,7 @@ public class InputManager
     /** 
      * @return String with p1 input
      */
-    public static String playerOneInput()
+    public static String getPlayerOneInput()
     {
         String input = null;
         if(Greenfoot.isKeyDown("C")){
@@ -41,7 +41,7 @@ public class InputManager
     /** 
      * @return String with p2 input
      */
-    public static String playerTwoInput()
+    public static String getPlayerTwoInput()
     {
         String input = null;
         if(Greenfoot.isKeyDown(".")){

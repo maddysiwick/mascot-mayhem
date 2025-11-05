@@ -1,9 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Framework for player characters
  * 
- * @author (your name) 
  * @version (a version number or a date)
  */
 public class Player extends Actor
@@ -14,6 +13,34 @@ public class Player extends Actor
      */
     public void act()
     {
-        // Add your action code here.
+        getActions();
+    }
+    
+    public void getActions()
+    {
+        switch(getPlayerInput()){
+            case "ultimate":
+                break;
+            case "attack":
+                break;
+            case "up":
+                break;
+            case "right":
+                break;
+            case "left":
+                break;
+            case "crouch":
+                break;
+        }
+    }
+    
+    public String getPlayerInput()
+    {
+        if(player=1){//dummy varuiable for a player select later on
+            return InputManager.getPlayerOneInput();
+        }
+        else{
+            return InputManager.getPlayerTwoInput();
+        }
     }
 }
