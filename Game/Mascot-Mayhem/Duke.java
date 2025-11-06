@@ -9,13 +9,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Duke extends Player
 {
     /**
-     * Act - do whatever the Duke wants to do. This method is called whenever
+     * Act - do whatever the Tux wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public Duke()
+    {
+        setCharacteristics(true, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
+    }
+    
     public void act()
     {
-        player = 1;
-        barPosition = 50;
         actions();
     }
 }

@@ -9,13 +9,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Keith extends Player
 {
     /**
-     * Act - do whatever the Keith wants to do. This method is called whenever
+     * Act - do whatever the Tux wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public Keith()
+    {
+        setCharacteristics(true, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
+    }
+    
     public void act()
     {
-        player=2;
-        barPosition=1000;
         actions();
     }
 }

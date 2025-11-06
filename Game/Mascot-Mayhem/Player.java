@@ -7,12 +7,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    public int ultimateCharge;
-    public int ultimateMax;
-    private int range;
-    public int player;
-    public int barPosition;
-    public int hitPoints;
+    private int ultimateCharge;
+    private int ultimateMax;
+    //private int range; maybe not needed anymore
+    protected boolean playerOne;
+    private int barPosition;
+    private int hitPoints;
+    private String hitImage;
+    private int damage;
+    private String baseSprite;
     
     public Player()
     {
@@ -39,6 +42,16 @@ public class Player extends Actor
         getActions();
         chargeUltimate();
         displayCharge();
+    }
+    
+    public void setCharacteristics(boolean playerOne, int barPosition, int hitPoints, String hitImage, int damage, String baseSprite)
+    {
+        this.playerOne=playerOne;
+        this.barPosition=barPosition;
+        this.hitPoints=hitPoints;
+        this.hitImage=hitImage;
+        this.damage=damage;
+        this.baseSprite=baseSprite;
     }
     
     public void getActions()
@@ -85,7 +98,7 @@ public class Player extends Actor
     
     private String getPlayerInput(int player) //needed a player so the code would compile
     {
-        if(player==1){//dummy variable for a player select later on
+        if(playerOne){//dummy variable for a player select later on
             return InputManager.getPlayerOneInput();
         }
         else{
@@ -138,7 +151,14 @@ public class Player extends Actor
     
     private void attack()
     {
-        
+       setImage(hitImage);
+            Actor victim = getOneIntersectingObject(Player.class);
+            Player jumpee = (Player) victim;
+            if(victim!=null){
+                jumpee.takeHit(damage);
+            }
+            Greenfoot.delay(10);
+            setImage(baseSprite);
     }
     
     private void jump()
