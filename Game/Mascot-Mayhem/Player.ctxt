@@ -1,26 +1,4 @@
-#BlueJ class context
-comment0.target=Player
-comment0.text=\r\n\ Framework\ for\ player\ characters\r\n\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Player()
-comment10.params=damage
-comment10.target=void\ takeHit(int)
-comment11.params=hitImage\ hit\ damage\ baseSprite
-comment11.target=void\ badHit(java.lang.String,\ java.lang.String,\ int,\ java.lang.String)
-comment12.params=
-comment12.target=void\ triggerUltimate()
-comment13.params=
-comment13.target=void\ block()
-comment14.params=
-comment14.target=void\ attack()
-comment15.params=
-comment15.target=void\ jump()
-comment16.params=
-comment16.target=void\ moveRight()
-comment17.params=
-comment17.target=void\ moveLeft()
-comment18.params=
-comment18.target=void\ crouch()
+
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
@@ -31,6 +9,7 @@ comment4.target=void\ setCharacteristics(boolean,\ int,\ int,\ java.lang.String,
 comment5.params=
 comment5.target=void\ getActions()
 comment6.params=
+
 comment6.target=void\ chargeUltimate()
 comment7.params=
 comment7.target=void\ displayCharge()
@@ -39,3 +18,4 @@ comment8.target=java.lang.String\ getPlayerInput(int)
 comment9.params=left\ right
 comment9.target=void\ badMove(java.lang.String,\ java.lang.String)
 numComments=19
+
