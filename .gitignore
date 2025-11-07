@@ -1,0 +1,8 @@
+*.class
+*.txt
+!README.txt
+!Documents/
+!sprites-and-images/
+!images/
+!sounds/
+!doc/

@@ -151,14 +151,14 @@ public class Player extends Actor
     
     private void attack()
     {
-       setImage(hitImage);
-            Actor victim = getOneIntersectingObject(Player.class);
-            Player jumpee = (Player) victim;
-            if(victim!=null){
-                jumpee.takeHit(damage);
-            }
-            Greenfoot.delay(10);
-            setImage(baseSprite);
+        setImage(hitImage);
+        Actor victim = getOneIntersectingObject(Player.class);
+        Player jumpee = (Player) victim;
+        if(victim!=null){
+            jumpee.takeHit(damage);
+        }
+        Greenfoot.delay(10);
+        setImage(baseSprite);
     }
     
     private void jump()
