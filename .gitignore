@@ -1,6 +1,5 @@
 *.class
-*.txt
-!README.txt
+*.ctxt
 !Documents/
 !sprites-and-images/
 !images/
