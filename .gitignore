@@ -1,0 +1,9 @@
+$ cat .gitignore
+*.class
+*.ctxt
+!Documents/
+!sprites-and-images/
+!images/
+!sounds/
+!doc/
+!*.java
