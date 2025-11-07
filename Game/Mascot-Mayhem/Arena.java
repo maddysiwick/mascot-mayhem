@@ -29,9 +29,13 @@ public class Arena extends World
      */
     private void prepare()
     {
+<<<<<<< Updated upstream
         Suzanne suzanne = new Suzanne();
         addObject(suzanne,1029,583);
         Tux tux = new Tux();
         addObject(tux,151,595);
+=======
+        
+>>>>>>> Stashed changes
     }
 }
