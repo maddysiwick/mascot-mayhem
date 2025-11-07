@@ -23,4 +23,15 @@ public class Arena extends World
      * That is: create the initial objects and add them to the world.
      */
 
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        Suzanne suzanne = new Suzanne();
+        addObject(suzanne,1029,583);
+        Tux tux = new Tux();
+        addObject(tux,151,595);
+    }
 }
