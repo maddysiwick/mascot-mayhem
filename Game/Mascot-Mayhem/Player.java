@@ -7,8 +7,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    private int ultimateCharge;
-    private int ultimateMax;
+    private int ultimateCharge=0;
+    private int ultimateMax=100;
     //private int range; maybe not needed anymore
     protected boolean playerOne;
     private int barPosition;
@@ -16,11 +16,12 @@ public class Player extends Actor
     private String hitImage;
     private int damage;
     private String baseSprite;
+    private Bar ultimateBar;
+    private Bar healthBar;
     
     public Player()
     {
-        ultimateCharge=0;
-        ultimateMax=100;
+        
     }
     
     /**
@@ -93,7 +94,9 @@ public class Player extends Actor
     
     private void displayCharge()
     {
-        getWorld().showText(ultimateCharge + "/100", barPosition, 50);
+        ultimateBar=new Bar("Ultimate","%",0,100);
+        ultimateBar.setBackgroundColor(Color.BLACK);
+        
     }
     
     private String getPlayerInput(int player) //needed a player so the code would compile
@@ -114,24 +117,13 @@ public class Player extends Actor
             move(4);
         }
     }
+    
     public void takeHit(int damage){
         health-=damage;
         if (health<1){
             getWorld().removeObject(this);
         }
     }
-    public void badHit(String hitImage,String hit,int damage,String baseSprite){
-        if(Greenfoot.isKeyDown(hit)){
-            setImage(hitImage);
-            Actor victim = getOneIntersectingObject(Player.class);
-            Player jumpee = (Player) victim;
-            if(victim!=null){
-                jumpee.takeHit(damage);
-            }
-            Greenfoot.delay(10);
-            setImage(baseSprite);
-        }
-    }   
     
     //ability methods:
     

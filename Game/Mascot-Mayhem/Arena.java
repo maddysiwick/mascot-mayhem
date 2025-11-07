@@ -29,7 +29,6 @@ public class Arena extends World
      */
     private void prepare()
     {
-
         Suzanne suzanne = new Suzanne();
         addObject(suzanne,1126,614);
         Tux tux = new Tux();
