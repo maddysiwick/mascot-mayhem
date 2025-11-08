@@ -14,7 +14,7 @@ public class Suzanne extends Player
      */
     public Suzanne()
     {
-        setCharacteristics(false, 1000, 10, "images/suzannePunchTemp.png", 5, "lemur.png");
+        setCharacteristics(false, 1130, 905, 10, "images/suzannePunchTemp.png", 5, "lemur.png");
     }
     
     public void act()

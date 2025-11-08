@@ -14,7 +14,7 @@ public class Keith extends Player
      */
     public Keith()
     {
-        setCharacteristics(true, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
+        setCharacteristics(true, 50, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
     }
     
     public void act()

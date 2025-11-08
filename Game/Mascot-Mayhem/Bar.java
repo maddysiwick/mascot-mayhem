@@ -19,7 +19,7 @@ public class Bar extends Actor
     private int breakValue = 20; // in tandem with breakPercent
     private boolean usingBreakValue = false;
     private boolean breakLow = true; // when true, with low-percent values bar is dangerColor, else safeColor; reversed when false
-    private Color backgroundColor = new Color(0, 0, 0, 0); // the background color of the entire object
+    private Color backgroundColor = new Color(0,0,0,0); // the background color of the entire object
     private Color textColor = Color.BLACK; // the color of all text and the frame of the bar itself
     private Color safeColor = Color.GREEN; // the color of the bar while in the safe range
     private Color dangerColor = Color.RED; // the color of the bar while in the danger range
@@ -47,6 +47,7 @@ public class Bar extends Actor
         unitOfMeasure = unitType;
         maximumValue = maxValue;
         add(initValue);
+        newImage();
     }
 
     /**

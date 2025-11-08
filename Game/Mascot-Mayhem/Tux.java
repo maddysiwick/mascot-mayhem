@@ -14,7 +14,7 @@ public class Tux extends Player
      */
     public Tux()
     {
-        setCharacteristics(true, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
+        setCharacteristics(true, 150, 175, 10, "images/tuxKickTEMP.png", 5, "tux.png");
     }
     
     public void act()
