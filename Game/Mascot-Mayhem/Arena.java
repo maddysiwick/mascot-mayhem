@@ -28,9 +28,7 @@ public class Arena extends World
      */
     private void prepare()
     {
-        Suzanne suzanne = new Suzanne();
-        addObject(suzanne,1126,614);
-        Tux tux = new Tux();
-        addObject(tux,140,628);
+        CharacterSelector temp = new CharacterSelector();
+        addObject(temp,0,0);
     }
 }

@@ -8,14 +8,103 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Title extends World
 {
+    private int optionSelected=1;
+    private final Color ORANGE = new Color(255, 126, 10);
+    private GreenfootImage bg = getBackground();
+    private String input1;
+    private String input2;
+    private String control;
 
-    /**
-     * Constructor for objects of class Title.
-     * 
-     */
+    
     public Title()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(1280, 720, 1);
+        drawScreen();
+    }
+
+    public void act()
+    {
+        getInputs();
+        showText(optionSelected + "",25,25);
+        respond();
+    }
+
+    public void drawScreen()
+    {
+        drawTitle();
+        drawBoxes();
+        drawOptionNames();
+    }
+
+    public void drawTitle()
+    {
+        bg.setColor(ORANGE);
+        bg.setFont(new Font(true,false,75));
+        bg.drawString("MASCOT",450,125);
+        bg.setColor(Color.RED);
+        bg.setFont(new Font(false,true,60));
+        bg.drawString("MAYHEM",525,175);
+    }
+
+    public void drawBoxes()
+    {
+        bg.setColor(Color.BLACK);
+        bg.fillRect(450,250,325,75);
+        bg.fillRect(450,350,325,75);
+        bg.fillRect(450,450,325,75);
+        bg.fillRect(450,550,325,75);
+    }
+
+    public void drawOptionNames()
+    {
+        bg.setColor(Color.WHITE);
+        bg.setFont(new Font(60));
+        bg.drawString("CAMPAIGN",453,310);
+        bg.drawString("DUEL",453,410);
+        bg.drawString("INFO",453,510);
+        bg.drawString("QUIT",453,610);
+    }
+
+    public void getInputs()
+    {
+        input1=InputManager.getPlayerOneInput();
+        input2=InputManager.getPlayerTwoInput();
+        Greenfoot.delay(5);
+        if(input1=="crouch"||input2=="crouch"){
+            if(optionSelected==4){
+                optionSelected=1;
+            }
+            else{
+                ++optionSelected;
+            }
+        }
+        else if(input1=="up"||input2=="up"){
+            if(optionSelected==1){
+                optionSelected=4;
+            }
+            else{
+                --optionSelected;
+            }
+        }
+    }
+
+    public void respond()
+    {
+        if(Greenfoot.isKeyDown("shift")){
+            switch(optionSelected){
+                case 1:
+                    
+                    break;
+                case 2:
+                    Greenfoot.setWorld(new Arena()); 
+                    break;
+                case 3:
+                    Greenfoot.setWorld(new Info());
+                    break;
+                case 4:
+                    Greenfoot.stop();
+                    break;
+            }
+        }
     }
 }
