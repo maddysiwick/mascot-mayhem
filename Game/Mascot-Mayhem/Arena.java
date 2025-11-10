@@ -34,3 +34,4 @@ public class Arena extends World
         Tux tux = new Tux();
         addObject(tux,151,595);
     }
+}

@@ -16,7 +16,9 @@ public class Player extends Actor
     private String hitImage;
     private int damage;
     private String baseSprite;
-    
+    private boolean jumping;
+    private int jumpTimer;
+    private boolean blocking;
     public Player()
     {
         ultimateCharge=0;
@@ -105,38 +107,18 @@ public class Player extends Actor
             return InputManager.getPlayerTwoInput();
         }
     }
-    public void badMove(String left, String right){
-        if(Greenfoot.isKeyDown(left)){
-            move(-4);
-            
-        }
-        if(Greenfoot.isKeyDown(right)){
-            move(4);
-        }
-    }
     public void takeHit(int damage){
         health-=damage;
         if (health<1){
             getWorld().removeObject(this);
         }
-    }
-    public void badHit(String hitImage,String hit,int damage,String baseSprite){
-        if(Greenfoot.isKeyDown(hit)){
-            setImage(hitImage);
-            Actor victim = getOneIntersectingObject(Player.class);
-            Player jumpee = (Player) victim;
-            if(victim!=null){
-                jumpee.takeHit(damage);
-            }
-            Greenfoot.delay(10);
-            setImage(baseSprite);
-        }
-    }   
+    }  
     
     //ability methods:
     
     private void triggerUltimate()
     {
+        unblock();
         if(ultimateCharge>=ultimateMax){
             //code to do ultimate
             ultimateCharge=0;
@@ -146,11 +128,13 @@ public class Player extends Actor
     
     private void block()
     {
-        
+        blocking=true;
+        setImage("block.png");
     }
     
     private void attack()
     {
+       unblock();
        setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
@@ -163,22 +147,46 @@ public class Player extends Actor
     
     private void jump()
     {
-        
+        unblock();
+        if(!jumping){
+            jumping = true;
+            jumpTimer = 0;
+        }
     }
     
     private void moveRight()
     {
+        unblock();
         move(-5);
     }
     
     private void moveLeft()
     {
+        unblock();
         move(5);
     }
     
     private void crouch()
     {
-        
+        unblock();
     }
-
+    
+    protected void jumping(){
+        if(jumping){
+            if(jumpTimer<10){
+                setLocation(getX(),getY()-16);
+            }
+            else if(jumpTimer<30){
+                setLocation(getX(),getY()+8);
+            }
+            else{
+                jumping=false;
+            }
+            jumpTimer++;
+        }
+    }
+    private void unblock(){
+        blocking=false;
+        setImage(baseSprite);
+    }
 }

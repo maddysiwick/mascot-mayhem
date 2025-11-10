@@ -20,5 +20,6 @@ public class Suzanne extends Player
     public void act()
     {
         actions();
+        jumping();
     }
 }
