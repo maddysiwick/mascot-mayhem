@@ -23,7 +23,8 @@ public class Player extends Actor
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
     private Bar healthBar = new Bar("","Health%",10,10);
     private boolean firstTime = true;
-    
+    protected int health; 
+    protected boolean facingLeft;
     public Player()
     {
         
@@ -33,8 +34,7 @@ public class Player extends Actor
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    protected int health; 
-    protected boolean facingLeft;
+    
     public void act()
     {
         
@@ -112,9 +112,9 @@ public class Player extends Actor
         }
     }
     public void takeHit(int damage){
-        health-=damage;
+        hitPoints-=damage;
         healthBar.subtract(damage);
-        if (health<1){
+        if (hitPoints<1){
             getWorld().removeObject(this);
         }
     }  

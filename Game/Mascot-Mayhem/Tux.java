@@ -19,7 +19,6 @@ public class Tux extends Player
     public Tux(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
     {
         setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition, hitPoints,hitImage,damage,baseSprite);
-        //setCharacteristics(true, 150, 175, 10, "images/tuxKickTEMP.png", 5, "tux.png");
     }
     
     public void act()
