@@ -7,11 +7,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    private int ultimateCharge;
-    private int ultimateMax;
+    private int ultimateCharge=0;
+    private int ultimateMax=100;
     //private int range; maybe not needed anymore
     protected boolean playerOne;
-    private int barPosition;
+    private int ultimateBarPosition;
+    private int healthBarPosition;
     private int hitPoints;
     private String hitImage;
     private int damage;
@@ -19,10 +20,13 @@ public class Player extends Actor
     private boolean jumping;
     private int jumpTimer;
     private boolean blocking;
+    private Bar ultimateBar = new Bar("","Ultimate%",0,100);
+    private Bar healthBar = new Bar("","Health%",10,10);
+    private boolean firstTime = true;
+    
     public Player()
     {
-        ultimateCharge=0;
-        ultimateMax=100;
+        
     }
     
     /**
@@ -43,13 +47,18 @@ public class Player extends Actor
     {
         getActions();
         chargeUltimate();
-        displayCharge();
+        if(firstTime){
+            firstTime=false;
+            initializeUltimateBar();
+            initializeHealthBar();
+        }
     }
     
-    public void setCharacteristics(boolean playerOne, int barPosition, int hitPoints, String hitImage, int damage, String baseSprite)
+    public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition, int hitPoints, String hitImage, int damage, String baseSprite)
     {
         this.playerOne=playerOne;
-        this.barPosition=barPosition;
+        this.ultimateBarPosition=ultimateBarPosition;
+        this.healthBarPosition=healthBarPosition;
         this.hitPoints=hitPoints;
         this.hitImage=hitImage;
         this.damage=damage;
@@ -58,7 +67,6 @@ public class Player extends Actor
     
     public void getActions()
     {
-        //i just needed this to compile
         switch(getPlayerInput(1)){
             case "ultimate":
                 triggerUltimate();
@@ -89,13 +97,9 @@ public class Player extends Actor
         if(ultimateCharge<ultimateMax){
             if(Greenfoot.getRandomNumber(100)<5){
                 ++ultimateCharge;
+                ultimateBar.add(1);
             }
         }
-    }
-    
-    private void displayCharge()
-    {
-        getWorld().showText(ultimateCharge + "/100", barPosition, 50);
     }
     
     private String getPlayerInput(int player) //needed a player so the code would compile
@@ -109,6 +113,7 @@ public class Player extends Actor
     }
     public void takeHit(int damage){
         health-=damage;
+        healthBar.subtract(damage);
         if (health<1){
             getWorld().removeObject(this);
         }
@@ -123,7 +128,37 @@ public class Player extends Actor
             //code to do ultimate
             ultimateCharge=0;
             turn(50);
+            ultimateBar.setValue(0);
         }
+    }
+    
+    private void initializeUltimateBar()
+    {
+        getWorld().addObject(ultimateBar,ultimateBarPosition,100);
+        ultimateBar.setBarHeight(25);
+        ultimateBar.setBarWidth(250);
+        ultimateBar.setBreakValue(99);
+        Color uncharged = new Color(84,241,232);
+        ultimateBar.setDangerColor(uncharged);
+        Color charged = new Color(253,208,45);
+        ultimateBar.setSafeColor(charged);
+        ultimateBar.setShowTextualUnits(false);
+    }
+    
+    private void initializeHealthBar()
+    {
+        getWorld().addObject(healthBar,healthBarPosition+100,50);
+        healthBar.setBarHeight(50);
+        healthBar.setBarWidth(500);
+        /*
+        ultimateBar.setBreakValue(20);
+        Color uncharged = new Color(84,241,232);
+        ultimateBar.setDangerColor(uncharged);
+        Color charged = new Color(253,208,45);
+        ultimateBar.setSafeColor(charged);
+        */
+        healthBar.setShowTextualUnits(false);
+        
     }
     
     private void block()
@@ -136,13 +171,13 @@ public class Player extends Actor
     {
        unblock();
        setImage(hitImage);
-            Actor victim = getOneIntersectingObject(Player.class);
-            Player jumpee = (Player) victim;
-            if(victim!=null){
-                jumpee.takeHit(damage);
-            }
-            Greenfoot.delay(10);
-            setImage(baseSprite);
+        Actor victim = getOneIntersectingObject(Player.class);
+        Player jumpee = (Player) victim;
+        if(victim!=null){
+            jumpee.takeHit(damage);
+        }
+        Greenfoot.delay(10);
+        setImage(baseSprite);
     }
     
     private void jump()

@@ -17,10 +17,13 @@ public class InputManager
     public static String getPlayerOneInput()
     {
         String input = "do nothing";
-        if(Greenfoot.isKeyDown("C")){
+        if(Greenfoot.isKeyDown("g")){
             input = "ultimate";
         }
-        else if(Greenfoot.isKeyDown("z")){
+        else if(Greenfoot.isKeyDown("h")){
+            input = "block";
+        }
+        else if(Greenfoot.isKeyDown("f")){
             input = "attack";
         }
         else if(Greenfoot.isKeyDown("w")){
@@ -46,6 +49,9 @@ public class InputManager
         String input = "do nothing";
         if(Greenfoot.isKeyDown(".")){
             input = "ultimate";
+        }
+        else if(Greenfoot.isKeyDown(",")){
+            input = "block";
         }
         else if(Greenfoot.isKeyDown("/")){
             input = "attack";

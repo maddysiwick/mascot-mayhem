@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Arena extends World
 {
-
     /**
      * Constructor for objects of class Arena.
      * 
@@ -29,9 +28,7 @@ public class Arena extends World
      */
     private void prepare()
     {
-        Suzanne suzanne = new Suzanne();
-        addObject(suzanne,1029,583);
-        Tux tux = new Tux();
-        addObject(tux,151,595);
+        CharacterSelector temp = new CharacterSelector();
+        addObject(temp,0,0);
     }
 }
