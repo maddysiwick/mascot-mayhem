@@ -25,6 +25,7 @@ public class Player extends Actor
     private boolean firstTime = true;
     protected boolean facingLeft;
     protected String bio;
+    private boolean doNothing=false;
     
     public Player()
     {
@@ -46,12 +47,14 @@ public class Player extends Actor
      */
     public void actions()
     {
-        getActions();
-        chargeUltimate();
-        if(firstTime){
-            firstTime=false;
-            initializeUltimateBar();
-            initializeHealthBar();
+        if(!doNothing){
+            getActions();
+            chargeUltimate();
+            if(firstTime){
+                firstTime=false;
+                initializeUltimateBar();
+                initializeHealthBar();
+            }
         }
     }
     
@@ -230,5 +233,10 @@ public class Player extends Actor
     private void unblock(){
         blocking=false;
         setImage(baseSprite);
+    }
+
+    public void makeStatic()
+    {
+        doNothing=true;
     }
 }
