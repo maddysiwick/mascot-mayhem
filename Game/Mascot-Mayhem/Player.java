@@ -13,18 +13,19 @@ public class Player extends Actor
     protected boolean playerOne;
     private int ultimateBarPosition;
     private int healthBarPosition;
-    private int hitPoints;
-    private String hitImage;
-    private int damage;
-    private String baseSprite;
+    protected int hitPoints;
+    protected String hitImage;
+    protected int damage;
+    protected String baseSprite;
     private boolean jumping;
     private int jumpTimer;
     private boolean blocking;
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
     private Bar healthBar = new Bar("","Health%",10,10);
     private boolean firstTime = true;
-    protected int health; 
     protected boolean facingLeft;
+    protected String bio;
+    
     public Player()
     {
         
@@ -54,7 +55,7 @@ public class Player extends Actor
         }
     }
     
-    public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition, int hitPoints, String hitImage, int damage, String baseSprite)
+    public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
     {
         this.playerOne=playerOne;
         this.ultimateBarPosition=ultimateBarPosition;
@@ -112,8 +113,14 @@ public class Player extends Actor
         }
     }
     public void takeHit(int damage){
-        hitPoints-=damage;
-        healthBar.subtract(damage);
+        if(blocking){
+            hitPoints-=(damage/2);
+            healthBar.subtract(damage/2);
+        }
+        else{
+            hitPoints-=damage;
+            healthBar.subtract(damage);
+        }
         if (hitPoints<1){
             getWorld().removeObject(this);
         }
@@ -169,8 +176,8 @@ public class Player extends Actor
     
     private void attack()
     {
-       unblock();
-       setImage(hitImage);
+        unblock();
+        setImage(hitImage);
         Actor victim = getOneIntersectingObject(Player.class);
         Player jumpee = (Player) victim;
         if(victim!=null){

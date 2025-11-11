@@ -17,15 +17,7 @@ public class Arena extends World
         super(1280, 720, 1); 
         prepare();
     }
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
+    
     private void prepare()
     {
         CharacterSelector temp = new CharacterSelector();

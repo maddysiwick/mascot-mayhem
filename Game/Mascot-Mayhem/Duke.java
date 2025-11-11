@@ -14,7 +14,7 @@ public class Duke extends Player
      */
     public Duke()
     {
-        setCharacteristics(true, 50, 50, 10, "images/tuxKickTEMP.png", 5, "tux.png");
+        
     }
     
     public void act()

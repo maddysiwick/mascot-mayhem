@@ -8,17 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Suzanne extends Player
 {
-    private String baseSprite="lemur.png";
-    private String hitImage="images/suzannePunchTemp.png";
-    private int hitPoints=10;
-    private int damage=5;
-    /**
-     * Act - do whatever the Suzanne wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public Suzanne(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
     {
-        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition, hitPoints,hitImage,damage,baseSprite);
+        baseSprite="lemur.png";
+        hitImage="images/suzannePunchTemp.png";
+        hitPoints=10;
+        damage=5;
+        bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
+        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition);
     }
     
     public void act()

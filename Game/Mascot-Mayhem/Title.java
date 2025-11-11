@@ -11,6 +11,7 @@ public class Title extends World
     private int optionSelected=1;
     private final Color ORANGE = new Color(255, 126, 10);
     private GreenfootImage bg = getBackground();
+    private Selector selector = new Selector();
     private String input1;
     private String input2;
     private String control;
@@ -20,12 +21,14 @@ public class Title extends World
     {    
         super(1280, 720, 1);
         drawScreen();
+        addObject(selector, 450, 250);
+        selector.turn(90);
+        moveSelector();
     }
 
     public void act()
     {
         getInputs();
-        showText(optionSelected + "",25,25);
         respond();
     }
 
@@ -86,6 +89,7 @@ public class Title extends World
                 --optionSelected;
             }
         }
+        moveSelector();
     }
 
     public void respond()
@@ -96,7 +100,7 @@ public class Title extends World
                     
                     break;
                 case 2:
-                    Greenfoot.setWorld(new Arena()); 
+                    Greenfoot.setWorld(new CharacterSelect()); 
                     break;
                 case 3:
                     Greenfoot.setWorld(new Info());
@@ -105,6 +109,24 @@ public class Title extends World
                     Greenfoot.stop();
                     break;
             }
+        }
+    }
+
+    public void moveSelector()
+    {
+        switch(optionSelected){
+            case 1:
+                selector.setLocation(450,250);
+                break;
+            case 2:
+                selector.setLocation(450,350);
+                break;
+            case 3:
+                selector.setLocation(450,450);
+                break;
+            case 4:
+                selector.setLocation(450,550);
+                break;
         }
     }
 }

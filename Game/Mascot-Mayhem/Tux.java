@@ -8,17 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tux extends Player
 {
-    private String baseSprite="tux.png";
-    private String hitImage="images/tuxKickTEMP.png";
-    private int hitPoints=10;
-    private int damage=5;
-    /**
-     * Act - do whatever the Tux wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public Tux(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
     {
-        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition, hitPoints,hitImage,damage,baseSprite);
+        baseSprite="tux.png";
+        hitImage="images/tuxKickTEMP.png";
+        hitPoints=10;
+        damage=5;
+        bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
+        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition);
     }
     
     public void act()
