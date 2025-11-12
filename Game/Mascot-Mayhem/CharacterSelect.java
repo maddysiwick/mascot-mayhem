@@ -9,11 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharacterSelect extends World
 {
     private GreenfootImage bg = getBackground();
-    private int p1Selection = 1;
-    private int p2Selection = 6;
+    private int p1Selection = 3;
+    private int p2Selection = 5;
     private Selector selector1 = new Selector();
     private Selector selector2 = new Selector();
-
+    private boolean p1Confirmed=false;
+    private boolean p2Confirmed=false;
     
     public CharacterSelect()
     {    
@@ -25,7 +26,8 @@ public class CharacterSelect extends World
 
     public void act()
     {
-        moveOnTEMP();
+        moveOn();
+        manageSelections();
     }
 
     public void draw()
@@ -77,50 +79,52 @@ public class CharacterSelect extends World
         suzanne.makeStatic();
     }
 
-    public void moveOnTEMP()
-    {
-        if(Greenfoot.isKeyDown("enter")){
-            Greenfoot.setWorld(new Arena());
-        }
-    }
-
-    public void moveSelectorP1()
+    public void moveSelectors()
     {
         switch(p1Selection){
             case 1:
-                selector1.setLocation()
+                selector1.setLocation(getWidth()/2-490,480);
                 break;
             case 2:
+                selector1.setLocation(getWidth()/2-365,505);
                 break;
             case 3:
-                selector1.setLocation((getWidth()/2-240),530);
+                selector1.setLocation(getWidth()/2-240,530);
                 break;
             case 4:
-                selector1.setLocation((getWidth()/2+240),530);
+                selector1.setLocation(getWidth()/2-115,555);
                 break;
             case 5:
+                selector1.setLocation(getWidth()/2+145,530);
                 break;
             case 6:
+                selector1.setLocation(getWidth()/2+270,505);
+                break;
+            case 7:
+                selector1.setLocation(getWidth()/2+395,480);
                 break;
         }
-    }
-
-    public void moveSelectorP2()
-    {
         switch(p2Selection){
             case 1:
-
+                selector2.setLocation(getWidth()/2-390,480);
                 break;
             case 2:
+                selector2.setLocation(getWidth()/2-265,505);
                 break;
             case 3:
-                
+                selector2.setLocation(getWidth()/2-140,530);
                 break;
             case 4:
+                selector2.setLocation(getWidth()/2+115,555);
                 break;
             case 5:
+                selector2.setLocation(getWidth()/2+240,530);
                 break;
             case 6:
+                selector2.setLocation(getWidth()/2+365,505);
+                break;
+            case 7:
+                selector2.setLocation(getWidth()/2+490,480);
                 break;
         }
     }
@@ -129,5 +133,86 @@ public class CharacterSelect extends World
     {
         addObject(selector1,(getWidth()/2-240),530);
         addObject(selector2,(getWidth()/2+240),530);
+    }
+
+    public void getSelections()
+    {
+        Greenfoot.delay(5);
+        switch(InputManager.getPlayerOneInput()){
+            case "right":
+                if(p1Selection==1){
+                    p1Selection=7;
+                }
+                else{
+                    --p1Selection;
+                }
+                break;
+            case "left":
+                if(p1Selection==7){
+                    p1Selection=1;
+                }
+                else{
+                    ++p1Selection;
+                }
+                break;
+        }
+        switch(InputManager.getPlayerTwoInput()){
+            case "right":
+                if(p2Selection==1){
+                    p2Selection=7;
+                }
+                else{
+                    --p2Selection;
+                }
+                break;
+            case "left":
+                if(p2Selection==7){
+                    p2Selection=1;
+                }
+                else{
+                    ++p2Selection;
+                }
+                break;
+        }
+        moveSelectors();
+    }
+
+    public void confirmSelections()
+    {
+        if(InputManager.getPlayerOneInput()=="attack"){
+            selector1.setImage("beeperGreen.png");
+            p1Confirmed=true;
+        }
+        if(InputManager.getPlayerTwoInput()=="attack"){
+            p2Confirmed=true;
+            selector2.setImage("beeperGreen.png");
+
+        }
+    }
+
+    public void unConfirmSelections()
+    {
+        if(InputManager.getPlayerOneInput()=="block"){
+            selector1.setImage("beeper.png");
+            p1Confirmed=false;
+        }
+        if(InputManager.getPlayerTwoInput()=="block"){
+            selector2.setImage("beeper.png");
+            p2Confirmed=false;
+        }
+    }
+
+    public void manageSelections()
+    {
+        getSelections();
+        confirmSelections();
+        unConfirmSelections();
+    }
+
+    public void moveOn()
+    {
+        if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput()=="ultimate"||InputManager.getPlayerTwoInput()=="ultimate")){
+            Greenfoot.setWorld(new Arena());
+        }
     }
 }

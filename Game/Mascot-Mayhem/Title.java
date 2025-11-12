@@ -94,7 +94,9 @@ public class Title extends World
 
     public void respond()
     {
-        if(Greenfoot.isKeyDown("shift")){
+        input1=InputManager.getPlayerOneInput();
+        input2=InputManager.getPlayerTwoInput();
+        if(input1=="attack"||input2=="attack"){
             switch(optionSelected){
                 case 1:
                     

@@ -27,9 +27,9 @@ public class Player extends Actor
     protected String bio;
     private boolean doNothing=false;
     
-    public Player()
+    public Player(/*boolean playerOne*/)
     {
-        
+        //this.playerOne=playerOne;
     }
     
     /**
@@ -238,5 +238,10 @@ public class Player extends Actor
     public void makeStatic()
     {
         doNothing=true;
+    }
+
+    public String getBio()
+    {
+        return bio;
     }
 }
