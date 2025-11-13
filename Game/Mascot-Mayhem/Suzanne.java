@@ -8,19 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Suzanne extends Player
 {
-    public Suzanne(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
+    public Suzanne(boolean playerOne)
     {
+        super(playerOne);
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png";
         hitPoints=10;
         damage=5;
         bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
-        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition);
     }
     
     public void act()
     {
-        actions();
-        jumping();
+        super.act();
     }
 }

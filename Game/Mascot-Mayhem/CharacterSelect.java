@@ -71,10 +71,10 @@ public class CharacterSelect extends World
         bg.setColor(Color.RED);
         bg.setFont(new Font(true,false,120));
         bg.drawString("?",getWidth()/2-31,642);
-        Tux tux = new Tux(true,0,0);
+        Tux tux = new Tux(true);
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
-        Suzanne suzanne = new Suzanne(true,0,0);
+        Suzanne suzanne = new Suzanne(true);
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
     }
@@ -186,7 +186,6 @@ public class CharacterSelect extends World
         if(InputManager.getPlayerTwoInput()=="attack"){
             p2Confirmed=true;
             selector2.setImage("beeperGreen.png");
-
         }
     }
 
@@ -212,7 +211,7 @@ public class CharacterSelect extends World
     public void moveOn()
     {
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput()=="ultimate"||InputManager.getPlayerTwoInput()=="ultimate")){
-            Greenfoot.setWorld(new Arena());
+            Greenfoot.setWorld(new Arena(p1Selection,p2Selection));
         }
     }
 }

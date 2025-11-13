@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gnu extends Player
 {
+    public Gnu(boolean playerOne)
+    {
+        super(playerOne);
+    }
+    
     /**
      * Act - do whatever the Gnu wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

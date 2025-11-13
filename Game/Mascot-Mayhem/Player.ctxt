@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Framework\ for\ player\ characters\r\n\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Player()
+comment1.params=playerOne
+comment1.target=Player(boolean)
 comment10.params=
 comment10.target=void\ initializeUltimateBar()
 comment11.params=

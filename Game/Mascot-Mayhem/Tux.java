@@ -8,19 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tux extends Player
 {
-    public Tux(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
+    public Tux(boolean playerOne)
     {
+        super(playerOne);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=10;
         damage=5;
         bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
-        setCharacteristics(playerOne,ultimateBarPosition,healthBarPosition);
     }
     
     public void act()
     {
-        actions();
-        jumping();
+        super.act();
     }
 }

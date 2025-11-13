@@ -26,10 +26,22 @@ public class Player extends Actor
     protected boolean facingLeft;
     protected String bio;
     private boolean doNothing=false;
+    private int p1UltimateBarPosition = 150;
+    private int p2UltimateBarPosition = 1126; 
+    private int p1HealthBarPosition = 175;
+    private int p2HealthBarPosition = 614;
     
-    public Player(/*boolean playerOne*/)
+    public Player(boolean playerOne)
     {
-        //this.playerOne=playerOne;
+        this.playerOne=playerOne;
+        if(playerOne){
+            ultimateBarPosition=p1UltimateBarPosition;
+            healthBarPosition=p1HealthBarPosition;
+        }
+        else{
+            ultimateBarPosition=p2UltimateBarPosition;
+            healthBarPosition=p2HealthBarPosition;
+        }
     }
     
     /**
@@ -39,7 +51,7 @@ public class Player extends Actor
     
     public void act()
     {
-        
+        actions();
     }
     
     /**
@@ -50,6 +62,7 @@ public class Player extends Actor
         if(!doNothing){
             getActions();
             chargeUltimate();
+            jumping();
             if(firstTime){
                 firstTime=false;
                 initializeUltimateBar();
