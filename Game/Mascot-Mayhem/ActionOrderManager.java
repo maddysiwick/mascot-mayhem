@@ -55,7 +55,7 @@ public class ActionOrderManager extends Actor
         }
         else{
             player2.actions();
-            player2.actions();
+            player1.actions();
         }
     }
 }
