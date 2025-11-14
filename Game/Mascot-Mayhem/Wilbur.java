@@ -17,10 +17,7 @@ public class Wilbur extends Player
         damage=5;
         bio="Wilbur \n An unstable gimp who loves painting. Not the strongest, but quite fast.";
     }    
-    /**
-     * Act - do whatever the Gimp wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         super.act();    
