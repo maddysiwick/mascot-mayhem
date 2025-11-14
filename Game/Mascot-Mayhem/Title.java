@@ -70,8 +70,8 @@ public class Title extends World
 
     public void getInputs()
     {
-        input1=InputManager.getPlayerOneInput();
-        input2=InputManager.getPlayerTwoInput();
+        input1=InputManager.getPlayerOneInput(false);
+        input2=InputManager.getPlayerTwoInput(false);
         Greenfoot.delay(5);
         if(input1=="crouch"||input2=="crouch"){
             if(optionSelected==4){
@@ -94,8 +94,8 @@ public class Title extends World
 
     public void respond()
     {
-        input1=InputManager.getPlayerOneInput();
-        input2=InputManager.getPlayerTwoInput();
+        input1=InputManager.getPlayerOneInput(false);
+        input2=InputManager.getPlayerTwoInput(false);
         if(input1=="attack"||input2=="attack"){
             switch(optionSelected){
                 case 1:
