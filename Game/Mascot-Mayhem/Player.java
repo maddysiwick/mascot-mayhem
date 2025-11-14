@@ -29,7 +29,7 @@ public class Player extends Actor
     private int p1UltimateBarPosition = 150;
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
-    private int p2HealthBarPosition = 614;
+    private int p2HealthBarPosition = 901;//614
     
     public Player(boolean playerOne)
     {

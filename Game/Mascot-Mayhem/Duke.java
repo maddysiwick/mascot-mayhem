@@ -8,13 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Duke extends Player
 {
-    /**
-     * Act - do whatever the Tux wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public Duke(boolean playerOne)
     {
-      super(playerOne);  
+        super(playerOne);  
+        baseSprite="tux.png";
+        hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        hitPoints=10;
+        damage=5;
+        bio="Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
     }
     
     public void act()

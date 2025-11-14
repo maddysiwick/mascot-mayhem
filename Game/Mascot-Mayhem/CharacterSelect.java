@@ -138,41 +138,45 @@ public class CharacterSelect extends World
     public void getSelections()
     {
         Greenfoot.delay(5);
-        switch(InputManager.getPlayerOneInput()){
-            case "right":
-                if(p1Selection==1){
-                    p1Selection=7;
-                }
-                else{
-                    --p1Selection;
-                }
-                break;
-            case "left":
-                if(p1Selection==7){
-                    p1Selection=1;
-                }
-                else{
-                    ++p1Selection;
-                }
-                break;
+        if(!p1Confirmed){
+            switch(InputManager.getPlayerOneInput()){
+                case "right":
+                    if(p1Selection==1){
+                        p1Selection=7;
+                    }
+                    else{
+                        --p1Selection;
+                    }
+                    break;
+                case "left":
+                    if(p1Selection==7){
+                        p1Selection=1;
+                    }
+                    else{
+                        ++p1Selection;
+                    }
+                    break;
+            }
         }
-        switch(InputManager.getPlayerTwoInput()){
-            case "right":
-                if(p2Selection==1){
-                    p2Selection=7;
-                }
-                else{
-                    --p2Selection;
-                }
-                break;
-            case "left":
-                if(p2Selection==7){
-                    p2Selection=1;
-                }
-                else{
-                    ++p2Selection;
-                }
-                break;
+        if(!p2Confirmed){
+            switch(InputManager.getPlayerTwoInput()){
+                case "right":
+                    if(p2Selection==1){
+                        p2Selection=7;
+                    }
+                    else{
+                        --p2Selection;
+                    }
+                    break;
+                case "left":
+                    if(p2Selection==7){
+                        p2Selection=1;
+                    }
+                    else{
+                        ++p2Selection;
+                    }
+                    break;
+            }
         }
         moveSelectors();
     }

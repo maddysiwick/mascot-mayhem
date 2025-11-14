@@ -10,7 +10,12 @@ public class Gnu extends Player
 {
     public Gnu(boolean playerOne)
     {
-        super(playerOne);
+    super(playerOne);  
+    baseSprite="tux.png";
+    hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+    hitPoints=10;
+    damage=5;
+    bio=": Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";    
     }
     
     /**
@@ -19,6 +24,6 @@ public class Gnu extends Player
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
 }
