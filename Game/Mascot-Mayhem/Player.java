@@ -17,7 +17,7 @@ public class Player extends Actor
     protected String hitImage;
     protected int damage;
     protected String baseSprite;
-    private boolean jumping;
+    protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
@@ -30,6 +30,9 @@ public class Player extends Actor
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
     private int p2HealthBarPosition = 901;
+    protected int ultTimer;
+    protected int speedMultiplier=5;
+    protected boolean usingUltimate=false;
     
     public Player(boolean playerOne)
     {
@@ -53,6 +56,7 @@ public class Player extends Actor
     {
         getPlayerInput();
         jumping();
+        useUltimate();
     }
     
     /**
@@ -145,14 +149,23 @@ public class Player extends Actor
     
     //ability methods:
     
-    private void triggerUltimate()
+    protected void triggerUltimate()
     {
         unblock();
-        if(ultimateCharge>=ultimateMax){
-            //code to do ultimate
+        if(ultPossible()){
             ultimateCharge=0;
-            turn(50);
+            //turn(50);
             ultimateBar.setValue(0);
+        }
+    }
+
+    protected boolean ultPossible()
+    {
+        if(ultimateCharge>=ultimateMax){
+            return true;
+        }
+        else{
+            return false;
         }
     }
     
@@ -191,7 +204,7 @@ public class Player extends Actor
         setImage("block.png");
     }
     
-    private void attack()
+    protected void attack()
     {
         unblock();
         setImage(hitImage);
@@ -216,13 +229,13 @@ public class Player extends Actor
     private void moveRight()
     {
         unblock();
-        move(-5);
+        move(-1*speedMultiplier);
     }
     
     private void moveLeft()
     {
         unblock();
-        move(5);
+        move(1*speedMultiplier);
     }
     
     private void crouch()
@@ -269,5 +282,10 @@ public class Player extends Actor
 
     public boolean getBlocking(){
         return blocking;
+    }
+
+    public void useUltimate()
+    {
+        
     }
 }

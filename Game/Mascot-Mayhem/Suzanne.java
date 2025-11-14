@@ -22,4 +22,29 @@ public class Suzanne extends Player
     {
         super.act();
     }
+
+    public void triggerUltimate()
+    {
+        if(ultPossible()){
+            super.triggerUltimate();
+            speedMultiplier=10;
+            ultTimer=90;
+            usingUltimate=true;
+            damage=2
+            hitImage="images/suzanne_ult_TEMP.png";
+        }
+    }
+
+    public void useUltimate()
+    {
+        if(usingUltimate){
+            attack();
+            --ultTimer;
+            if(ultTimer==0){
+                usingUltimate=false;
+                hitImage="images/suzannePunchTemp.png";
+                speedMultiplier=3;
+            }
+        }
+    }
 }

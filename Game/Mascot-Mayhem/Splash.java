@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Splash extends World
 {
-
+    private double timeWelcomeScreenCreation=System.currentTimeMillis();
+    
     /**
      * Constructor for objects of class SplashScreen.
      * 
@@ -16,6 +17,19 @@ public class Splash extends World
     public Splash()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(1280, 720, 1); 
+    
+    }
+    
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("space"))
+        {
+            Greenfoot.setWorld(new Title()); 
+        }
+        if (System.currentTimeMillis() >= (timeWelcomeScreenCreation + (9 * 1000)))
+        {
+            Greenfoot.setWorld(new Title()); 
+        }
     }
 }
