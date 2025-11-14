@@ -61,7 +61,7 @@ public class Player extends Actor
      */
     public void actions()
     {
-        if(!doNothing){
+        if(!doNothing && input!=null){
             getActions();
             chargeUltimate();
             jumping();
