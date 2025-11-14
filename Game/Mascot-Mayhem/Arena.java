@@ -12,6 +12,7 @@ public class Arena extends World
     private int p2Selection;
     private Player p1;
     private Player p2;
+    private ActionOrderManager queue;
 
     /**
      * Constructor for objects of class Arena.
@@ -29,6 +30,7 @@ public class Arena extends World
     {
         p1 = getCharacter(p1Selection,true);
         p2 = getCharacter(p2Selection,false);
+        queue = new ActionOrderManager(p1,p2);
         addObject(p1,140,614);
         addObject(p2,1126,614);
     }

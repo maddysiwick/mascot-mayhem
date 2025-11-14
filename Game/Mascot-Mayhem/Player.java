@@ -30,6 +30,7 @@ public class Player extends Actor
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
     private int p2HealthBarPosition = 614;
+    private String input;
     
     public Player(boolean playerOne)
     {
@@ -51,7 +52,8 @@ public class Player extends Actor
     
     public void act()
     {
-        actions();
+        getPlayerInput();
+        jumping();
     }
     
     /**
@@ -84,7 +86,7 @@ public class Player extends Actor
     
     public void getActions()
     {
-        switch(getPlayerInput(1)){
+        switch(input){
             case "ultimate":
                 triggerUltimate();
                 break;
@@ -119,13 +121,13 @@ public class Player extends Actor
         }
     }
     
-    private String getPlayerInput(int player) //needed a player so the code would compile
+    protected void getPlayerInput() //needed a player so the code would compile
     {
         if(playerOne){//dummy variable for a player select later on
-            return InputManager.getPlayerOneInput();
+            input = InputManager.getPlayerOneInput();
         }
         else{
-            return InputManager.getPlayerTwoInput();
+            input = InputManager.getPlayerTwoInput();
         }
     }
     public void takeHit(int damage){
@@ -231,10 +233,10 @@ public class Player extends Actor
     
     protected void jumping(){
         if(jumping){
-            if(jumpTimer<10){
-                setLocation(getX(),getY()-16);
+            if(jumpTimer<20){
+                setLocation(getX(),getY()-8);
             }
-            else if(jumpTimer<30){
+            else if(jumpTimer<40){
                 setLocation(getX(),getY()+8);
             }
             else{
@@ -256,5 +258,14 @@ public class Player extends Actor
     public String getBio()
     {
         return bio;
+    }
+    public String getInput(){
+        return input;
+    }
+    public boolean getJumping(){
+        return jumping;
+    }
+    public boolean getBlocking(){
+        return blocking;
     }
 }
