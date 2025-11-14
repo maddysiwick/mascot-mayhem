@@ -14,7 +14,7 @@ public class InputManager
     /** 
      * @return String with p1 input
      */
-    public static String getPlayerOneInput()
+    public static String getPlayerOneInput(boolean jumping)
     {
         String input = "do nothing";
         if(Greenfoot.isKeyDown("g")){
@@ -26,7 +26,7 @@ public class InputManager
         else if(Greenfoot.isKeyDown("f")){
             input = "attack";
         }
-        else if(Greenfoot.isKeyDown("w")){
+        else if(Greenfoot.isKeyDown("w")&&!jumping){
             input = "up";
         }
         else if(Greenfoot.isKeyDown("d")){
@@ -45,7 +45,7 @@ public class InputManager
     /** 
      * @return String with p2 input
      */
-    public static String getPlayerTwoInput()
+    public static String getPlayerTwoInput(boolean jumping)
     {
         String input = "do nothing";
         if(Greenfoot.isKeyDown(".")){
@@ -57,7 +57,7 @@ public class InputManager
         else if(Greenfoot.isKeyDown("/")){
             input = "attack";
         }
-        else if(Greenfoot.isKeyDown("up")){
+        else if(Greenfoot.isKeyDown("up")&&!jumping){
             input = "up";
         }
         else if(Greenfoot.isKeyDown("right")){

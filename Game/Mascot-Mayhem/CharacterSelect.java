@@ -139,56 +139,52 @@ public class CharacterSelect extends World
     public void getSelections()
     {
         Greenfoot.delay(5);
-        if(!p1Confirmed){
-            switch(InputManager.getPlayerOneInput()){
-                case "right":
-                    if(p1Selection==1){
-                        p1Selection=7;
-                    }
-                    else{
-                        --p1Selection;
-                    }
-                    break;
-                case "left":
-                    if(p1Selection==7){
-                        p1Selection=1;
-                    }
-                    else{
-                        ++p1Selection;
-                    }
-                    break;
-            }
+        switch(InputManager.getPlayerOneInput(false)){
+            case "right":
+                if(p1Selection==1){
+                    p1Selection=7;
+                }
+                else{
+                    --p1Selection;
+                }
+                break;
+            case "left":
+                if(p1Selection==7){
+                    p1Selection=1;
+                }
+                else{
+                    ++p1Selection;
+                }
+                break;
         }
-        if(!p2Confirmed){
-            switch(InputManager.getPlayerTwoInput()){
-                case "right":
-                    if(p2Selection==1){
-                        p2Selection=7;
-                    }
-                    else{
-                        --p2Selection;
-                    }
-                    break;
-                case "left":
-                    if(p2Selection==7){
-                        p2Selection=1;
-                    }
-                    else{
-                        ++p2Selection;
-                    }
-                    break;
-            }
+        switch(InputManager.getPlayerTwoInput(false)){
+            case "right":
+                if(p2Selection==1){
+                    p2Selection=7;
+                }
+                else{
+                    --p2Selection;
+                }
+                break;
+            case "left":
+                if(p2Selection==7){
+                    p2Selection=1;
+                }
+                else{
+                    ++p2Selection;
+                }
+                break;
         }
         moveSelectors();
     }
 
     public void confirmSelections()
     {
-        if(InputManager.getPlayerOneInput()=="attack"){
+        if(InputManager.getPlayerOneInput(false)=="attack"){
             selector1.setImage("beeperGreen.png");
             p1Confirmed=true;
         }
-        if(InputManager.getPlayerTwoInput()=="attack"){
+        if(InputManager.getPlayerTwoInput(false)=="attack"){
             p2Confirmed=true;
             selector2.setImage("beeperGreen.png");
         }
@@ -196,11 +192,11 @@ public class CharacterSelect extends World
 
     public void unConfirmSelections()
     {
-        if(InputManager.getPlayerOneInput()=="block"){
+        if(InputManager.getPlayerOneInput(false)=="block"){
             selector1.setImage("beeper.png");
             p1Confirmed=false;
         }
-        if(InputManager.getPlayerTwoInput()=="block"){
+        if(InputManager.getPlayerTwoInput(false)=="block"){
             selector2.setImage("beeper.png");
             p2Confirmed=false;
         }
@@ -215,7 +211,7 @@ public class CharacterSelect extends World
 
     public void moveOn()
     {
-        if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput()=="ultimate"||InputManager.getPlayerTwoInput()=="ultimate")){
+        if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection));
         }
     }

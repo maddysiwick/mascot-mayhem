@@ -89,6 +89,9 @@ public class Player extends Actor
     
     public void getActions()
     {
+        if(input!="block"&&blocking){
+            unblock();
+        }
         switch(input){
             case "ultimate":
                 triggerUltimate();
@@ -127,10 +130,10 @@ public class Player extends Actor
     protected void getPlayerInput() //needed a player so the code would compile
     {
         if(playerOne){//dummy variable for a player select later on
-            input = InputManager.getPlayerOneInput();
+            input = InputManager.getPlayerOneInput(this.getJumping());
         }
         else{
-            input = InputManager.getPlayerTwoInput();
+            input = InputManager.getPlayerTwoInput(this.getJumping());
         }
     }
     public void takeHit(int damage){
@@ -245,11 +248,11 @@ public class Player extends Actor
     
     protected void jumping(){
         if(jumping){
-            if(jumpTimer<20){
-                setLocation(getX(),getY()-8);
+            if(jumpTimer<30){
+                setLocation(getX(),getY()-6);
             }
-            else if(jumpTimer<40){
-                setLocation(getX(),getY()+8);
+            else if(jumpTimer<60){
+                setLocation(getX(),getY()+6);
             }
             else{
                 jumping=false;
