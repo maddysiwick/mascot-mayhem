@@ -45,4 +45,10 @@ public class CharacterSelector extends Actor
         playerTwoCharacter = new Suzanne(false,1130,905);
         getWorld().addObject(playerTwoCharacter,1126,614);
     }
+    public Player getPlayer1(){
+        return playerOneCharacter;
+    }
+    public Player getPlayer2(){
+        return playerTwoCharacter;
+    }
 }

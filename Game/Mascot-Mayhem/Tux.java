@@ -20,7 +20,7 @@ public class Tux extends Player
     
     public void act()
     {
-        actions();
+        getPlayerInput();
         jumping();
     }
 }
