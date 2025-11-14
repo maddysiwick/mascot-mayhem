@@ -9,8 +9,8 @@ public class Player extends Actor
 {
     private int ultimateCharge=0;
     private int ultimateMax=100;
-    //private int range; maybe not needed anymore
     protected boolean playerOne;
+    private String input;
     private int ultimateBarPosition;
     private int healthBarPosition;
     protected int hitPoints;
@@ -24,13 +24,12 @@ public class Player extends Actor
     private Bar healthBar = new Bar("","Health%",10,10);
     private boolean firstTime = true;
     protected boolean facingLeft;
-    protected String bio;
+    protected static String bio;
     private boolean doNothing=false;
     private int p1UltimateBarPosition = 150;
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
-    private int p2HealthBarPosition = 614;
-    private String input;
+    private int p2HealthBarPosition = 901;
     
     public Player(boolean playerOne)
     {
@@ -262,12 +261,15 @@ public class Player extends Actor
     {
         return bio;
     }
+
     public String getInput(){
         return input;
     }
+
     public boolean getJumping(){
         return jumping;
     }
+
     public boolean getBlocking(){
         return blocking;
     }

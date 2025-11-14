@@ -28,6 +28,7 @@ public class CharacterSelect extends World
     {
         moveOn();
         manageSelections();
+        showBios();
     }
 
     public void draw()
@@ -213,5 +214,31 @@ public class CharacterSelect extends World
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection));
         }
+    }
+
+    public void showBios()
+    {
+        
+    }
+
+    public String getBio(int selection)
+    {
+        switch(selection){
+            case 1:
+                return "";
+            case 2:
+                return "";
+            case 3:
+                return "";
+            case 4:
+                return "Selects a random character!";
+            case 5:
+                return "";
+            case 6:
+                return "";
+            case 7:
+                return "";
+        }
+        return null;
     }
 }

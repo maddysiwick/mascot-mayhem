@@ -18,4 +18,11 @@ public class Info extends World
         super(1280, 720, 1);
         showText("I dont feel like it right now, but eventually this will be filled out with the credits and controls", 500, 25);
     }
+    
+    public void act()
+    {
+        if(InputManager.getPlayerOneInput()=="block"||InputManager.getPlayerTwoInput()=="block"){
+            Greenfoot.setWorld(new Title());
+        }
+    }
 }
