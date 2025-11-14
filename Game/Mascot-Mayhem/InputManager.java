@@ -30,6 +30,7 @@ public class InputManager
             input = "up";
         }
         else if(Greenfoot.isKeyDown("d")){
+            System.out.println("tux left");
             input = "left";
         }
         else if(Greenfoot.isKeyDown("a")){
@@ -63,6 +64,7 @@ public class InputManager
             input = "left";
         }
         else if(Greenfoot.isKeyDown("left")){
+            System.out.println("suzanne right");
             input = "right";
         }
         else if(Greenfoot.isKeyDown("down")){

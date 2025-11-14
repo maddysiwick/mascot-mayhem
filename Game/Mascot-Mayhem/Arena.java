@@ -12,6 +12,7 @@ public class Arena extends World
     private int p2Selection;
     private Player p1;
     private Player p2;
+    private ActionOrderManager queue;
 
     /**
      * Constructor for objects of class Arena.
@@ -29,6 +30,8 @@ public class Arena extends World
     {
         p1 = getCharacter(p1Selection,true);
         p2 = getCharacter(p2Selection,false);
+        queue = new ActionOrderManager(p1,p2);
+        addObject(queue,0,0);
         addObject(p1,140,614);
         addObject(p2,1126,614);
     }
@@ -41,14 +44,17 @@ public class Arena extends World
             case 2:
                 return new Keith(playerOne);
             case 3:
+                System.out.println("tux selected");
                 return new Tux(playerOne);
             case 4:
                 return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne);
             case 5:
-                return new Gnu(playerOne);
+                //this will be gnu but its suzanne atm
+                return new Suzanne(playerOne);
             case 6:
                 return new Duke(playerOne);
             case 7:
+                System.out.println("suzanne selected");
                 return new Suzanne(playerOne);
         }
         return null;
