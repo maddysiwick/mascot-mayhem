@@ -21,7 +21,7 @@ public class Player extends Actor
     private int jumpTimer;
     private boolean blocking;
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
-    private Bar healthBar = new Bar("","Health%",10,10);
+    private Bar healthBar = new Bar("","Health%",100,100);
     private boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
@@ -260,7 +260,7 @@ public class Player extends Actor
             jumpTimer++;
         }
     }
-    private void unblock(){
+    protected void unblock(){
         blocking=false;
         setImage(baseSprite);
     }

@@ -13,7 +13,7 @@ public class Tux extends Player
         super(playerOne);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
-        hitPoints=10;
+        hitPoints=100;
         damage=5;
         bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
     }

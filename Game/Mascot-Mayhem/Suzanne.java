@@ -13,7 +13,7 @@ public class Suzanne extends Player
         super(playerOne);
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png";
-        hitPoints=10;
+        hitPoints=100;
         damage=5;
         bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
     }
@@ -28,22 +28,29 @@ public class Suzanne extends Player
         if(ultPossible()){
             super.triggerUltimate();
             speedMultiplier=10;
-            ultTimer=90;
+            ultTimer=30;
             usingUltimate=true;
-            damage=2
-            hitImage="images/suzanne_ult_TEMP.png";
+            damage=2;
+            setImage("images/suzanne_ult_TEMP.png");
+            unblock();
         }
     }
 
     public void useUltimate()
     {
         if(usingUltimate){
-            attack();
+            Actor victim = getOneIntersectingObject(Player.class);
+            Player jumpee = (Player) victim;
+            if(victim!=null){
+                jumpee.takeHit(damage);
+            }
+            Greenfoot.delay(10);
             --ultTimer;
             if(ultTimer==0){
                 usingUltimate=false;
                 hitImage="images/suzannePunchTemp.png";
                 speedMultiplier=3;
+                damage=5;
             }
         }
     }

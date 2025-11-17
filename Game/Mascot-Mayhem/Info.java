@@ -21,7 +21,7 @@ public class Info extends World
     
     public void act()
     {
-        if(InputManager.getPlayerOneInput()=="block"||InputManager.getPlayerTwoInput()=="block"){
+        if(InputManager.getPlayerOneInput(false)=="block"||InputManager.getPlayerTwoInput(false)=="block"){
             Greenfoot.setWorld(new Title());
         }
     }
