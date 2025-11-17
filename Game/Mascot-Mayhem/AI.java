@@ -20,7 +20,7 @@ public class AI extends Actor
     private int jumpTimer;
     private String baseSprite="wombat.png";
     private int damage=1;
-    private String hitImage=
+    private String hitImage="mouse.png";
     
     //https://gamedev.stackexchange.com/questions/203272/how-should-i-design-my-ai-in-2d-fighting-game
     
@@ -41,9 +41,11 @@ public class AI extends Actor
             firstTime=false;
         }
         updateVariables();
-        move();
-        jumping();
-        if(beingAttacked){
+        if(getOneIntersectingObject(Actor.class)==null){
+            move();
+            jumping();
+        }
+        else if(beingAttacked){
             block();
         }
         else if(willUltimateHit){
