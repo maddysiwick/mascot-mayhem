@@ -29,7 +29,7 @@ public class Suzanne extends Player
     {
         if(ultPossible()){
             super.triggerUltimate();
-            speedMultiplier=10;
+            speedMultiplier=3;
             ultTimer=30;
             usingUltimate=true;
             damage=2;
@@ -51,7 +51,7 @@ public class Suzanne extends Player
             if(ultTimer==0){
                 usingUltimate=false;
                 hitImage="images/suzannePunchTemp.png";
-                speedMultiplier=3;
+                speedMultiplier=5;
                 damage=5;
             }
         }

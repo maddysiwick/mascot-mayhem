@@ -27,6 +27,27 @@ public class Tux extends Player
     public void triggerUltimate()
     {
         super.triggerUltimate();
+        damage=35;
+        usingUltimate=true;
+        ultTimer=60;
+    }
 
+    public void useUltimate()
+    {
+        if(usingUltimate){
+            System.out.println(ultTimer+"");
+            if(ultTimer>30){
+                setLocation(getX(),getY()-6);
+                --ultTimer;
+            }
+            else if(ultTimer==29){
+                if(player.getX()>getX()){
+                    move(1*speedMultiplier);
+                }
+                else if(player.getX()<getX()){
+                    move(-1*speedMultiplier);
+                }
+            }
+        }
     }
 }

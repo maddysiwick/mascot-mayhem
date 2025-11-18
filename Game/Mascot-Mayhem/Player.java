@@ -38,7 +38,7 @@ public class Player extends Actor
     protected boolean aiControlled;
     protected Player player;
     private boolean beingAttacked;
-    private boolean willUltimateHit;
+    protected boolean willUltimateHit;
     private boolean runningAway;
     private int runTimer;
     //player specific fields
@@ -114,7 +114,7 @@ public class Player extends Actor
         else if(roll<90&&willUltimateHit){
             triggerUltimate();
         }
-        else if(roll<30){
+        else if(roll<70){
             attack();
         }
     }
@@ -256,7 +256,7 @@ public class Player extends Actor
         setImage(baseSprite);
     }
     
-    private void jump()
+    protected void jump()
     {
         unblock();
         if(!jumping){
