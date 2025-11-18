@@ -102,16 +102,17 @@ public class Player extends Actor
             moveAI();
             jumping();
         }
-        else if(playerAction=="attack"){
+        else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
             if(roll<30){
                 block();
             }
             else{
+                runTimer=30;
                 runningAway=true;
                 speedMultiplier=speedMultiplier*-1;
             }
         }
-        else if(roll<90&&willUltimateHit){
+        else if(roll<50&&willUltimateHit&&ultPossible()){
             triggerUltimate();
         }
         else if(roll<70){
@@ -344,7 +345,7 @@ public class Player extends Actor
         else if(player.getX()<getX()){
             move(-1*speedMultiplier);
         }
-        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)&&Greenfoot.getRandomNumber(100)<4){
+        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)||Greenfoot.getRandomNumber(100)<4){
             {
                 if(!jumping){
                     jumping = true;
