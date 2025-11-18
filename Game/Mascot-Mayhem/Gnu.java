@@ -8,14 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gnu extends Player
 {
-    public Gnu(boolean playerOne)
+    public Gnu(boolean playerOne,boolean aiControlled)    
     {
-    super(playerOne);  
-    baseSprite="tux.png";
-    hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-    hitPoints=10;
-    damage=5;
-    bio=": Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";    
+        super(playerOne,aiControlled);
+        baseSprite="tux.png";
+        hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        hitPoints=10;
+        damage=5;
+        bio=": Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";    
     }
     
     /**

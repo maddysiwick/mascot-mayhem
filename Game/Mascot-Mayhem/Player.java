@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Framework for player characters
@@ -7,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
+    //general fields
     private int ultimateCharge=0;
     private int ultimateMax=100;
-    protected boolean playerOne;
-    private String input;
+    
     private int ultimateBarPosition;
     private int healthBarPosition;
     protected int hitPoints;
@@ -33,10 +34,20 @@ public class Player extends Actor
     protected int ultTimer;
     protected int speedMultiplier=5;
     protected boolean usingUltimate=false;
+    //ai specific fields
+    protected boolean aiControlled;
+    protected Player player;
+    private boolean beingAttacked;
+    private boolean willUltimateHit;
+
+    //player specific fields
+    protected boolean playerOne;
+    private String input;
     
-    public Player(boolean playerOne)
+    public Player(boolean playerOne,boolean aiControlled)
     {
         this.playerOne=playerOne;
+        this.aiControlled=aiControlled;
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -54,9 +65,14 @@ public class Player extends Actor
     
     public void act()
     {
-        getPlayerInput();
-        jumping();
-        useUltimate();
+        if(!aiControlled){
+            getPlayerInput();
+            jumping();
+            useUltimate();
+        }
+        else{
+            actionsAI();
+        }
     }
     
     /**
@@ -73,6 +89,31 @@ public class Player extends Actor
                 initializeUltimateBar();
                 initializeHealthBar();
             }
+        }
+    }
+
+    public void actionsAI()
+    {
+        if(firstTime){
+            List players = getWorld().getObjects(Player.class);
+            player=(Player)players.get(0);
+            initializeUltimateBar();
+            initializeHealthBar();
+            firstTime=false;
+        }
+        updateVariablesAI();
+        if(getOneIntersectingObject(Actor.class)==null){
+            moveAI();
+            jumping();
+        }
+        else if(beingAttacked){
+            block();
+        }
+        else if(willUltimateHit){
+            triggerUltimate();
+        }
+        else{
+            attack();
         }
     }
     
@@ -290,5 +331,28 @@ public class Player extends Actor
     public void useUltimate()
     {
         
+    }
+
+    public void updateVariablesAI()
+    {
+
+    }
+
+    public void moveAI()
+    {
+        if(player.getX()>getX()){
+            move(5);
+        }
+        else if(player.getX()<getX()){
+            move(-5);
+        }
+        if(player.getJumping()){
+            {
+                if(!jumping){
+                    jumping = true;
+                    jumpTimer = 0;
+                }
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ import java.util.*;
  * 
  * @version (4/11/2025)
  */
-public class AI extends Actor
+public class AI extends Character
 {
     private int distanceToPlayer;
     private int chanceToBlock;

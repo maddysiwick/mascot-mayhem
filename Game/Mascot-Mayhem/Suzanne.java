@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Suzanne extends Player
 {
-    public Suzanne(boolean playerOne)
+    public Suzanne(boolean playerOne,boolean aiControlled)
     {
-        super(playerOne);
+        super(playerOne,aiControlled);
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png";
         hitPoints=100;

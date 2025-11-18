@@ -15,6 +15,7 @@ public class CharacterSelect extends World
     private Selector selector2 = new Selector();
     private boolean p1Confirmed=false;
     private boolean p2Confirmed=false;
+    private boolean withAi=true;
     
     public CharacterSelect()
     {    
@@ -29,6 +30,7 @@ public class CharacterSelect extends World
         moveOn();
         manageSelections();
         showBios();
+        toggleAi();
     }
 
     public void draw()
@@ -72,10 +74,10 @@ public class CharacterSelect extends World
         bg.setColor(Color.RED);
         bg.setFont(new Font(true,false,120));
         bg.drawString("?",getWidth()/2-31,642);
-        Tux tux = new Tux(true);
+        Tux tux = new Tux(true,false);
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
-        Suzanne suzanne = new Suzanne(true);
+        Suzanne suzanne = new Suzanne(true,false);
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
     }
@@ -212,7 +214,7 @@ public class CharacterSelect extends World
     public void moveOn()
     {
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
-            Greenfoot.setWorld(new Arena(p1Selection,p2Selection));
+            Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi));
         }
     }
 
@@ -240,5 +242,14 @@ public class CharacterSelect extends World
                 return "";
         }
         return null;
+    }
+
+    public void toggleAi()
+    {
+        Greenfoot.delay(5);
+        if(Greenfoot.isKeyDown("space")){
+            withAi=!withAi;
+        }
+        showText(withAi+"",getWidth()/2,70);
     }
 }

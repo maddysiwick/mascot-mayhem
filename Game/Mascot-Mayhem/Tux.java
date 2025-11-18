@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tux extends Player
 {    
-    public Tux(boolean playerOne)
+    public Tux(boolean playerOne,boolean aiControlled)
     {
-        super(playerOne);
+        super(playerOne,aiControlled);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;
