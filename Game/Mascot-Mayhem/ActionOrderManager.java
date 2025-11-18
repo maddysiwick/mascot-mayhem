@@ -18,9 +18,9 @@ public class ActionOrderManager extends Actor
     
     public void act(){
         if(player2.getAIControlled()){
-            player2.actionsAI();
-            executeInputs();
+            player2.actionsAI(player1.getInput());
         }
+        executeInputs();
     }
     
     public boolean playerOneGoesFirst()

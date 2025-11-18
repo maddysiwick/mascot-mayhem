@@ -16,6 +16,8 @@ public class CharacterSelect extends World
     private boolean p1Confirmed=false;
     private boolean p2Confirmed=false;
     private boolean withAi=true;
+    private GreenfootImage bioP1=new GreenfootImage(1280,720);
+    private GreenfootImage bioP2=new GreenfootImage(1280,720);
     
     public CharacterSelect()
     {    
@@ -227,19 +229,19 @@ public class CharacterSelect extends World
     {
         switch(selection){
             case 1:
-                return "";
+                return Wilbur.bio;
             case 2:
-                return "";
+                return Keith.bio;
             case 3:
-                return "";
+                return Tux.bio;
             case 4:
                 return "Selects a random character!";
             case 5:
-                return "";
+                return Gnu.bio;
             case 6:
-                return "";
+                return Duke.bio;
             case 7:
-                return "";
+                return Suzanne.bio;
         }
         return null;
     }
