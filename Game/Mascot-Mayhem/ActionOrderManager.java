@@ -17,7 +17,10 @@ public class ActionOrderManager extends Actor
     }
     
     public void act(){
-        executeInputs();
+        if(player2.getAIControlled()){
+            player2.actionsAI();
+            executeInputs();
+        }
     }
     
     public boolean playerOneGoesFirst()

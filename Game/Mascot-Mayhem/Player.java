@@ -70,9 +70,6 @@ public class Player extends Actor
             jumping();
             useUltimate();
         }
-        else{
-            actionsAI();
-        }
     }
     
     /**
@@ -354,5 +351,8 @@ public class Player extends Actor
                 }
             }
         }
+    }
+    public boolean getAIControlled(){
+        return aiControlled;
     }
 }
