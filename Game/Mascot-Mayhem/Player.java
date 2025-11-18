@@ -345,7 +345,7 @@ public class Player extends Actor
         else if(player.getX()<getX()){
             move(-1*speedMultiplier);
         }
-        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)||Greenfoot.getRandomNumber(100)<4){
+        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)||Greenfoot.getRandomNumber(100)<1){
             {
                 if(!jumping){
                     jumping = true;
