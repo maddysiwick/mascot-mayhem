@@ -252,6 +252,11 @@ public class CharacterSelect extends World
         if(Greenfoot.isKeyDown("space")){
             withAi=!withAi;
         }
-        showText(withAi+"",getWidth()/2,70);
+        if(withAi){
+            showText("Player 2 will be the computer. Press space to play against a friend",getWidth()/2,70);
+        }
+        else{
+            showText("Player 2 will be a friend. Press space to play against the computer",getWidth()/2,70);
+        }
     }
 }
