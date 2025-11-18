@@ -102,6 +102,7 @@ public class Player extends Actor
             firstTime=false;
         }
         updateVariablesAI();
+        chargeUltimate();
         if(getOneIntersectingObject(Actor.class)==null){
             moveAI();
             jumping();
@@ -198,7 +199,6 @@ public class Player extends Actor
         unblock();
         if(ultPossible()){
             ultimateCharge=0;
-            //turn(50);
             ultimateBar.setValue(0);
         }
     }
@@ -340,11 +340,12 @@ public class Player extends Actor
 
     public void moveAI()
     {
+        unblock();
         if(player.getX()>getX()){
-            move(5);
+            move(1*speedMultiplier);
         }
         else if(player.getX()<getX()){
-            move(-5);
+            move(-1*speedMultiplier);
         }
         if(player.getJumping()){
             {
