@@ -11,7 +11,6 @@ public class Player extends Actor
     //general fields
     private int ultimateCharge=0;
     private int ultimateMax=100;
-    
     private int ultimateBarPosition;
     private int healthBarPosition;
     protected int hitPoints;
@@ -34,6 +33,7 @@ public class Player extends Actor
     protected int ultTimer;
     protected int speedMultiplier=5;
     protected boolean usingUltimate=false;
+    protected String name;
     //ai specific fields
     protected boolean aiControlled;
     protected Player player;
@@ -59,11 +59,6 @@ public class Player extends Actor
         }
     }
     
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
     public void act()
     {
         if(!aiControlled){
@@ -73,9 +68,6 @@ public class Player extends Actor
         }
     }
     
-    /**
-     *  Method to be called on by the individual characters to act
-     */
     public void actions()
     {
         if(!doNothing && input!=null){
@@ -90,7 +82,7 @@ public class Player extends Actor
         }
     }
 
-    public void actionsAI()
+    public void actionsAI(String playerAction)
     {
         if(firstTime){
             List players = getWorld().getObjects(Player.class);
@@ -110,7 +102,7 @@ public class Player extends Actor
             moveAI();
             jumping();
         }
-        else if(beingAttacked){
+        else if(playerAction=="attack"){
             if(roll<30){
                 block();
             }
@@ -241,13 +233,6 @@ public class Player extends Actor
         getWorld().addObject(healthBar,healthBarPosition+100,50);
         healthBar.setBarHeight(50);
         healthBar.setBarWidth(500);
-        /*
-        ultimateBar.setBreakValue(20);
-        Color uncharged = new Color(84,241,232);
-        ultimateBar.setDangerColor(uncharged);
-        Color charged = new Color(253,208,45);
-        ultimateBar.setSafeColor(charged);
-        */
         healthBar.setShowTextualUnits(false);
         
     }
@@ -340,12 +325,14 @@ public class Player extends Actor
 
     public void useUltimate()
     {
-        
+        //this method is blank so that the other methods know what to call, its defined properly in each character
     }
 
     public void updateVariablesAI()
     {
-
+        if(player==null){
+            Greenfoot.stop();
+        }
     }
 
     public void moveAI()
@@ -378,5 +365,10 @@ public class Player extends Actor
             speedMultiplier=speedMultiplier*-1;
             runningAway=false;
         }
+    }
+
+    public void die()
+    {
+        Greenfoot.setWorld(new WinScreen(this));
     }
 }
