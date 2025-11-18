@@ -53,6 +53,18 @@ public class Tux extends Player
                 else if(player.getX()<getX()){
                     move(-1*speedMultiplier);
                 }
+                else if(player.getX()-5<=getX()||player.getX()+5>=getX()){
+                    --ultTimer;
+                }
+            }
+            else if(ultTimer<30){
+                setLocation(getX(),getY()+6);
+                attack();
+                --ultTimer;
+            }
+            else{
+                usingUltimate=false;
+                damage=5;
             }
         }
     }
