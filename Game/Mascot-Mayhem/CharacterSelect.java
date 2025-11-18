@@ -258,5 +258,6 @@ public class CharacterSelect extends World
         else{
             showText("Player 2 will be a friend. Press space to play against the computer",getWidth()/2,70);
         }
+        showText("Use each players keys (WASD or arrows) to navigate, attack (F or /) to choose a character and Ult (G or .) to confirm",getWidth()/2,125);
     }
 }
