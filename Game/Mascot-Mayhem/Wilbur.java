@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wilbur extends Player
 {
-    public Wilbur(boolean playerOne)
+    public Wilbur(boolean playerOne,boolean aiControlled)
     {
-        super(playerOne);  
+        super(playerOne,aiControlled);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;

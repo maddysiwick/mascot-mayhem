@@ -13,49 +13,49 @@ public class Arena extends World
     private Player p1;
     private Player p2;
     private ActionOrderManager queue;
+    private boolean withAi;
 
     /**
      * Constructor for objects of class Arena.
      * 
      */
-    public Arena(int p1Selection, int p2Selection)
+    public Arena(int p1Selection, int p2Selection, boolean withAi)
     {    
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
         this.p2Selection=p2Selection;
+        this.withAi=withAi;
         prepare();
     }
     
     private void prepare()
     {
-        p1 = getCharacter(p1Selection,true);
-        p2 = getCharacter(p2Selection,false);
+        p1 = getCharacter(p1Selection,true,false);
+        p2 = getCharacter(p2Selection,false,withAi);
         queue = new ActionOrderManager(p1,p2);
         addObject(queue,0,0);
         addObject(p1,140,614);
         addObject(p2,1126,614);
     }
 
-    public Player getCharacter(int selection,boolean playerOne)
+    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled)
     {
         switch(selection){
             case 1:
-                return new Wilbur(playerOne);
+                return new Wilbur(playerOne,aiControlled);
             case 2:
-                return new Keith(playerOne);
+                return new Keith(playerOne,aiControlled);
             case 3:
-                System.out.println("tux selected");
-                return new Tux(playerOne);
+                return new Tux(playerOne,aiControlled);
             case 4:
-                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne);
+                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
             case 5:
                 //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne);
+                return new Suzanne(playerOne,aiControlled);
             case 6:
-                return new Duke(playerOne);
+                return new Duke(playerOne,aiControlled);
             case 7:
-                System.out.println("suzanne selected");
-                return new Suzanne(playerOne);
+                return new Suzanne(playerOne,aiControlled);
         }
         return null;
     }

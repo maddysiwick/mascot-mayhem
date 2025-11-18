@@ -9,9 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Duke extends Player
 {
     
-    public Duke(boolean playerOne)
+    public Duke(boolean playerOne,boolean aiControlled)
     {
-        super(playerOne);  
+        super(playerOne,aiControlled);  
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;

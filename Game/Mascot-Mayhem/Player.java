@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Framework for player characters
@@ -7,21 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
+    //general fields
     private int ultimateCharge=0;
     private int ultimateMax=100;
-    protected boolean playerOne;
-    private String input;
+    
     private int ultimateBarPosition;
     private int healthBarPosition;
     protected int hitPoints;
     protected String hitImage;
     protected int damage;
     protected String baseSprite;
-    private boolean jumping;
+    protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
-    private Bar healthBar = new Bar("","Health%",10,10);
+    private Bar healthBar = new Bar("","Health%",100,100);
     private boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
@@ -30,10 +31,23 @@ public class Player extends Actor
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
     private int p2HealthBarPosition = 901;
+    protected int ultTimer;
+    protected int speedMultiplier=5;
+    protected boolean usingUltimate=false;
+    //ai specific fields
+    protected boolean aiControlled;
+    protected Player player;
+    private boolean beingAttacked;
+    private boolean willUltimateHit;
+
+    //player specific fields
+    protected boolean playerOne;
+    private String input;
     
-    public Player(boolean playerOne)
+    public Player(boolean playerOne,boolean aiControlled)
     {
         this.playerOne=playerOne;
+        this.aiControlled=aiControlled;
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -51,8 +65,14 @@ public class Player extends Actor
     
     public void act()
     {
-        getPlayerInput();
-        jumping();
+        if(!aiControlled){
+            getPlayerInput();
+            jumping();
+            useUltimate();
+        }
+        else{
+            actionsAI();
+        }
     }
     
     /**
@@ -69,6 +89,31 @@ public class Player extends Actor
                 initializeUltimateBar();
                 initializeHealthBar();
             }
+        }
+    }
+
+    public void actionsAI()
+    {
+        if(firstTime){
+            List players = getWorld().getObjects(Player.class);
+            player=(Player)players.get(0);
+            initializeUltimateBar();
+            initializeHealthBar();
+            firstTime=false;
+        }
+        updateVariablesAI();
+        if(getOneIntersectingObject(Actor.class)==null){
+            moveAI();
+            jumping();
+        }
+        else if(beingAttacked){
+            block();
+        }
+        else if(willUltimateHit){
+            triggerUltimate();
+        }
+        else{
+            attack();
         }
     }
     
@@ -148,14 +193,23 @@ public class Player extends Actor
     
     //ability methods:
     
-    private void triggerUltimate()
+    protected void triggerUltimate()
     {
         unblock();
-        if(ultimateCharge>=ultimateMax){
-            //code to do ultimate
+        if(ultPossible()){
             ultimateCharge=0;
-            turn(50);
+            //turn(50);
             ultimateBar.setValue(0);
+        }
+    }
+
+    protected boolean ultPossible()
+    {
+        if(ultimateCharge>=ultimateMax){
+            return true;
+        }
+        else{
+            return false;
         }
     }
     
@@ -194,7 +248,7 @@ public class Player extends Actor
         setImage("block.png");
     }
     
-    private void attack()
+    protected void attack()
     {
         unblock();
         setImage(hitImage);
@@ -219,13 +273,13 @@ public class Player extends Actor
     private void moveRight()
     {
         unblock();
-        move(-5);
+        move(-1*speedMultiplier);
     }
     
     private void moveLeft()
     {
         unblock();
-        move(5);
+        move(1*speedMultiplier);
     }
     
     private void crouch()
@@ -247,7 +301,7 @@ public class Player extends Actor
             jumpTimer++;
         }
     }
-    private void unblock(){
+    protected void unblock(){
         blocking=false;
         setImage(baseSprite);
     }
@@ -272,5 +326,33 @@ public class Player extends Actor
 
     public boolean getBlocking(){
         return blocking;
+    }
+
+    public void useUltimate()
+    {
+        
+    }
+
+    public void updateVariablesAI()
+    {
+
+    }
+
+    public void moveAI()
+    {
+        if(player.getX()>getX()){
+            move(5);
+        }
+        else if(player.getX()<getX()){
+            move(-5);
+        }
+        if(player.getJumping()){
+            {
+                if(!jumping){
+                    jumping = true;
+                    jumpTimer = 0;
+                }
+            }
+        }
     }
 }
