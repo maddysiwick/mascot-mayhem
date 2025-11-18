@@ -22,7 +22,7 @@ public class Player extends Actor
     private boolean blocking;
     private Bar ultimateBar = new Bar("","Ultimate%",0,100);
     private Bar healthBar = new Bar("","Health%",100,100);
-    private boolean firstTime = true;
+    protected boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
     private boolean doNothing=false;

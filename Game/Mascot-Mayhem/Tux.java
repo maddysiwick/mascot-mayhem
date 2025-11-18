@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class Tux here.
@@ -17,11 +18,16 @@ public class Tux extends Player
         damage=5;
         name="Tux";
         bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
+        firstTime=true;
     }
     
     public void act()
     {
         super.act();
+        if(firstTime){
+            List players = getWorld().getObjects(Player.class);
+            player=(Player)players.get(1);
+        }
     }
 
     public void triggerUltimate()
@@ -40,7 +46,7 @@ public class Tux extends Player
                 setLocation(getX(),getY()-6);
                 --ultTimer;
             }
-            else if(ultTimer==29){
+            else if(ultTimer==30){
                 if(player.getX()>getX()){
                     move(1*speedMultiplier);
                 }
