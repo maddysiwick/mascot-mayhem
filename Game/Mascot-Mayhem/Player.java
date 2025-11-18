@@ -39,7 +39,8 @@ public class Player extends Actor
     protected Player player;
     private boolean beingAttacked;
     private boolean willUltimateHit;
-
+    private boolean runningAway;
+    private int runTimer;
     //player specific fields
     protected boolean playerOne;
     private String input;
@@ -100,19 +101,31 @@ public class Player extends Actor
         }
         updateVariablesAI();
         chargeUltimate();
-        if(getOneIntersectingObject(Actor.class)==null){
+        int roll = Greenfoot.getRandomNumber(100);
+        if(runningAway){
+            runAway();
+        }
+        else if(roll<60){
+            if(getOneIntersectingObject(Actor.class)==null){
             moveAI();
             jumping();
         }
         else if(beingAttacked){
-            block();
+            if(roll<30){
+                block();
+            }
+            else{
+                runningAway=true;
+                speedMultiplier=speedMultiplier*-1;
+            }
         }
-        else if(willUltimateHit){
+        else if(roll<90&&willUltimateHit){
             triggerUltimate();
         }
-        else{
+        else if(roll<30){
             attack();
         }
+    }
     }
     
     public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
@@ -344,7 +357,7 @@ public class Player extends Actor
         else if(player.getX()<getX()){
             move(-1*speedMultiplier);
         }
-        if(player.getJumping()){
+        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)&&Greenfoot.getRandomNumber(100)<4){
             {
                 if(!jumping){
                     jumping = true;
@@ -355,5 +368,15 @@ public class Player extends Actor
     }
     public boolean getAIControlled(){
         return aiControlled;
+    }
+    public void runAway(){
+        moveAI();
+        if(runTimer>0){
+            runTimer--;
+        }
+        else{
+            speedMultiplier=speedMultiplier*-1;
+            runningAway=false;
+        }
     }
 }
