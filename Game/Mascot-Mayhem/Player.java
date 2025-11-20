@@ -99,26 +99,26 @@ public class Player extends Actor
         }
         else if(roll<60){
             if(getOneIntersectingObject(Actor.class)==null){
-            moveAI();
-            jumping();
-        }
-        else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
-            if(roll<30){
-                block();
+                moveAI();
+                jumping();
             }
-            else{
-                runTimer=30;
-                runningAway=true;
-                speedMultiplier=speedMultiplier*-1;
+            else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
+                if(roll<30){
+                    block();
+                }
+                else{
+                    runTimer=30;
+                    runningAway=true;
+                    speedMultiplier=speedMultiplier*-1;
+                }
+            }
+            else if(roll<50&&willUltimateHit&&ultPossible()){
+                triggerUltimate();
+            }
+            else if(roll<70){
+                attack();
             }
         }
-        else if(roll<50&&willUltimateHit&&ultPossible()){
-            triggerUltimate();
-        }
-        else if(roll<70){
-            attack();
-        }
-    }
     }
     
     public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
@@ -191,6 +191,7 @@ public class Player extends Actor
             healthBar.subtract(damage);
         }
         if (hitPoints<1){
+            die();
             getWorld().removeObject(this);
         }
     }  
