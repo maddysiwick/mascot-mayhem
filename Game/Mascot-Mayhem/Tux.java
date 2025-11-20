@@ -32,16 +32,19 @@ public class Tux extends Player
 
     public void triggerUltimate()
     {
-        super.triggerUltimate();
-        damage=35;
-        usingUltimate=true;
-        ultTimer=60;
+        
+        if(ultPossible()){
+            super.triggerUltimate();
+            damage=35;
+            usingUltimate=true;
+            ultTimer=60;
+            doNothing=true;
+        }
     }
 
     public void useUltimate()
     {
         if(usingUltimate){
-            System.out.println(ultTimer+"");
             if(ultTimer>30){
                 setLocation(getX(),getY()-6);
                 --ultTimer;
@@ -62,13 +65,14 @@ public class Tux extends Player
                 --ultTimer;
             }
             else if(ultTimer==1){
-                setLocation(getX(),getY()+30);
+                setLocation(getX(),getY()+6);
                 attack();
                 --ultTimer;
             }
             if(ultTimer<1){
                 usingUltimate=false;
                 damage=5;
+                doNothing=false;
             }
         }
     }

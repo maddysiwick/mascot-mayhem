@@ -25,7 +25,7 @@ public class Player extends Actor
     protected boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
-    private boolean doNothing=false;
+    protected boolean doNothing=false;
     private int p1UltimateBarPosition = 150;
     private int p2UltimateBarPosition = 1126; 
     private int p1HealthBarPosition = 175;
