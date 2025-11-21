@@ -32,15 +32,15 @@ public class Arena extends World
     
     private void prepare()
     {
-        p1 = getCharacter(p1Selection,true,false,aiDifficulty);
-        p2 = getCharacter(p2Selection,false,withAi,aiDifficulty);
+        p1 = getCharacter(p1Selection,true,false);
+        p2 = getCharacter(p2Selection,false,withAi);
         queue = new ActionOrderManager(p1,p2);
         addObject(queue,0,0);
         addObject(p1,140,614);
         addObject(p2,1126,614);
     }
 
-    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled)
     {
         switch(selection){
             case 1:
@@ -50,7 +50,7 @@ public class Arena extends World
             case 3:
                 return new Tux(playerOne,aiControlled,aiDifficulty);
             case 4:
-                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled,aiDifficulty);
+                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
             case 5:
                 //this will be gnu but its suzanne atm
                 return new Suzanne(playerOne,aiControlled,aiDifficulty);

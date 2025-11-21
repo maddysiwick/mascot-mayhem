@@ -85,15 +85,15 @@ public class Player extends Actor
                 firstTime=false;
                 initializeUltimateBar();
                 initializeHealthBar();
-                if(aiControlled){
-                    setUpAi(aiDifficulty);
-                }
             }
         }
     }
 
     public void actionsAI(String playerAction)
     {
+        if(firstTime){
+            setUpAi(aiDifficulty);
+        }
         updateVariablesAI();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
@@ -336,7 +336,7 @@ public class Player extends Actor
     public void updateVariablesAI()
     {
         if(player==null){
-            Greenfoot.stop();
+            //Greenfoot.stop();
         }
     }
 
@@ -379,8 +379,13 @@ public class Player extends Actor
 
     public void setUpAi(int difficulty)
     {
-        List players = getWorld().getObjects(Player.class);
-        player=(Player)players.get(0);
+        if(firstTime){
+            firstTime=false;
+            initializeHealthBar();
+            initializeUltimateBar();
+            List players = getWorld().getObjects(Player.class);
+            player=(Player)players.get(0);
+        }
         switch(difficulty){
             case 0:
                 aiAttackChance=70;
