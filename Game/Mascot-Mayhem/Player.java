@@ -41,14 +41,21 @@ public class Player extends Actor
     protected boolean willUltimateHit;
     private boolean runningAway;
     private int runTimer;
+    private int aiAttackChance;
+    private int aiBlockChance;
+    private int aiMoveChance;
+    private int aiDefendChance;
+    private int aiUltChance;
+    private int aiDifficulty;
     //player specific fields
     protected boolean playerOne;
     private String input;
     
-    public Player(boolean playerOne,boolean aiControlled)
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
+        this.aiDifficulty=aiDifficulty;
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -78,32 +85,28 @@ public class Player extends Actor
                 firstTime=false;
                 initializeUltimateBar();
                 initializeHealthBar();
+                if(aiControlled){
+                    setUpAi(aiDifficulty);
+                }
             }
         }
     }
 
     public void actionsAI(String playerAction)
     {
-        if(firstTime){
-            List players = getWorld().getObjects(Player.class);
-            player=(Player)players.get(0);
-            initializeUltimateBar();
-            initializeHealthBar();
-            firstTime=false;
-        }
         updateVariablesAI();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
         if(runningAway){
             runAway();
         }
-        else if(roll<60){
+        else if(roll<aiMoveChance){
             if(getOneIntersectingObject(Actor.class)==null){
                 moveAI();
                 jumping();
             }
-            else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
-                if(roll<30){
+            else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<aiDefendChance){
+                if(roll<aiBlockChance){
                     block();
                 }
                 else{
@@ -112,10 +115,10 @@ public class Player extends Actor
                     speedMultiplier=speedMultiplier*-1;
                 }
             }
-            else if(roll<50&&willUltimateHit&&ultPossible()){
+            else if(roll<aiUltChance&&willUltimateHit&&ultPossible()){
                 triggerUltimate();
             }
-            else if(roll<70){
+            else if(roll<aiAttackChance){
                 attack();
             }
         }
@@ -372,5 +375,31 @@ public class Player extends Actor
     public void die()
     {
         Greenfoot.setWorld(new WinScreen(this));
+    }
+
+    public void setUpAi(int difficulty)
+    {
+        List players = getWorld().getObjects(Player.class);
+        player=(Player)players.get(0);
+        switch(difficulty){
+            case 0:
+                aiAttackChance=70;
+                aiBlockChance=30;
+                aiMoveChance=60;
+                aiDefendChance=60;
+                aiUltChance=50;
+            case 1:
+                aiAttackChance=70;
+                aiBlockChance=30;
+                aiMoveChance=60;
+                aiDefendChance=60;
+                aiUltChance=50;
+            case 2:
+                aiAttackChance=70;
+                aiBlockChance=30;
+                aiMoveChance=60;
+                aiDefendChance=60;
+                aiUltChance=50;
+        }
     }
 }

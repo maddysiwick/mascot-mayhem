@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Framework\ for\ player\ characters\r\n\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=playerOne\ aiControlled
-comment1.target=Player(boolean,\ boolean)
+comment1.params=playerOne\ aiControlled\ aiDifficulty
+comment1.target=Player(boolean,\ boolean,\ int)
 comment10.params=
 comment10.target=void\ triggerUltimate()
 comment11.params=
@@ -53,6 +53,8 @@ comment31.params=
 comment31.target=void\ runAway()
 comment32.params=
 comment32.target=void\ die()
+comment33.params=difficulty
+comment33.target=void\ setUpAi(int)
 comment4.params=playerAction
 comment4.target=void\ actionsAI(java.lang.String)
 comment5.params=playerOne\ ultimateBarPosition\ healthBarPosition
@@ -65,4 +67,4 @@ comment8.params=
 comment8.target=void\ getPlayerInput()
 comment9.params=damage
 comment9.target=void\ takeHit(int)
-numComments=33
+numComments=34

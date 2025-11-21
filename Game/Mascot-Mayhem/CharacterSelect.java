@@ -16,6 +16,7 @@ public class CharacterSelect extends World
     private boolean p1Confirmed=false;
     private boolean p2Confirmed=false;
     private boolean withAi=true;
+    private int aiDifficulty=0;
     private GreenfootImage bioP1=new GreenfootImage(1280,720);
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
     
@@ -32,7 +33,7 @@ public class CharacterSelect extends World
         moveOn();
         manageSelections();
         showBios();
-        toggleAi();
+        manageAI();
     }
 
     public void draw()
@@ -76,10 +77,10 @@ public class CharacterSelect extends World
         bg.setColor(Color.RED);
         bg.setFont(new Font(true,false,120));
         bg.drawString("?",getWidth()/2-31,642);
-        Tux tux = new Tux(true,false);
+        Tux tux = new Tux(true,false,0);
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
-        Suzanne suzanne = new Suzanne(true,false);
+        Suzanne suzanne = new Suzanne(true,false,0);
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
     }
@@ -143,41 +144,45 @@ public class CharacterSelect extends World
     public void getSelections()
     {
         Greenfoot.delay(5);
-        switch(InputManager.getPlayerOneInput(false)){
-            case "right":
-                if(p1Selection==1){
-                    p1Selection=7;
-                }
-                else{
-                    --p1Selection;
-                }
-                break;
-            case "left":
-                if(p1Selection==7){
-                    p1Selection=1;
-                }
-                else{
-                    ++p1Selection;
-                }
-                break;
+        if(!p1Confirmed){
+            switch(InputManager.getPlayerOneInput(false)){
+                case "right":
+                    if(p1Selection==1){
+                        p1Selection=7;
+                    }
+                    else{
+                        --p1Selection;
+                    }
+                    break;
+                case "left":
+                    if(p1Selection==7){
+                        p1Selection=1;
+                    }
+                    else{
+                        ++p1Selection;
+                    }
+                    break;
+            }
         }
-        switch(InputManager.getPlayerTwoInput(false)){
-            case "right":
-                if(p2Selection==1){
-                    p2Selection=7;
-                }
-                else{
-                    --p2Selection;
-                }
-                break;
-            case "left":
-                if(p2Selection==7){
-                    p2Selection=1;
-                }
-                else{
-                    ++p2Selection;
-                }
-                break;
+        if(!p2Confirmed){
+            switch(InputManager.getPlayerTwoInput(false)){
+                case "right":
+                    if(p2Selection==1){
+                        p2Selection=7;
+                    }
+                    else{
+                        --p2Selection;
+                    }
+                    break;
+                case "left":
+                    if(p2Selection==7){
+                        p2Selection=1;
+                    }
+                    else{
+                        ++p2Selection;
+                    }
+                    break;
+            }
         }
         moveSelectors();
     }
@@ -216,7 +221,7 @@ public class CharacterSelect extends World
     public void moveOn()
     {
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
-            Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi));
+            Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty));
         }
     }
 
@@ -246,7 +251,7 @@ public class CharacterSelect extends World
         return null;
     }
 
-    public void toggleAi()
+    public void manageAI()
     {
         Greenfoot.delay(5);
         if(Greenfoot.isKeyDown("space")){
@@ -259,5 +264,37 @@ public class CharacterSelect extends World
             showText("Player 2 will be a friend. Press space to play against the computer",getWidth()/2,70);
         }
         showText("Use each players keys (WASD or arrows) to navigate, attack (F or /) to choose a character and Ult (G or .) to confirm",getWidth()/2,125);
+        if(Greenfoot.isKeyDown("=")){
+            if(aiDifficulty==2){
+                aiDifficulty=0;
+            }
+            else{
+                ++aiDifficulty;
+            }
+        }
+        else if(Greenfoot.isKeyDown("-")){
+            if(aiDifficulty==0){
+                aiDifficulty=2;
+            }
+            else{
+                --aiDifficulty;
+            }
+        }
+        if(withAi){
+            showText("Current computer difficulty: " + getDifficultyWord(),getWidth()/2,150);
+        }
+    }
+
+    public String getDifficultyWord()
+    {
+        switch(aiDifficulty){
+            case 0:
+                return "Easy :)";
+            case 1:
+                return "Medium :|";
+            case 2:
+                return "Hard :<";
+        }
+        return "";
     }
 }
