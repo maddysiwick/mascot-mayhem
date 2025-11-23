@@ -40,6 +40,7 @@ public class Player extends Actor
     private boolean beingAttacked;
     protected boolean willUltimateHit;
     private boolean runningAway;
+    private boolean moving=false;
     private int runTimer;
     //player specific fields
     protected boolean playerOne;
@@ -94,15 +95,17 @@ public class Player extends Actor
         updateVariablesAI();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
+        jumping();
         if(runningAway){
             runAway();
         }
-        else if(roll<60){
-            if(getOneIntersectingObject(Actor.class)==null){
+        if(moving){
             moveAI();
-            jumping();
         }
-        else if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
+        else if(roll<6&&moving==false&&getOneIntersectingObject(Actor.class)==null){
+            moving=true;
+        }
+        if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
             if(roll<30){
                 block();
             }
