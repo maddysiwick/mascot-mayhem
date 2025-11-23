@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gnu extends Player
 {
-    public Gnu(boolean playerOne,boolean aiControlled)    
+    public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty)    
     {
-        super(playerOne,aiControlled);
+        super(playerOne,aiControlled,aiDifficulty);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;

@@ -9,9 +9,9 @@ import java.util.*;
  */
 public class Tux extends Player
 {    
-    public Tux(boolean playerOne,boolean aiControlled)
+    public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled);
+        super(playerOne,aiControlled,aiDifficulty);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;
@@ -24,7 +24,7 @@ public class Tux extends Player
     public void act()
     {
         super.act();
-        if(firstTime){
+        if(firstTime){//this is the same code as for the ai, but tux always needs to do it for his ult
             List players = getWorld().getObjects(Player.class);
             player=(Player)players.get(1);
         }

@@ -14,17 +14,19 @@ public class Arena extends World
     private Player p2;
     private ActionOrderManager queue;
     private boolean withAi;
+    private int aiDifficulty;
 
     /**
      * Constructor for objects of class Arena.
      * 
      */
-    public Arena(int p1Selection, int p2Selection, boolean withAi)
+    public Arena(int p1Selection, int p2Selection, boolean withAi,int aiDifficulty)
     {    
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
         this.p2Selection=p2Selection;
         this.withAi=withAi;
+        this.aiDifficulty=aiDifficulty;
         prepare();
     }
     
@@ -42,20 +44,20 @@ public class Arena extends World
     {
         switch(selection){
             case 1:
-                return new Wilbur(playerOne,aiControlled);
+                return new Wilbur(playerOne,aiControlled,aiDifficulty);
             case 2:
-                return new Keith(playerOne,aiControlled);
+                return new Keith(playerOne,aiControlled,aiDifficulty);
             case 3:
-                return new Tux(playerOne,aiControlled);
+                return new Tux(playerOne,aiControlled,aiDifficulty);
             case 4:
                 return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
             case 5:
                 //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne,aiControlled);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty);
             case 6:
-                return new Duke(playerOne,aiControlled);
+                return new Duke(playerOne,aiControlled,aiDifficulty);
             case 7:
-                return new Suzanne(playerOne,aiControlled);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty);
         }
         return null;
     }

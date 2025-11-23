@@ -12,9 +12,9 @@ public class Keith extends Player
      * Act - do whatever the Tux wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Keith(boolean playerOne,boolean aiControlled)
+    public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled);
+        super(playerOne,aiControlled,aiDifficulty);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;
