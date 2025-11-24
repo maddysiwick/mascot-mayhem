@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class Duke here.
@@ -9,19 +10,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Duke extends Player
 {
     protected GreenfootImage laser;
+    private List players;
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);  
         baseSprite="dukeTemp.png";
         hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=10;
+        hitPoints=100;
         damage=5;
-        bio="Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
+        bio="Duke \n The sweetest robot, and Keith's best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
     }
     
     public void act()
     {
-        actions();
+        super.act();
+        players=getWorld().getObjects(Player.class);
     }
     
     public void triggerUltimate(){
@@ -32,7 +35,7 @@ public class Duke extends Player
             laser = new GreenfootImage(5,5);
             laser.setColor(Color.BLUE);
             if(playerOne){
-                laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer2().getX(),((Arena)getWorld()).getPlayer2().getY());
+                laser.drawLine(getX(),getY(),players.get(1).getX(),players.get(1).getY());
             }
             else{
                 laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
