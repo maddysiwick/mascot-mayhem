@@ -12,7 +12,7 @@ public class Duke extends Player
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);  
-        baseSprite="duke.png";
+        baseSprite="dukeTemp.png";
         hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;
         damage=5;
@@ -37,13 +37,6 @@ public class Duke extends Player
             else{
                 laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
             }
-        }
-    }
-    
-    public void useUltimate(){
-        ultTimer--;
-        if(ultTimer==0){
-            usingUltimate=false;
         }
     }
 }
