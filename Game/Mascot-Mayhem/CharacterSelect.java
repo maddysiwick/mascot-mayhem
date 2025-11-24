@@ -83,6 +83,9 @@ public class CharacterSelect extends World
         Suzanne suzanne = new Suzanne(true,false,0);
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
+        Keith keith = new Keith(true,false,0);
+        addObject(keith,getWidth()/2-290,550);
+        keith.makeStatic();
     }
 
     public void moveSelectors()

@@ -61,4 +61,10 @@ public class Arena extends World
         }
         return null;
     }
+    public Player getPlayer1(){
+        return p1;
+    }
+    public Player getPlayer2(){
+        return p2;
+    }
 }

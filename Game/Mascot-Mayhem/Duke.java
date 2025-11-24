@@ -8,12 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Duke extends Player
 {
-    
+    protected GreenfootImage laser;
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);  
-        baseSprite="tux.png";
-        hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        baseSprite="duke.png";
+        hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;
         damage=5;
         bio="Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
@@ -22,5 +22,28 @@ public class Duke extends Player
     public void act()
     {
         actions();
+    }
+    
+    public void triggerUltimate(){
+        if(ultPossible()){
+            super.triggerUltimate();
+            usingUltimate=true;
+            ultTimer=40;
+            laser = new GreenfootImage(5,5);
+            laser.setColor(Color.BLUE);
+            if(playerOne){
+                laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer2().getX(),((Arena)getWorld()).getPlayer2().getY());
+            }
+            else{
+                laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
+            }
+        }
+    }
+    
+    public void useUltimate(){
+        ultTimer--;
+        if(ultTimer==0){
+            usingUltimate=false;
+        }
     }
 }

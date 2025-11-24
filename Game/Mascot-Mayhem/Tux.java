@@ -32,7 +32,6 @@ public class Tux extends Player
 
     public void triggerUltimate()
     {
-        
         if(ultPossible()){
             super.triggerUltimate();
             damage=35;

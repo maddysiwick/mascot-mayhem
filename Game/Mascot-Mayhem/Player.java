@@ -45,8 +45,8 @@ public class Player extends Actor
     //player specific fields
     protected boolean playerOne;
     private String input;
-    
-    public Player(boolean playerOne,boolean aiControlled)
+    protected int damageMultiplier=1;
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
@@ -118,10 +118,9 @@ public class Player extends Actor
         else if(roll<50&&willUltimateHit&&ultPossible()){
             triggerUltimate();
         }
-        else if(roll<70){
+        else if(roll<70&&getOneIntersectingObject(Actor.class)!=null){
             attack();
         }
-    }
     }
     
     public void setCharacteristics(boolean playerOne, int ultimateBarPosition, int healthBarPosition)
@@ -190,6 +189,7 @@ public class Player extends Actor
             healthBar.subtract(damage/2);
         }
         else{
+            damage*=damageMultiplier;
             hitPoints-=damage;
             healthBar.subtract(damage);
         }
