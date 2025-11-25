@@ -108,10 +108,13 @@ public class Player extends Actor
         if(moving){
             moveAI();
         }
-        else if(roll<6&&moving==false&&getOneIntersectingObject(Actor.class)==null){
+        else if(roll<6&&!moving&&getOneIntersectingObject(Actor.class)==null){
             moving=true;
         }
-        if(playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60){
+        if(roll<1&&moving){
+                moving=false;
+            }
+        if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
             if(roll<30){
                 block();
             }
@@ -361,7 +364,7 @@ public class Player extends Actor
         else if(player.getX()<getX()){
             move(-1*speedMultiplier);
         }
-        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<8)||Greenfoot.getRandomNumber(100)<1){
+        if((player.getJumping()&&Greenfoot.getRandomNumber(100)<2)||Greenfoot.getRandomNumber(100)<1){
             {
                 if(!jumping){
                     jumping = true;
