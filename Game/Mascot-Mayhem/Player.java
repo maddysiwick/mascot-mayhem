@@ -34,6 +34,7 @@ public class Player extends Actor
     protected int speedMultiplier=5;
     protected boolean usingUltimate=false;
     protected String name;
+    protected int attackCooldown;
     //ai specific fields
     protected boolean aiControlled;
     protected Player player;
@@ -250,14 +251,20 @@ public class Player extends Actor
     protected void attack()
     {
         unblock();
-        setImage(hitImage);
-        Actor victim = getOneIntersectingObject(Player.class);
-        Player jumpee = (Player) victim;
-        if(victim!=null){
-            jumpee.takeHit(damage);
+        if(attackCooldown==0){
+            attackCooldown=20;
+            setImage(hitImage);
+            Actor victim = getOneIntersectingObject(Player.class);
+            Player jumpee = (Player) victim;
+            if(victim!=null){
+                jumpee.takeHit(damage);
+            }
+            Greenfoot.delay(10);
+            setImage(baseSprite);
         }
-        Greenfoot.delay(10);
-        setImage(baseSprite);
+        else{
+            --attackCooldown;
+        }
     }
     
     protected void jump()
