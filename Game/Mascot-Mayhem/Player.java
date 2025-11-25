@@ -88,7 +88,12 @@ public class Player extends Actor
     {
         if(firstTime){
             List players = getWorld().getObjects(Player.class);
-            player=(Player)players.get(0);
+            if(playerOne){
+                player=(Player)players.get(1);
+            }
+            else{
+                player=(Player)players.get(0);
+            }
             initializeUltimateBar();
             initializeHealthBar();
             firstTime=false;
@@ -195,6 +200,7 @@ public class Player extends Actor
             healthBar.subtract(damage);
         }
         if (hitPoints<1){
+            die();
             getWorld().removeObject(this);
         }
     }  

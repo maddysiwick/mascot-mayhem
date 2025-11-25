@@ -8,22 +8,43 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gnu extends Player
 {
-    public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty)    
+    private boolean clone;
+    public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone)    
     {
         super(playerOne,aiControlled,aiDifficulty);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=10;
+        hitPoints=100;
         damage=5;
-        bio=": Duke \n The sweetest robot, and Keith’s best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";    
+        this.clone=clone;
+        if(clone){
+            hitPoints=20;
+            damage=3;
+            baseSprite="tux.png";//make this a slightly altered version of the base one once we have the sprites
+            ultTimer=500;
+        }
+        bio="";    
     }
     
-    /**
-     * Act - do whatever the Gnu wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         super.act();
+        if(clone){
+            if(ultTimer>0){
+                --ultTimer;
+            }
+            if(ultTimer==0){
+                getWorld().removeObject(this);
+            }
+        }
+    }
+
+    public void triggerUltimate()
+    {
+        if(ultPossible()){
+            super.triggerUltimate();
+            usingUltimate=true;
+            getWorld().addObject(new Gnu(playerOne,true,0,true),getX()+(Greenfoot.getRandomNumber(100)-50),getY());
+        }
     }
 }
