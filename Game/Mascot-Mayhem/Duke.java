@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Duke extends Player
 {
-    protected GreenfootImage laser;
+    protected GreenfootImage laserLine;
     private List players;
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
@@ -30,27 +30,22 @@ public class Duke extends Player
     public void triggerUltimate(){
         if(ultPossible()){
             super.triggerUltimate();
-            usingUltimate=true;
-            ultTimer=2;
-            laser = new GreenfootImage(5,5);
-            getWorld().getBackground().setColor(Color.RED);
+            laserLine = new GreenfootImage(1280,720);
+            laserLine.setColor(Color.RED);
+            laserLine.setFont(new Font(50));
+            Player target;
+            AddedImage laser = new AddedImage(750);
             if(playerOne){
-                getWorld().getBackground().drawLine(getX(),getY(),((Arena)getWorld()).getPlayer2().getX(),((Arena)getWorld()).getPlayer2().getY());
-
+                target = (Player) players.get(1);
             }
             else{
-                getWorld().getBackground().drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
+                target = (Player) players.get(0);
             }
+            laserLine.drawLine(getX(),getY(),target.getX(),target.getY());
+            laser.setImage(laserLine);
+            getWorld().addObject(laser,getWorld().getWidth()/2,getWorld().getHeight()/2);
+            target.takeHit(50);
         }
     }
     
-    public void useUltimate(){
-        ultTimer--;
-        if(ultTimer==0){
-            usingUltimate=false;
-            GreenfootImage bg = getWorld().getBackground();
-            bg.setColor(Color.WHITE);
-            bg.fill();
-        }
-    }
 }

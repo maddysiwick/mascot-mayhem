@@ -57,7 +57,7 @@ public class Arena extends World
             case 6:
                 return new Duke(playerOne,aiControlled,aiDifficulty);
             case 7:
-                return new Suzanne(playerOne,aiControlled,aiDifficulty);
+                return new Gnu(playerOne,aiControlled,aiDifficulty,false);
         }
         return null;
     }
