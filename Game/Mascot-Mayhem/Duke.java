@@ -31,15 +31,26 @@ public class Duke extends Player
         if(ultPossible()){
             super.triggerUltimate();
             usingUltimate=true;
-            ultTimer=40;
+            ultTimer=2;
             laser = new GreenfootImage(5,5);
-            laser.setColor(Color.BLUE);
+            getWorld().getBackground().setColor(Color.RED);
             if(playerOne){
-                laser.drawLine(getX(),getY(),players.get(1).getX(),players.get(1).getY());
+                getWorld().getBackground().drawLine(getX(),getY(),((Arena)getWorld()).getPlayer2().getX(),((Arena)getWorld()).getPlayer2().getY());
+
             }
             else{
-                laser.drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
+                getWorld().getBackground().drawLine(getX(),getY(),((Arena)getWorld()).getPlayer1().getX(),((Arena)getWorld()).getPlayer1().getY());
             }
+        }
+    }
+    
+    public void useUltimate(){
+        ultTimer--;
+        if(ultTimer==0){
+            usingUltimate=false;
+            GreenfootImage bg = getWorld().getBackground();
+            bg.setColor(Color.WHITE);
+            bg.fill();
         }
     }
 }
