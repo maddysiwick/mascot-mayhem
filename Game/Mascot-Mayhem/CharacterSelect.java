@@ -19,6 +19,9 @@ public class CharacterSelect extends World
     private int aiDifficulty=0;
     private GreenfootImage bioP1=new GreenfootImage(1280,720);
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
+    private AddedImage aiIndicator=new AddedImage(999999999);
+    private GreenfootImage aiControlled=new GreenfootImage(1280,720);
+    private GreenfootImage playerControlled=new GreenfootImage(1280,720);
     
     public CharacterSelect()
     {    
@@ -26,6 +29,7 @@ public class CharacterSelect extends World
         draw();
         drawOptions();
         initializeSelectors();
+        setUpAiIndicator();
     }
 
     public void act()
@@ -258,10 +262,10 @@ public class CharacterSelect extends World
             withAi=!withAi;
         }
         if(withAi){
-            showText("Player 2 will be the computer. Press space to play against a friend",getWidth()/2,70);
+            aiIndicator.setImage(aiControlled);
         }
         else{
-            showText("Player 2 will be a friend. Press space to play against the computer",getWidth()/2,70);
+            aiIndicator.setImage(playerControlled);
         }
         showText("Use each players keys (WASD or arrows) to navigate, attack (F or /) to choose a character and Ult (G or .) to confirm",getWidth()/2,125);
         if(Greenfoot.isKeyDown("=")){
@@ -296,5 +300,16 @@ public class CharacterSelect extends World
                 return "Hard :<";
         }
         return "";
+    }
+
+    public void setUpAiIndicator()
+    {
+        addObject(aiIndicator,getWidth()/2,getHeight()/2);
+        aiControlled.setFont(new Font(true,true,50));
+        aiControlled.setColor(new Color(68,68,68));
+        aiControlled.drawString("(AI controlled)",1015,75);
+        playerControlled.setFont(new Font(true,true,50));
+        playerControlled.setColor(new Color(68,68,68));
+        playerControlled.drawString("(Player controlled)",1015,75);
     }
 }

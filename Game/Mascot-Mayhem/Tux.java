@@ -28,7 +28,7 @@ public class Tux extends Player
             List players = getWorld().getObjects(Player.class);
             player=(Player)players.get(1);
         }
-        getWorld().showText("height: " + getY(),50, 250);
+        //getWorld().showText("height: " + getY(),50, 250);
     }
 
     public void triggerUltimate()
