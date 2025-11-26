@@ -23,7 +23,7 @@ public class Gnu extends Player
             baseSprite="tux.png";//make this a slightly altered version of the base one once we have the sprites
             ultTimer=500;
         }
-        bio="";    
+        bio=""; 
     }
     
     public void act()
@@ -31,9 +31,12 @@ public class Gnu extends Player
         super.act();
         if(clone){
             if(ultTimer>0){
+                actionsAI("");
                 --ultTimer;
             }
             if(ultTimer==0){
+                getWorld().removeObject(healthBar);
+                getWorld().removeObject(ultimateBar);
                 getWorld().removeObject(this);
             }
         }
@@ -44,7 +47,17 @@ public class Gnu extends Player
         if(ultPossible()){
             super.triggerUltimate();
             usingUltimate=true;
-            getWorld().addObject(new Gnu(playerOne,true,0,true),getX()+(Greenfoot.getRandomNumber(100)-50),getY());
+            getWorld().addObject(new Gnu(playerOne,true,1,true),getX()+getOffset(),getY());
+        }
+    }
+
+    public int getOffset()
+    {
+        if(playerOne){
+            return 100;
+        }
+        else{
+            return -100;
         }
     }
 }

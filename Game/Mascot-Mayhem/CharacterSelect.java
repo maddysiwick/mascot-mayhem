@@ -32,7 +32,6 @@ public class CharacterSelect extends World
     {
         moveOn();
         manageSelections();
-        showBios();
         manageAI();
     }
 
@@ -229,11 +228,6 @@ public class CharacterSelect extends World
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty));
         }
-    }
-
-    public void showBios()
-    {
-        
     }
 
     public String getBio(int selection)

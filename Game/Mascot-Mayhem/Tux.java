@@ -28,6 +28,7 @@ public class Tux extends Player
             List players = getWorld().getObjects(Player.class);
             player=(Player)players.get(1);
         }
+        getWorld().showText("height: " + getY(),50, 250);
     }
 
     public void triggerUltimate()
@@ -59,16 +60,13 @@ public class Tux extends Player
                     --ultTimer;
                 }
             }
-            else if(ultTimer<30&&ultTimer>1){
-                setLocation(getX(),getY()+6);
+            else if(ultTimer<30&&ultTimer>=13){
+                setLocation(getX(),getY()+10);
                 --ultTimer;
             }
-            else if(ultTimer==1){
-                setLocation(getX(),getY()+6);
+            else if(ultTimer==12){
+                setLocation(getX(),getY()+10);
                 attack();
-                --ultTimer;
-            }
-            if(ultTimer<1){
                 usingUltimate=false;
                 damage=5;
                 doNothing=false;

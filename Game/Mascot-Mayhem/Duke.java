@@ -14,7 +14,7 @@ public class Duke extends Player
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);  
-        baseSprite="dukeTemp.png";
+        baseSprite="dukeTEMP.png";
         hitImage="images/dukeHitTemp.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;

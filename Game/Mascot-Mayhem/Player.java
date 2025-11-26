@@ -20,8 +20,8 @@ public class Player extends Actor
     protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
-    private Bar ultimateBar = new Bar("","Ultimate%",0,100);
-    private Bar healthBar = new Bar("","Health%",100,100);
+    protected Bar ultimateBar = new Bar("","Ultimate%",0,100);
+    protected Bar healthBar = new Bar("","Health%",100,100);
     protected boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
@@ -40,7 +40,6 @@ public class Player extends Actor
     protected boolean aiControlled;
     protected Player player;
     private boolean beingAttacked;
-    protected boolean willUltimateHit;
     private boolean runningAway;
     private boolean moving=false;
     private int runTimer;
@@ -98,7 +97,6 @@ public class Player extends Actor
             setUpAI();
             firstTime=false;
         }
-        updateVariablesAI();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
         jumping();
@@ -124,7 +122,7 @@ public class Player extends Actor
                 speedMultiplier=speedMultiplier*-1;
             }
         }
-        else if(roll<aiUltimateChance&&willUltimateHit&&ultPossible()){
+        else if(roll<aiUltimateChance&&ultPossible()){
             triggerUltimate();
         }
         else if(roll<aiAttackChance&&getOneIntersectingObject(Actor.class)!=null){
@@ -261,12 +259,12 @@ public class Player extends Actor
     {
         unblock();
         if(attackCooldown==0){
-            attackCooldown=20;
+            attackCooldown=17;
             setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
             if(victim!=null){
-                jumpee.takeHit(damage);
+                jumpee.takeHit(damage*damageMultiplier);
             }
             Greenfoot.delay(10);
             setImage(baseSprite);
@@ -346,13 +344,6 @@ public class Player extends Actor
     public void useUltimate()
     {
         //this method is blank so that the other methods know what to call, its defined properly in each character
-    }
-
-    public void updateVariablesAI()
-    {
-        if(player==null){
-            Greenfoot.stop();
-        }
     }
 
     public void moveAI()
