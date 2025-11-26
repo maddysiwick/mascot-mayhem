@@ -43,14 +43,23 @@ public class Player extends Actor
     private boolean runningAway;
     private boolean moving=false;
     private int runTimer;
+    //ai difficulty checks
+    private int startMovingCheck;
+    private int stopMovingCheck;
+    private int defenseCheck;
+    private int blockCheck;
+    private int ultCheck;
+    private int attackCheck;
     //player specific fields
     protected boolean playerOne;
     private String input;
     protected int damageMultiplier=1;
+    protected int aiDifficulty;
     public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
+        this.aiDifficulty=aiDifficulty;
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -72,15 +81,15 @@ public class Player extends Actor
     
     public void actions()
     {
+         if(firstTime){
+                firstTime=false;
+                initializeUltimateBar();
+                initializeHealthBar();
+         }
         if(!doNothing && input!=null){
             getActions();
             chargeUltimate();
             jumping();
-            if(firstTime){
-                firstTime=false;
-                initializeUltimateBar();
-                initializeHealthBar();
-            }
         }
     }
 
@@ -97,6 +106,29 @@ public class Player extends Actor
             initializeUltimateBar();
             initializeHealthBar();
             firstTime=false;
+             switch(aiDifficulty){
+                    case 0:
+                        startMovingCheck=3;
+                        stopMovingCheck=4;
+                        defenseCheck=30;
+                        blockCheck=15;
+                        ultCheck=25;
+                        attackCheck=40;
+                     case 1:
+                        startMovingCheck=6;
+                        stopMovingCheck=2;
+                        defenseCheck=60;
+                        blockCheck=30;
+                        ultCheck=50;
+                        attackCheck=70;
+                    case 2:
+                        startMovingCheck=8;
+                        stopMovingCheck=1;
+                        defenseCheck=70;
+                        blockCheck=50;
+                        ultCheck=70;
+                        attackCheck=90;
+                }
         }
         updateVariablesAI();
         chargeUltimate();
@@ -108,14 +140,14 @@ public class Player extends Actor
         if(moving){
             moveAI();
         }
-        else if(roll<6&&!moving&&getOneIntersectingObject(Actor.class)==null){
+        else if(roll<startMovingCheck&&!moving&&getOneIntersectingObject(Actor.class)==null){
             moving=true;
         }
-        if(roll<1&&moving){
+        else if(roll<stopMovingCheck&&moving){
                 moving=false;
             }
-        if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
-            if(roll<30){
+        if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<defenseCheck&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
+            if(roll<blockCheck){
                 block();
             }
             else{
@@ -124,10 +156,10 @@ public class Player extends Actor
                 speedMultiplier=speedMultiplier*-1;
             }
         }
-        else if(roll<50&&willUltimateHit&&ultPossible()){
+        else if(roll<ultCheck&&willUltimateHit&&ultPossible()){
             triggerUltimate();
         }
-        else if(roll<70&&getOneIntersectingObject(Actor.class)!=null){
+        else if(roll<attackCheck&&getOneIntersectingObject(Actor.class)!=null){
             attack();
         }
     }
