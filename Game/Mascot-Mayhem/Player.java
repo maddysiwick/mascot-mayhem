@@ -35,6 +35,7 @@ public class Player extends Actor
     protected boolean usingUltimate=false;
     protected String name;
     protected int attackCooldown;
+    protected int damageMultiplier=1;
     //ai specific fields
     protected boolean aiControlled;
     protected Player player;
@@ -43,14 +44,21 @@ public class Player extends Actor
     private boolean runningAway;
     private boolean moving=false;
     private int runTimer;
+    protected int aiDifficulty;
+    protected int aiStartMovingChance;
+    protected int aiStopMovingChance;
+    protected int aiProtectChance;
+    protected int aiBlockChance;
+    protected int aiUltimateChance;
+    protected int aiAttackChance;
     //player specific fields
     protected boolean playerOne;
     private String input;
-    protected int damageMultiplier=1;
     public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
+        this.aiDifficulty=aiDifficulty;
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -87,15 +95,7 @@ public class Player extends Actor
     public void actionsAI(String playerAction)
     {
         if(firstTime){
-            List players = getWorld().getObjects(Player.class);
-            if(playerOne){
-                player=(Player)players.get(1);
-            }
-            else{
-                player=(Player)players.get(0);
-            }
-            initializeUltimateBar();
-            initializeHealthBar();
+            setUpAI();
             firstTime=false;
         }
         updateVariablesAI();
@@ -108,14 +108,14 @@ public class Player extends Actor
         if(moving){
             moveAI();
         }
-        else if(roll<6&&!moving&&getOneIntersectingObject(Actor.class)==null){
+        else if(roll<aiStartMovingChance&&!moving&&getOneIntersectingObject(Actor.class)==null){
             moving=true;
         }
-        if(roll<1&&moving){
+        if(roll<aiStopMovingChance&&moving){
                 moving=false;
             }
-        if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<60&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
-            if(roll<30){
+        if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<aiProtectChance&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
+            if(roll<aiBlockChance){
                 block();
             }
             else{
@@ -124,10 +124,10 @@ public class Player extends Actor
                 speedMultiplier=speedMultiplier*-1;
             }
         }
-        else if(roll<50&&willUltimateHit&&ultPossible()){
+        else if(roll<aiUltimateChance&&willUltimateHit&&ultPossible()){
             triggerUltimate();
         }
-        else if(roll<70&&getOneIntersectingObject(Actor.class)!=null){
+        else if(roll<aiAttackChance&&getOneIntersectingObject(Actor.class)!=null){
             attack();
         }
     }
@@ -390,5 +390,44 @@ public class Player extends Actor
     public void die()
     {
         Greenfoot.setWorld(new WinScreen(this));
+    }
+
+    public void setUpAI()
+    {
+        List players = getWorld().getObjects(Player.class);
+        if(playerOne){
+            player=(Player)players.get(1);
+        }
+        else{
+            player=(Player)players.get(0);
+        }
+        initializeUltimateBar();
+        initializeHealthBar();
+        switch(aiDifficulty){
+            case 0:
+                aiStartMovingChance=0;
+                aiStopMovingChance=0;
+                aiProtectChance=0;
+                aiBlockChance=0;
+                aiUltimateChance=0;
+                aiAttackChance=0;
+                break;
+            case 1:
+                aiStartMovingChance=6;
+                aiStopMovingChance=1;
+                aiProtectChance=60;
+                aiBlockChance=30;
+                aiUltimateChance=50;
+                aiAttackChance=70;
+                break;
+            case 2:
+                aiStartMovingChance=0;
+                aiStopMovingChance=0;
+                aiProtectChance=0;
+                aiBlockChance=0;
+                aiUltimateChance=0;
+                aiAttackChance=0;
+                break;
+        }
     }
 }
