@@ -20,8 +20,8 @@ public class Player extends Actor
     protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
-    private Bar ultimateBar = new Bar("","Ultimate%",0,100);
-    private Bar healthBar = new Bar("","Health%",100,100);
+    protected Bar ultimateBar = new Bar("","Ultimate%",0,100);
+    protected Bar healthBar = new Bar("","Health%",100,100);
     protected boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
@@ -39,7 +39,6 @@ public class Player extends Actor
     protected boolean aiControlled;
     protected Player player;
     private boolean beingAttacked;
-    protected boolean willUltimateHit;
     private boolean runningAway;
     private boolean moving=false;
     private int runTimer;
@@ -96,15 +95,7 @@ public class Player extends Actor
     public void actionsAI(String playerAction)
     {
         if(firstTime){
-            List players = getWorld().getObjects(Player.class);
-            if(playerOne){
-                player=(Player)players.get(1);
-            }
-            else{
-                player=(Player)players.get(0);
-            }
-            initializeUltimateBar();
-            initializeHealthBar();
+            setUpAI();
             firstTime=false;
              switch(aiDifficulty){
                     case 0:
@@ -130,7 +121,6 @@ public class Player extends Actor
                         attackCheck=90;
                 }
         }
-        updateVariablesAI();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
         jumping();
@@ -293,12 +283,12 @@ public class Player extends Actor
     {
         unblock();
         if(attackCooldown==0){
-            attackCooldown=20;
+            attackCooldown=17;
             setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
             if(victim!=null){
-                jumpee.takeHit(damage);
+                jumpee.takeHit(damage*damageMultiplier);
             }
             Greenfoot.delay(10);
             setImage(baseSprite);
@@ -380,13 +370,6 @@ public class Player extends Actor
         //this method is blank so that the other methods know what to call, its defined properly in each character
     }
 
-    public void updateVariablesAI()
-    {
-        if(player==null){
-            Greenfoot.stop();
-        }
-    }
-
     public void moveAI()
     {
         unblock();
@@ -422,5 +405,44 @@ public class Player extends Actor
     public void die()
     {
         Greenfoot.setWorld(new WinScreen(this));
+    }
+
+    public void setUpAI()
+    {
+        List players = getWorld().getObjects(Player.class);
+        if(playerOne){
+            player=(Player)players.get(1);
+        }
+        else{
+            player=(Player)players.get(0);
+        }
+        initializeUltimateBar();
+        initializeHealthBar();
+        switch(aiDifficulty){
+            case 0:
+                aiStartMovingChance=0;
+                aiStopMovingChance=0;
+                aiProtectChance=0;
+                aiBlockChance=0;
+                aiUltimateChance=0;
+                aiAttackChance=0;
+                break;
+            case 1:
+                aiStartMovingChance=6;
+                aiStopMovingChance=1;
+                aiProtectChance=60;
+                aiBlockChance=30;
+                aiUltimateChance=50;
+                aiAttackChance=70;
+                break;
+            case 2:
+                aiStartMovingChance=0;
+                aiStopMovingChance=0;
+                aiProtectChance=0;
+                aiBlockChance=0;
+                aiUltimateChance=0;
+                aiAttackChance=0;
+                break;
+        }
     }
 }

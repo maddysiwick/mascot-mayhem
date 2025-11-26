@@ -31,11 +31,11 @@ public class Keith extends Player
     public void triggerUltimate(){
         if(ultPossible()){
             super.triggerUltimate();
-            damageMultiplier=4;
+            damageMultiplier=3;
             usingUltimate=true;
             ultTimer=200;
             speedMultiplier=10;
-            setImage("keith.png");
+            baseSprite="keith.png";
         }
     }
     
@@ -44,7 +44,7 @@ public class Keith extends Player
         if(ultTimer==0){
             damageMultiplier=1;
             usingUltimate=false;
-            setImage(baseSprite);
+            baseSprite="mouse.png";
             speedMultiplier=5;
         }
     }

@@ -15,7 +15,6 @@ public class Suzanne extends Player
         hitImage="images/suzannePunchTemp.png"; 
         hitPoints=100;
         damage=5;
-        willUltimateHit=true;
         name="Suzanne";
         bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
     }
