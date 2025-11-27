@@ -24,10 +24,6 @@ public class Tux extends Player
     public void act()
     {
         super.act();
-        if(firstTime){//this is the same code as for the ai, but tux always needs to do it for his ult
-            List players = getWorld().getObjects(Player.class);
-            player=(Player)players.get(1);
-        }
         //getWorld().showText("height: " + getY(),50, 250);
     }
 

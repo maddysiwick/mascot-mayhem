@@ -36,6 +36,8 @@ public class Player extends Actor
     protected String name;
     protected int attackCooldown;
     protected int damageMultiplier=1;
+    private PlayersManager playersManager;
+    private boolean secondTime=false;
     //ai specific fields
     protected boolean aiControlled;
     protected Player player;
@@ -79,24 +81,21 @@ public class Player extends Actor
     
     public void actions()
     {
+        if(firstTime){
+            firstTime=false;
+            secondTime=true;
+        }
         if(!doNothing && input!=null){
+            setUp();
             getActions();
             chargeUltimate();
             jumping();
-            if(firstTime){
-                firstTime=false;
-                initializeUltimateBar();
-                initializeHealthBar();
-            }
         }
     }
 
     public void actionsAI(String playerAction)
     {
-        if(firstTime){
-            setUpAI();
-            firstTime=false;
-        }
+        setUp();
         chargeUltimate();
         int roll = Greenfoot.getRandomNumber(100);
         jumping();
@@ -385,15 +384,6 @@ public class Player extends Actor
 
     public void setUpAI()
     {
-        List players = getWorld().getObjects(Player.class);
-        if(playerOne){
-            player=(Player)players.get(1);
-        }
-        else{
-            player=(Player)players.get(0);
-        }
-        initializeUltimateBar();
-        initializeHealthBar();
         switch(aiDifficulty){
             case 0:
                 aiStartMovingChance=0;
@@ -420,5 +410,20 @@ public class Player extends Actor
                 aiAttackChance=0;
                 break;
         }
+    }
+
+    public void setUp()
+    {
+        if(secondTime){
+            playersManager = new PlayersManager();
+            player=playersManager.getOppositePlayer(playerOne);
+            getWorld().addObject(playersManager,0,0);
+            initializeUltimateBar();
+            initializeHealthBar();
+            if(aiControlled){
+                setUpAI();
+            }
+            firstTime=false;
+        }   
     }
 }
