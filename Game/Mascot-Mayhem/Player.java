@@ -102,17 +102,18 @@ public class Player extends Actor
         int roll = Greenfoot.getRandomNumber(100);
         jumping();
         if(runningAway){
+            System.out.println("running away");
             runAway();
         }
         if(moving){
             moveAI();
         }
+        if(roll<stopMovingCheck&&moving){
+            moving=false;
+        }
         else if(roll<startMovingCheck&&!moving&&getOneIntersectingObject(Actor.class)==null){
             moving=true;
         }
-        else if(roll<stopMovingCheck&&moving){
-                moving=false;
-            }
         if((playerAction=="attack"&&Greenfoot.getRandomNumber(100)<defenseCheck&&(getOneIntersectingObject(Player.class)!=null))||getOneIntersectingObject(AddedImage.class)!=null){
             if(roll<blockCheck){
                 block();
@@ -349,6 +350,7 @@ public class Player extends Actor
 
     public void moveAI()
     {
+        System.out.println(getX()+" "+getY());
         unblock();
         if(player.getX()>getX()){
             move(1*speedMultiplier);
