@@ -418,8 +418,8 @@ public class Player extends Actor
     {
         if(secondTime){
             playersManager = new PlayersManager();
-            player=playersManager.getOppositePlayer(playerOne);
             getWorld().addObject(playersManager,0,0);
+            player=playersManager.getOppositePlayer(playerOne);
             initializeUltimateBar();
             initializeHealthBar();
             if(aiControlled){
