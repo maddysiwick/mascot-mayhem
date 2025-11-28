@@ -44,6 +44,7 @@ public class Player extends Actor
     private boolean runningAway;
     private boolean moving=false;
     private int runTimer;
+    private boolean willUltimateHit;
     //ai difficulty checks
     private int startMovingCheck;
     private int stopMovingCheck;
@@ -386,31 +387,31 @@ public class Player extends Actor
     public void setUpAI()
     {
         switch(aiDifficulty){
-            case 0:
-                aiStartMovingChance=0;
-                aiStopMovingChance=0;
-                aiProtectChance=0;
-                aiBlockChance=0;
-                aiUltimateChance=0;
-                aiAttackChance=0;
-                break;
-            case 1:
-                aiStartMovingChance=6;
-                aiStopMovingChance=1;
-                aiProtectChance=60;
-                aiBlockChance=30;
-                aiUltimateChance=50;
-                aiAttackChance=70;
-                break;
-            case 2:
-                aiStartMovingChance=0;
-                aiStopMovingChance=0;
-                aiProtectChance=0;
-                aiBlockChance=0;
-                aiUltimateChance=0;
-                aiAttackChance=0;
-                break;
-        }
+                case 0:
+                    startMovingCheck=3;
+                    stopMovingCheck=4;
+                    defenseCheck=30;
+                    blockCheck=15;
+                    ultCheck=25;
+                    attackCheck=40;
+                    break;
+                 case 1:
+                    startMovingCheck=6;
+                    stopMovingCheck=2;
+                    defenseCheck=60;
+                    blockCheck=30;
+                    ultCheck=50;
+                    attackCheck=70;
+                    break;
+                case 2:
+                    startMovingCheck=8;
+                    stopMovingCheck=1;
+                    defenseCheck=70;
+                    blockCheck=50;
+                    ultCheck=70;
+                    attackCheck=90;
+                    break;
+                }
     }
 
     public void setUp()
