@@ -261,7 +261,7 @@ public class Player extends Actor
     {
         unblock();
         if(attackCooldown==0){
-            attackCooldown=17;
+            attackCooldown=15;
             setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
@@ -397,7 +397,7 @@ public class Player extends Actor
                     ultCheck=25;
                     attackCheck=40;
                     break;
-                 case 1:
+                case 1:
                     startMovingCheck=6;
                     stopMovingCheck=2;
                     defenseCheck=60;

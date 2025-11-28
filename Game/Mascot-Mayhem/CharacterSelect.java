@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class CharacterSelect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class CharacterSelect extends World
 {
     private GreenfootImage bg = getBackground();
@@ -19,9 +13,16 @@ public class CharacterSelect extends World
     private int aiDifficulty=0;
     private GreenfootImage bioP1=new GreenfootImage(1280,720);
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
-    private AddedImage aiIndicator=new AddedImage(999999999);
+    private AddedImage aiIndicator=new AddedImage(999999999,true);
+    private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true);
+    private AddedImage p1bio=new AddedImage(999999999,true);
+    private AddedImage p2bio=new AddedImage(999999999,true);
     private GreenfootImage aiControlled=new GreenfootImage(1280,720);
     private GreenfootImage playerControlled=new GreenfootImage(1280,720);
+    private GreenfootImage easyAI=new GreenfootImage(1280,720);
+    private GreenfootImage mediumAI=new GreenfootImage(1280,720);
+    private GreenfootImage hardAI=new GreenfootImage(1280,720);
+    
     
     public CharacterSelect()
     {    
@@ -267,7 +268,6 @@ public class CharacterSelect extends World
         else{
             aiIndicator.setImage(playerControlled);
         }
-        showText("Use each players keys (WASD or arrows) to navigate, attack (F or /) to choose a character and Ult (G or .) to confirm",getWidth()/2,125);
         if(Greenfoot.isKeyDown("=")){
             if(aiDifficulty==2){
                 aiDifficulty=0;
@@ -285,31 +285,45 @@ public class CharacterSelect extends World
             }
         }
         if(withAi){
-            showText("Current computer difficulty: " + getDifficultyWord(),getWidth()/2,150);
+            aiDifficultyIndicator.setImage(getDifficultyImage());
+        }
+        else{
+            aiDifficultyIndicator.setImage(new GreenfootImage(5,5));
         }
     }
-
-    public String getDifficultyWord()
+    public GreenfootImage getDifficultyImage()
     {
         switch(aiDifficulty){
             case 0:
-                return "Easy :)";
+                return easyAI;
             case 1:
-                return "Medium :|";
+                return mediumAI;
             case 2:
-                return "Hard :<";
+                return hardAI;
         }
-        return "";
+        return aiControlled;
     }
-
     public void setUpAiIndicator()
     {
         addObject(aiIndicator,getWidth()/2,getHeight()/2);
+        Color grey = new Color(68,68,68);
         aiControlled.setFont(new Font(true,true,25));
-        aiControlled.setColor(new Color(68,68,68));
-        aiControlled.drawString("(AI controlled)",1015,75);
+        aiControlled.setColor(grey);
+        aiControlled.drawString("(AI controlled)",1087,75);
         playerControlled.setFont(new Font(true,true,25));
-        playerControlled.setColor(new Color(68,68,68));
-        playerControlled.drawString("(Player controlled)",1015,75);
+        playerControlled.setColor(grey);
+        playerControlled.drawString("(Player controlled)",1038,75);
+        addObject(aiDifficultyIndicator,getWidth()/2,getHeight()/2);
+        Font difficultyFont = new Font(false,true,20);
+        Color lightGrey = new Color(90,90,90);
+        easyAI.setFont(difficultyFont);
+        easyAI.setColor(lightGrey);
+        easyAI.drawString("AI difficulty: \n      easy :)",1145,100);
+        mediumAI.setFont(difficultyFont);
+        mediumAI.setColor(lightGrey);
+        mediumAI.drawString("AI difficulty: \n  medium :|",1145,100);
+        hardAI.setFont(difficultyFont);
+        hardAI.setColor(lightGrey);
+        hardAI.drawString("AI difficulty: \n      hard :<",1145,100);
     }
 }
