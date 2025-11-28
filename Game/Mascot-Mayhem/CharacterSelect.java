@@ -305,10 +305,10 @@ public class CharacterSelect extends World
     public void setUpAiIndicator()
     {
         addObject(aiIndicator,getWidth()/2,getHeight()/2);
-        aiControlled.setFont(new Font(true,true,50));
+        aiControlled.setFont(new Font(true,true,25));
         aiControlled.setColor(new Color(68,68,68));
         aiControlled.drawString("(AI controlled)",1015,75);
-        playerControlled.setFont(new Font(true,true,50));
+        playerControlled.setFont(new Font(true,true,25));
         playerControlled.setColor(new Color(68,68,68));
         playerControlled.drawString("(Player controlled)",1015,75);
     }
