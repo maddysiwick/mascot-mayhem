@@ -260,7 +260,7 @@ public class Player extends Actor
     {
         unblock();
         if(attackCooldown==0){
-            attackCooldown=17;
+            attackCooldown=15;
             setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
@@ -395,7 +395,7 @@ public class Player extends Actor
                     ultCheck=25;
                     attackCheck=40;
                     break;
-                 case 1:
+                case 1:
                     startMovingCheck=6;
                     stopMovingCheck=2;
                     defenseCheck=60;
@@ -418,8 +418,8 @@ public class Player extends Actor
     {
         if(secondTime){
             playersManager = new PlayersManager();
-            player=playersManager.getOppositePlayer(playerOne);
             getWorld().addObject(playersManager,0,0);
+            player=playersManager.getOppositePlayer(playerOne);
             initializeUltimateBar();
             initializeHealthBar();
             if(aiControlled){

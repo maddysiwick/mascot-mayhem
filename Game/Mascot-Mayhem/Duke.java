@@ -34,7 +34,7 @@ public class Duke extends Player
             laserLine.setColor(Color.RED);
             laserLine.setFont(new Font(50));
             Player target;
-            AddedImage laser = new AddedImage(750);
+            AddedImage laser = new AddedImage(750,false);
             if(playerOne){
                 target = (Player) players.get(1);
             }
