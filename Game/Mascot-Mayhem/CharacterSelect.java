@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class CharacterSelect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class CharacterSelect extends World
 {
     private GreenfootImage bg = getBackground();
@@ -21,6 +15,8 @@ public class CharacterSelect extends World
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
     private AddedImage aiIndicator=new AddedImage(999999999,true);
     private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true);
+    private AddedImage p1bio=new AddedImage(999999999,true);
+    private AddedImage p2bio=new AddedImage(999999999,true);
     private GreenfootImage aiControlled=new GreenfootImage(1280,720);
     private GreenfootImage playerControlled=new GreenfootImage(1280,720);
     private GreenfootImage easyAI=new GreenfootImage(1280,720);
