@@ -118,7 +118,7 @@ public class Player extends Actor
             if(roll<blockCheck){
                 block();
             }
-            else{
+            else if(!runningAway){
                 runTimer=30;
                 runningAway=true;
                 speedMultiplier=speedMultiplier*-1;
@@ -351,6 +351,7 @@ public class Player extends Actor
     public void moveAI()
     {
         System.out.println(getX()+" "+getY());
+        System.out.println(speedMultiplier);
         unblock();
         if(player.getX()>getX()){
             move(1*speedMultiplier);

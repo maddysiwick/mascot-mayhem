@@ -93,6 +93,9 @@ public class CharacterSelect extends World
         Duke duke = new Duke(true,false,0);
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
+        Gnu gnu=new Gnu(true,false,0,false);
+        addObject(gnu,getWidth()+410,525);
+        gnu.makeStatic();
     }
 
     public void moveSelectors()

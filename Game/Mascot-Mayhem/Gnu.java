@@ -12,15 +12,15 @@ public class Gnu extends Player
     public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone)    
     {
         super(playerOne,aiControlled,aiDifficulty);
-        baseSprite="tux.png";
-        hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        baseSprite="gnuTEMP.png";
+        hitImage="images/gnuHeadbuttTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;
         this.clone=clone;
         if(clone){
             hitPoints=20;
             damage=3;
-            baseSprite="tux.png";//make this a slightly altered version of the base one once we have the sprites
+            baseSprite="gnuCloneTEMP.png";//make this a slightly altered version of the base one once we have the sprites
             ultTimer=500;
         }
         bio=""; 
