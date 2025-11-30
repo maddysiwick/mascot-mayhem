@@ -28,20 +28,16 @@ public class AddedImage extends Actor
             Player jumpee = (Player) victim;
             if(victim!=null){
                 jumpee.takeHit(1);
-                System.out.println("damage sent");
             }
             Greenfoot.delay(10);
         }
         if(!immortal){
             if(lifespan>0){
                 --lifespan;
-                System.out.println("lifespan reduced");
             }
             if(lifespan==0){
-                System.out.println("image removed");
                 getWorld().removeObject(this);
             }
         }
-        System.out.println("act called");
     }
 }
