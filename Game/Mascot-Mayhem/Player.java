@@ -79,6 +79,8 @@ public class Player extends Actor
             jumping();
             useUltimate();
         }
+        --attackCooldown; 
+        //getWorld().showText("debug: \n ult time: " + ultTimer + "\n damage: " + damage + "\n speed: " + speedMultiplier + "\n using ultimate: " + usingUltimate, 50, 125, "\n attack cooldown: " + attackCooldown);
     }
     
     public void actions()
@@ -260,7 +262,7 @@ public class Player extends Actor
     protected void attack()
     {
         unblock();
-        if(attackCooldown==0){
+        if(attackCooldown<=0){
             attackCooldown=15;
             setImage(hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
@@ -270,9 +272,6 @@ public class Player extends Actor
             }
             Greenfoot.delay(10);
             setImage(baseSprite);
-        }
-        else{
-            --attackCooldown;
         }
     }
     

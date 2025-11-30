@@ -15,13 +15,21 @@ public class CharacterSelect extends World
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
     private AddedImage aiIndicator=new AddedImage(999999999,true);
     private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true);
-    private AddedImage p1bio=new AddedImage(999999999,true);
-    private AddedImage p2bio=new AddedImage(999999999,true);
+    private AddedImage p1bioDisplay=new AddedImage(999999999,true);
+    private AddedImage p2bioDisplay=new AddedImage(999999999,true);
     private GreenfootImage aiControlled=new GreenfootImage(1280,720);
     private GreenfootImage playerControlled=new GreenfootImage(1280,720);
     private GreenfootImage easyAI=new GreenfootImage(1280,720);
     private GreenfootImage mediumAI=new GreenfootImage(1280,720);
     private GreenfootImage hardAI=new GreenfootImage(1280,720);
+    private int p1PreviousSelection;
+    private int p2PreviousSelection;
+    private String dukeBio;
+    private String gnuBio;
+    private String keithBio;
+    private String suzanneBio;
+    private String tuxBio;
+    private String wilburBio;
     
     
     public CharacterSelect()
@@ -31,6 +39,8 @@ public class CharacterSelect extends World
         drawOptions();
         initializeSelectors();
         setUpAiIndicator();
+        setUpBios();
+        manageBios(true);
     }
 
     public void act()
@@ -84,18 +94,27 @@ public class CharacterSelect extends World
         Tux tux = new Tux(true,false,0);
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
+        tuxBio=tux.getBio();
         Suzanne suzanne = new Suzanne(true,false,0);
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
+        suzanneBio=suzanne.getBio();
         Keith keith = new Keith(true,false,0);
         addObject(keith,getWidth()/2-290,550);
         keith.makeStatic();
+        keithBio=keith.getBio();
         Duke duke = new Duke(true,false,0);
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
+<<<<<<< Updated upstream
         Gnu gnu=new Gnu(true,false,0,false);
         addObject(gnu,getWidth()+410,525);
         gnu.makeStatic();
+=======
+        dukeBio=duke.getBio();
+        wilburBio="";
+        gnuBio="";
+>>>>>>> Stashed changes
     }
 
     public void moveSelectors()
@@ -157,6 +176,8 @@ public class CharacterSelect extends World
     public void getSelections()
     {
         Greenfoot.delay(5);
+        p1PreviousSelection=p1Selection;
+        p2PreviousSelection=p2Selection;
         if(!p1Confirmed){
             switch(InputManager.getPlayerOneInput(false)){
                 case "right":
@@ -197,7 +218,6 @@ public class CharacterSelect extends World
                     break;
             }
         }
-        moveSelectors();
     }
 
     public void confirmSelections()
@@ -229,6 +249,8 @@ public class CharacterSelect extends World
         getSelections();
         confirmSelections();
         unConfirmSelections();
+        moveSelectors();
+        manageBios(false);
     }
 
     public void moveOn()
@@ -242,19 +264,19 @@ public class CharacterSelect extends World
     {
         switch(selection){
             case 1:
-                return Wilbur.bio;
+                return wilburBio;
             case 2:
-                return Keith.bio;
+                return keithBio;
             case 3:
-                return Tux.bio;
+                return tuxBio;
             case 4:
                 return "Selects a random character!";
             case 5:
-                return Gnu.bio;
+                return gnuBio;
             case 6:
-                return Duke.bio;
+                return dukeBio;
             case 7:
-                return Suzanne.bio;
+                return suzanneBio;
         }
         return null;
     }
@@ -328,5 +350,31 @@ public class CharacterSelect extends World
         hardAI.setFont(difficultyFont);
         hardAI.setColor(lightGrey);
         hardAI.drawString("AI difficulty: \n      hard :<",1145,100);
+    }
+
+    public void setUpBios()
+    {
+        addObject(p1bioDisplay,getWidth()/2,getHeight()/2);
+        addObject(p2bioDisplay,getWidth()/2,getHeight()/2);
+        Color rust = new Color(171,69,0);
+        Font bioFont = new Font(false,false,12);
+        bioP1.setFont(bioFont);
+        bioP1.setColor(rust);
+        bioP2.setFont(bioFont);
+        bioP2.setColor(rust);
+    }
+
+    public void manageBios(boolean firstTime)
+    {
+        if(p1PreviousSelection!=p1Selection||firstTime){ 
+            bioP1.clear();
+            bioP1.drawString(getBio(p1Selection),50,350);
+            p1bioDisplay.setImage(bioP1);
+        }
+        if(p2PreviousSelection!=p2Selection||firstTime){ 
+            bioP2.clear();
+            bioP2.drawString(getBio(p2Selection),1100,350);
+            p2bioDisplay.setImage(bioP2);
+        }
     }
 }

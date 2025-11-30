@@ -7,11 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Keith extends Player
-{
-    /**
-     * Act - do whatever the Tux wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+{    
     public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);
@@ -25,7 +21,6 @@ public class Keith extends Player
     public void act()
     {
         super.act();
-        //getWorld().showText("debug: \n ult time: " + ultTimer + "\n damage: " + damage + "\n speed: " + speedMultiplier + "\n using ultimate: " + usingUltimate, 50, 125);
     }
     
     public void triggerUltimate(){
