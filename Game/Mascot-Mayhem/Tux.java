@@ -8,10 +8,10 @@ import java.util.*;
  * @version (a version number or a date)
  */
 public class Tux extends Player
-{    
+{   
     public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty);
+        super(playerOne,aiControlled,aiDifficulty,"tux.png");
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;

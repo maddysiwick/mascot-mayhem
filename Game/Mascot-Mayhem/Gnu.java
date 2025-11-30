@@ -11,7 +11,7 @@ public class Gnu extends Player
     private boolean clone;
     public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone)    
     {
-        super(playerOne,aiControlled,aiDifficulty);
+        super(playerOne,aiControlled,aiDifficulty,"gnu.temp");
         baseSprite="gnuTEMP.png";
         hitImage="images/gnuHeadbuttTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;

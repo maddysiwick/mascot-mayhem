@@ -14,7 +14,7 @@ public class Keith extends Player
      */
     public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty);
+        super(playerOne,aiControlled,aiDifficulty,"mouse.png");
         baseSprite="mouse.png";
         hitImage="images/keithHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;

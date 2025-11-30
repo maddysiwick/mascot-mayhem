@@ -17,6 +17,7 @@ public class Player extends Actor
     protected String hitImage;
     protected int damage;
     protected String baseSprite;
+    protected GreenfootImage leftSprite;
     protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
@@ -57,7 +58,7 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
-    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
@@ -69,6 +70,11 @@ public class Player extends Actor
         else{
             ultimateBarPosition=p2UltimateBarPosition;
             healthBarPosition=p2HealthBarPosition;
+        }
+        leftSprite=new GreenfootImage(baseSprite);
+        leftSprite.mirrorHorizontally();
+        if(!playerOne){
+            setImage(leftSprite);
         }
     }
     
@@ -102,7 +108,6 @@ public class Player extends Actor
         int roll = Greenfoot.getRandomNumber(100);
         jumping();
         if(runningAway){
-            System.out.println("running away");
             runAway();
         }
         if(moving){
@@ -289,12 +294,24 @@ public class Player extends Actor
     {
         unblock();
         move(-1*speedMultiplier);
+        if(facingLeft){
+            facingLeft=false;
+            GreenfootImage sprite = getImage();
+            sprite.mirrorHorizontally();
+            setImage(sprite);
+        }
     }
     
     private void moveLeft()
     {
         unblock();
         move(1*speedMultiplier);
+        if(!facingLeft){
+            facingLeft=true;
+            GreenfootImage sprite = getImage();
+            sprite.mirrorHorizontally();
+            setImage(sprite);
+        }
     }
     
     private void crouch()
@@ -317,8 +334,10 @@ public class Player extends Actor
         }
     }
     protected void unblock(){
-        blocking=false;
-        setImage(baseSprite);
+        if(blocking){
+            blocking=false;
+            setImage(baseSprite);
+        }
     }
 
     public void makeStatic()
@@ -430,5 +449,10 @@ public class Player extends Actor
             }
             firstTime=false;
         }   
+    }
+    public void resetSprite(){
+        if(facingLeft){
+            Set
+        }
     }
 }
