@@ -13,10 +13,10 @@ public class CharacterSelect extends World
     private int aiDifficulty=0;
     private GreenfootImage bioP1=new GreenfootImage(1280,720);
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
-    private AddedImage aiIndicator=new AddedImage(999999999,true);
-    private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true);
-    private AddedImage p1bioDisplay=new AddedImage(999999999,true);
-    private AddedImage p2bioDisplay=new AddedImage(999999999,true);
+    private AddedImage aiIndicator=new AddedImage(999999999,true,false);
+    private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true,false);
+    private AddedImage p1bioDisplay=new AddedImage(999999999,true,false);
+    private AddedImage p2bioDisplay=new AddedImage(999999999,true,false);
     private GreenfootImage aiControlled=new GreenfootImage(1280,720);
     private GreenfootImage playerControlled=new GreenfootImage(1280,720);
     private GreenfootImage easyAI=new GreenfootImage(1280,720);
@@ -103,17 +103,19 @@ public class CharacterSelect extends World
         addObject(keith,getWidth()/2-290,550);
         keith.makeStatic();
         keithBio=keith.getBio();
+        keithBio=keith.getBio();
         Duke duke = new Duke(true,false,0);
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
         Gnu gnu=new Gnu(true,false,0,false);
         addObject(gnu,getWidth()+410,525);
         gnu.makeStatic();
-
         dukeBio=duke.getBio();
         wilburBio="";
         gnuBio="";
-
+        dukeBio=duke.getBio();
+        wilburBio="";
+        gnuBio="";
         dukeBio=duke.getBio();
         wilburBio="";
         gnuBio="";
