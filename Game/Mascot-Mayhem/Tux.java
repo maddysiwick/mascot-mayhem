@@ -11,7 +11,7 @@ public class Tux extends Player
 {   
     public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png");
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png");
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;

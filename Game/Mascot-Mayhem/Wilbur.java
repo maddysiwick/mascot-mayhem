@@ -10,7 +10,7 @@ public class Wilbur extends Player
 {
     public Wilbur(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png");
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png");
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=10;

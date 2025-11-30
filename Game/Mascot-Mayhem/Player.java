@@ -15,9 +15,12 @@ public class Player extends Actor
     private int healthBarPosition;
     protected int hitPoints;
     protected String hitImage;
+    protected GreenfootImage leftHitImage;
     protected int damage;
     protected String baseSprite;
-    protected GreenfootImage leftSprite;
+    protected GreenfootImage leftBaseSprite;
+    protected String blockSprite;
+    protected GreenfootImage leftBlockSprite;
     protected boolean jumping;
     private int jumpTimer;
     private boolean blocking;
@@ -58,11 +61,12 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
-    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite)
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
         this.aiDifficulty=aiDifficulty;
+        blockSprite="block.png";
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
             healthBarPosition=p1HealthBarPosition;
@@ -71,10 +75,15 @@ public class Player extends Actor
             ultimateBarPosition=p2UltimateBarPosition;
             healthBarPosition=p2HealthBarPosition;
         }
-        leftSprite=new GreenfootImage(baseSprite);
-        leftSprite.mirrorHorizontally();
+        leftBaseSprite=createLeftSprite(baseSprite);
+        leftBlockSprite=createLeftSprite(blockSprite);
+        leftHitImage=createLeftSprite(hitImage);
         if(!playerOne){
-            setImage(leftSprite);
+            facingLeft=true;
+            setSprite(leftBaseSprite,baseSprite);
+        }
+        else{
+            facingLeft=false;
         }
     }
     
@@ -261,7 +270,7 @@ public class Player extends Actor
     private void block()
     {
         blocking=true;
-        setImage("block.png");
+        setSprite(leftBlockSprite,blockSprite);
     }
     
     protected void attack()
@@ -269,14 +278,14 @@ public class Player extends Actor
         unblock();
         if(attackCooldown<=0){
             attackCooldown=15;
-            setImage(hitImage);
+            setSprite(leftHitImage, hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
             if(victim!=null){
                 jumpee.takeHit(damage*damageMultiplier);
             }
             Greenfoot.delay(10);
-            setImage(baseSprite);
+            setSprite(leftBaseSprite,baseSprite);
         }
     }
     
@@ -292,24 +301,20 @@ public class Player extends Actor
     private void moveRight()
     {
         unblock();
-        move(-1*speedMultiplier);
+        move(1*speedMultiplier);
         if(facingLeft){
             facingLeft=false;
-            GreenfootImage sprite = getImage();
-            sprite.mirrorHorizontally();
-            setImage(sprite);
+            setSprite(leftBaseSprite,baseSprite);
         }
     }
     
     private void moveLeft()
     {
         unblock();
-        move(1*speedMultiplier);
+        move(-1*speedMultiplier);
         if(!facingLeft){
             facingLeft=true;
-            GreenfootImage sprite = getImage();
-            sprite.mirrorHorizontally();
-            setImage(sprite);
+            setSprite(leftBaseSprite,baseSprite);
         }
     }
     
@@ -335,7 +340,7 @@ public class Player extends Actor
     protected void unblock(){
         if(blocking){
             blocking=false;
-            setImage(baseSprite);
+            setSprite(leftBaseSprite,baseSprite);
         }
     }
 
@@ -368,14 +373,12 @@ public class Player extends Actor
 
     public void moveAI()
     {
-        System.out.println(getX()+" "+getY());
-        System.out.println(speedMultiplier);
         unblock();
         if(player.getX()>getX()){
-            move(1*speedMultiplier);
+            moveRight();
         }
         else if(player.getX()<getX()){
-            move(-1*speedMultiplier);
+            moveLeft();
         }
         if((player.getJumping()&&Greenfoot.getRandomNumber(100)<2)||Greenfoot.getRandomNumber(100)<1){
             {
@@ -449,9 +452,17 @@ public class Player extends Actor
             firstTime=false;
         }   
     }
-    public void resetSprite(){
+    protected void setSprite(GreenfootImage leftSprite,String rightSprite){
         if(facingLeft){
-            Set
+            setImage(leftSprite);
         }
+        else{
+            setImage(rightSprite);
+        }
+    }
+    protected GreenfootImage createLeftSprite(String filename){
+        GreenfootImage sprite = new GreenfootImage(filename);
+        sprite.mirrorHorizontally();
+        return sprite;
     }
 }

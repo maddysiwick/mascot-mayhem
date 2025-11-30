@@ -10,7 +10,7 @@ public class Suzanne extends Player
 {
     public Suzanne(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty,"lemur.png");
+        super(playerOne,aiControlled,aiDifficulty,"lemur.png","suzannePunchTemp.png");
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png"; 
         hitPoints=100;

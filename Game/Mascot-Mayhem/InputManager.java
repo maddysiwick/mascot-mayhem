@@ -30,10 +30,10 @@ public class InputManager
             input = "up";
         }
         else if(Greenfoot.isKeyDown("d")){
-            input = "left";
+            input = "right";
         }
         else if(Greenfoot.isKeyDown("a")){
-            input = "right";
+            input = "left";
         }
         else if(Greenfoot.isKeyDown("s")){
             input = "crouch";
@@ -60,10 +60,10 @@ public class InputManager
             input = "up";
         }
         else if(Greenfoot.isKeyDown("right")){
-            input = "left";
+            input = "right";
         }
         else if(Greenfoot.isKeyDown("left")){
-            input = "right";
+            input = "left";
         }
         else if(Greenfoot.isKeyDown("down")){
             input = "crouch";
