@@ -13,10 +13,10 @@ public class CharacterSelect extends World
     private int aiDifficulty=0;
     private GreenfootImage bioP1=new GreenfootImage(1280,720);
     private GreenfootImage bioP2=new GreenfootImage(1280,720);
-    private AddedImage aiIndicator=new AddedImage(999999999,true);
-    private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true);
-    private AddedImage p1bioDisplay=new AddedImage(999999999,true);
-    private AddedImage p2bioDisplay=new AddedImage(999999999,true);
+    private AddedImage aiIndicator=new AddedImage(999999999,true,false);
+    private AddedImage aiDifficultyIndicator=new AddedImage(999999999,true,false);
+    private AddedImage p1bioDisplay=new AddedImage(999999999,true,false);
+    private AddedImage p2bioDisplay=new AddedImage(999999999,true,false);
     private GreenfootImage aiControlled=new GreenfootImage(1280,720);
     private GreenfootImage playerControlled=new GreenfootImage(1280,720);
     private GreenfootImage easyAI=new GreenfootImage(1280,720);

@@ -1,25 +1,39 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Gimp here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Wilbur extends Player
 {
+    private int ultXPosition;
+    private int ultYPosition=614;
+
     public Wilbur(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         super(playerOne,aiControlled,aiDifficulty);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=10;
+        hitPoints=100;
         damage=5;
         bio="Wilbur \n An unstable gimp who loves painting. Not the strongest, but quite fast.";
-    }    
-    
+    }
+
     public void act()
     {
-        super.act();    
+        super.act();
+    }
+
+    public void triggerUltimate()
+    {
+        if(ultPossible()){
+            super.triggerUltimate();
+            if(player.getX()<=getX()){
+                ultXPosition=player.getX()-45;
+            }
+            else{
+                ultXPosition=player.getX()+45;
+            }
+            AddedImage ultimateImage = new AddedImage(10,false,true);
+            getWorld().addObject(ultimateImage,ultXPosition,ultYPosition);
+            ultimateImage.setImage("wilburUltimate.png");
+        }
     }
 }
+

@@ -57,6 +57,7 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
+
     public Player(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
         this.playerOne=playerOne;
@@ -79,8 +80,11 @@ public class Player extends Actor
             jumping();
             useUltimate();
         }
-        --attackCooldown; 
-        //getWorld().showText("debug: \n ult time: " + ultTimer + "\n damage: " + damage + "\n speed: " + speedMultiplier + "\n using ultimate: " + usingUltimate, 50, 125, "\n attack cooldown: " + attackCooldown);
+        --attackCooldown;
+        int debugPos;
+        if(playerOne) debugPos=50;
+        else debugPos=1100;
+        //getWorld().showText("debug: \n ult time: " + ultTimer + "\n damage: " + damage + "\n speed: " + speedMultiplier + "\n using ultimate: " + usingUltimate + "\n attack cooldown: " + attackCooldown + "\n health: " + hitPoints, debugPos, 125);
     }
     
     public void actions()
@@ -208,6 +212,7 @@ public class Player extends Actor
             die();
             getWorld().removeObject(this);
         }
+        System.out.println("damage taken");
     }  
     
     //ability methods:
@@ -429,5 +434,10 @@ public class Player extends Actor
             }
             firstTime=false;
         }   
+    }
+
+    protected boolean getPlayerOneStatus()
+    {
+        return playerOne;
     }
 }
