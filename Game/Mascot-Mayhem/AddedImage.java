@@ -22,7 +22,7 @@ public class AddedImage extends Actor
     
     public void act()
     {
-        getWorld().showText("lifespan: " + lifespan,getWorld().getWidth()/2,100);
+        //getWorld().showText("lifespan: " + lifespan,getWorld().getWidth()/2,100);
         if(damaging){
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
