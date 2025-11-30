@@ -107,9 +107,15 @@ public class CharacterSelect extends World
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Gnu gnu=new Gnu(true,false,0,false);
         addObject(gnu,getWidth()+410,525);
         gnu.makeStatic();
+=======
+        dukeBio=duke.getBio();
+        wilburBio="";
+        gnuBio="";
+>>>>>>> Stashed changes
 =======
         dukeBio=duke.getBio();
         wilburBio="";
