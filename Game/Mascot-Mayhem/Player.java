@@ -414,31 +414,31 @@ public class Player extends Actor
     public void setUpAI()
     {
         switch(aiDifficulty){
-                case 0:
-                    startMovingCheck=3;
-                    stopMovingCheck=4;
-                    defenseCheck=30;
-                    blockCheck=15;
-                    ultCheck=25;
-                    attackCheck=40;
-                    break;
-                case 1:
-                    startMovingCheck=6;
-                    stopMovingCheck=2;
-                    defenseCheck=60;
-                    blockCheck=30;
-                    ultCheck=50;
-                    attackCheck=70;
-                    break;
-                case 2:
-                    startMovingCheck=8;
-                    stopMovingCheck=1;
-                    defenseCheck=70;
-                    blockCheck=50;
-                    ultCheck=70;
-                    attackCheck=90;
-                    break;
-                }
+            case 0:
+                startMovingCheck=3;
+                stopMovingCheck=4;
+                defenseCheck=30;
+                blockCheck=15;
+                ultCheck=25;
+                attackCheck=40;
+                break;
+            case 1:
+                startMovingCheck=6;
+                stopMovingCheck=2;
+                defenseCheck=60;
+                blockCheck=30;
+                ultCheck=50;
+                attackCheck=70;
+                break;
+            case 2:
+                startMovingCheck=8;
+                stopMovingCheck=1;
+                defenseCheck=70;
+                blockCheck=50;
+                ultCheck=70;
+                attackCheck=90;
+                break;
+        }
     }
 
     public void setUp()
