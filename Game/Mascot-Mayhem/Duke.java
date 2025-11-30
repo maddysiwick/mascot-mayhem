@@ -15,7 +15,7 @@ public class Duke extends Player
     {
         super(playerOne,aiControlled,aiDifficulty,"duke.png");  
         baseSprite="dukeTEMP.png";
-        hitImage="images/dukeHitTemp.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;
         bio="Duke \n The sweetest robot, and Keith's best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
