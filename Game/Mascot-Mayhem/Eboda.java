@@ -8,6 +8,7 @@ public class Eboda extends Actor
     private boolean hitTaken=false;
     private boolean firstTime=true;
     private boolean blocking;
+    private int animationTimer;
 
     public Eboda()
     {
@@ -63,7 +64,7 @@ public class Eboda extends Actor
 
     public void die()
     {
-        getWorld().showText("You win! :) CLOUD is saved!",getWidth()/2,getHeight()/2);
+        getWorld().showText("You win! :) CLOUD is saved!",getWorld().getWidth()/2,getWorld().getHeight()/2);
     }
 
     public void hitAnimation()
