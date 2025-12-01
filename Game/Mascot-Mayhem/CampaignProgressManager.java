@@ -79,27 +79,27 @@ public class CampaignProgressManager
     {
         switch(token){
             //character tokens
-            case "d":
+            case "6":
                 playerCharacterString="Duke";
                 playerCharacter=6;
                 break;
-            case "g":
+            case "5":
                 playerCharacterString="Gnu";
                 playerCharacter=5;
                 break;
-            case "k":
+            case "2":
                 playerCharacterString="Keith";
                 playerCharacter=2;
                 break;
-            case "s":
+            case "7":
                 playerCharacterString="Suzanne";
                 playerCharacter=7;
                 break;
-            case "t":
+            case "3":
                 playerCharacterString="Tux";
                 playerCharacter=3;
                 break;
-            case "w":
+            case "1":
                 playerCharacterString="Wilbur";
                 playerCharacter=1;
                 break;
