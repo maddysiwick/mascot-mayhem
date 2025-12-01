@@ -22,33 +22,36 @@ public class EbodaHand extends Actor
     boolean resting;
     boolean slamming;
     int telegraphTimer;
+    EbodaManager manager;
     /**
      * Act - do whatever the EbodaHand wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public EbodaHand(boolean firstHand){
+    public EbodaHand(boolean firstHand,EbodaManager manager){
         this.firstHand=firstHand;
         patternPlace=0;
         patternRunning=Greenfoot.getRandomNumber(3);
+        this.manager=manager;
+        limitY=620;
         if(firstHand){
             GreenfootImage sprite=getImage();
             sprite.mirrorHorizontally();
             setImage(sprite);
             myTurn=true;
-            slamPostitionsX=new int[]{100,200,300};
-            limitX=300;
-            limitY=620;
-            swipePositionX=100;
+            slamPostitionsX=new int[]{310,410,510};
+            limitX=640-130;
+            swipePositionX=640-430;
         }
         else{
             myTurn=false;
-            slamPostitionsX=new int[]{700,800,900};
-            limitX = 600;
-            swipePositionX=400;
+            slamPostitionsX=new int[]{770,870,970};
+            limitX = 640+130;
+            swipePositionX=640+430;
         }
     }
     public void act()
     {
+        doDamage();
         if(myTurn){
             if(patternPlace<attackPatterns[patternRunning].length){
                 if(attackPatterns[patternRunning][patternPlace]==0){
@@ -62,13 +65,20 @@ public class EbodaHand extends Actor
                 }
             }
             else{
+                myTurn=false;
+                manager.flagTurnOver();
                 patternPlace=0;
                 patternRunning=Greenfoot.getRandomNumber(3);
+                if(firstHand){
+                    setLocation(640-400,300);
+                }
+                else{
+                    setLocation(640+400,300);
+                }
             }
         }
     }
     private void swipe(){
-        doDamage();
         if(!swiping){
             swiping=true;
             telegraphTimer=15;
@@ -125,8 +135,11 @@ public class EbodaHand extends Actor
     private void doDamage(){
         Actor victim = getOneIntersectingObject(Player.class);
         Player jumpee = (Player) victim;
-        if(victim!=null){
+        if(jumpee!=null&&!jumpee.getIsEbodaHead()){
             jumpee.takeHit(1);
         }
+    }
+    public void setMyTurn(boolean myTurn){
+        this.myTurn=myTurn;
     }
 }

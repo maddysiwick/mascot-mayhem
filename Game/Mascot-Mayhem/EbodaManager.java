@@ -14,9 +14,37 @@ public class EbodaManager extends Actor
      */
     EbodaHand firstHand;
     EbodaHand secondHand;
-    boolean firstTime;
+    boolean turnOverFlag;
+    boolean firstHandTurn;
+    boolean firstTime=true;
+    
+    public EbodaManager(){
+        firstHand=new EbodaHand(true,this);
+        secondHand=new EbodaHand(false,this);
+        firstHandTurn=true;
+    }
     public void act()
     {
-        // Add your action code here.
+        if(firstTime){
+            setUp();
+        }
+        if(turnOverFlag){
+            firstHandTurn=!firstHandTurn;
+            turnOverFlag=false;
+            if(firstHandTurn){
+                firstHand.setMyTurn(true);
+            }
+            else{
+                secondHand.setMyTurn(true);
+            }
+        }
+    }
+    public void flagTurnOver(){
+        turnOverFlag=true;
+    }
+    private void setUp(){
+        getWorld().addObject(firstHand,getWorld().getWidth()-400,200);
+        getWorld().addObject(secondHand,getWorld().getWidth()+400,200);
+        ((Arena)getWorld()).getPlayer2().setLocation(0,0); //TEMP just so i can test without the campaign manager
     }
 }

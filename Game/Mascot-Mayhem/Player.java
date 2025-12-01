@@ -61,11 +61,13 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
+    protected boolean isEbodaHead;
     public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
         this.aiDifficulty=aiDifficulty;
+        isEbodaHead=false;
         blockSprite="block.png";
         if(playerOne){
             ultimateBarPosition=p1UltimateBarPosition;
@@ -328,10 +330,10 @@ public class Player extends Actor
     
     protected void jumping(){
         if(jumping){
-            if(jumpTimer<30){
+            if(jumpTimer<50){
                 setLocation(getX(),getY()-6);
             }
-            else if(jumpTimer<60){
+            else if(jumpTimer<100){
                 setLocation(getX(),getY()+6);
             }
             else{
@@ -472,5 +474,8 @@ public class Player extends Actor
     protected boolean getPlayerOneStatus()
     {
         return playerOne;
+    }
+    public boolean getIsEbodaHead(){
+        return isEbodaHead;
     }
 }

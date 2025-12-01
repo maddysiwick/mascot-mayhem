@@ -13,8 +13,8 @@ public class Duke extends Player
     private List players;
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty)
     {
-        super(playerOne,aiControlled,aiDifficulty,"dukeTEMP.png","dukeHitTEMP.png");  
-        baseSprite="dukeTEMP.png";
+        super(playerOne,aiControlled,aiDifficulty,"dukeTemp.png","dukeHitTEMP.png");  
+        baseSprite="dukeTemp.png";
         hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;
