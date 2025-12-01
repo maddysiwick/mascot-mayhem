@@ -30,15 +30,16 @@ public class CharacterSelect extends World
     private String suzanneBio;
     private String tuxBio;
     private String wilburBio;
+    private boolean campaign;
     
-    
-    public CharacterSelect()
+    public CharacterSelect(boolean campaign)
     {    
         super(1280, 720, 1); 
+        this.campaign=campaign;
         draw();
         drawOptions();
         initializeSelectors();
-        setUpAiIndicator();
+        if(!campaign)setUpAiIndicator();
         setUpBios();
         manageBios(true);
     }
@@ -55,7 +56,7 @@ public class CharacterSelect extends World
         bg.setColor(Color.BLACK);
         bg.setFont(new Font(true, true, 36));
         bg.drawString("PLAYER ONE", 15, 50);
-        bg.drawString("PLAYER TWO", 1015, 50);
+        if(!campaign)bg.drawString("PLAYER TWO", 1015, 50);
         //random selector box
         int[] xPoints1={(getWidth()/2-75),(getWidth()/2+75),(getWidth()/2+120),(getWidth()/2-120)};
         int[] yPoints1={650,650,550,550};
@@ -146,35 +147,37 @@ public class CharacterSelect extends World
                 selector1.setLocation(getWidth()/2+395,480);
                 break;
         }
-        switch(p2Selection){
-            case 1:
-                selector2.setLocation(getWidth()/2-390,480);
-                break;
-            case 2:
-                selector2.setLocation(getWidth()/2-265,505);
-                break;
-            case 3:
-                selector2.setLocation(getWidth()/2-140,530);
-                break;
-            case 4:
-                selector2.setLocation(getWidth()/2+115,555);
-                break;
-            case 5:
-                selector2.setLocation(getWidth()/2+240,530);
-                break;
-            case 6:
-                selector2.setLocation(getWidth()/2+365,505);
-                break;
-            case 7:
-                selector2.setLocation(getWidth()/2+490,480);
-                break;
+        if(!campaign){
+            switch(p2Selection){
+                case 1:
+                    selector2.setLocation(getWidth()/2-390,480);
+                    break;
+                case 2:
+                    selector2.setLocation(getWidth()/2-265,505);
+                    break;
+                case 3:
+                    selector2.setLocation(getWidth()/2-140,530);
+                    break;
+                case 4:
+                    selector2.setLocation(getWidth()/2+115,555);
+                    break;
+                case 5:
+                    selector2.setLocation(getWidth()/2+240,530);
+                    break;
+                case 6:
+                    selector2.setLocation(getWidth()/2+365,505);
+                    break;
+                case 7:
+                    selector2.setLocation(getWidth()/2+490,480);
+                    break;
+            }
         }
     }
 
     public void initializeSelectors()
     {
         addObject(selector1,(getWidth()/2-240),530);
-        addObject(selector2,(getWidth()/2+240),530);
+        if(!campaign)addObject(selector2,(getWidth()/2+240),530);
     }
 
     public void getSelections()
@@ -202,24 +205,26 @@ public class CharacterSelect extends World
                     break;
             }
         }
-        if(!p2Confirmed){
-            switch(InputManager.getPlayerTwoInput(false)){
-                case "left":
-                    if(p2Selection==1){
-                        p2Selection=7;
-                    }
-                    else{
-                        --p2Selection;
-                    }
-                    break;
-                case "right":
-                    if(p2Selection==7){
-                        p2Selection=1;
-                    }
-                    else{
-                        ++p2Selection;
-                    }
-                    break;
+        if(!campaign){
+            if(!p2Confirmed){
+                switch(InputManager.getPlayerTwoInput(false)){
+                    case "left":
+                        if(p2Selection==1){
+                            p2Selection=7;
+                        }
+                        else{
+                            --p2Selection;
+                        }
+                        break;
+                    case "right":
+                        if(p2Selection==7){
+                            p2Selection=1;
+                        }
+                        else{
+                            ++p2Selection;
+                        }
+                        break;
+                }
             }
         }
     }
@@ -230,9 +235,14 @@ public class CharacterSelect extends World
             selector1.setImage("beeperGreen.png");
             p1Confirmed=true;
         }
-        if(InputManager.getPlayerTwoInput(false)=="attack"){
+        if(!campaign){
+            if(InputManager.getPlayerTwoInput(false)=="attack"){
+                p2Confirmed=true;
+                selector2.setImage("beeperGreen.png");
+            }
+        }
+        else{
             p2Confirmed=true;
-            selector2.setImage("beeperGreen.png");
         }
     }
 
@@ -242,9 +252,11 @@ public class CharacterSelect extends World
             selector1.setImage("beeper.png");
             p1Confirmed=false;
         }
-        if(InputManager.getPlayerTwoInput(false)=="block"){
-            selector2.setImage("beeper.png");
-            p2Confirmed=false;
+        if(!campaign){
+            if(InputManager.getPlayerTwoInput(false)=="block"){
+                selector2.setImage("beeper.png");
+                p2Confirmed=false;
+            }
         }
     }
 
@@ -259,8 +271,11 @@ public class CharacterSelect extends World
 
     public void moveOn()
     {
-        if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")){
+        if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")&&!campaign){
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty));
+        }
+        else if(p1Confirmed&&campaign&&InputManager.getPlayerOneInput(false)=="ultimate"){
+            Greenfoot.setWorld(new SaveSelect(p1Selection));
         }
     }
 
@@ -358,14 +373,16 @@ public class CharacterSelect extends World
 
     public void setUpBios()
     {
-        addObject(p1bioDisplay,getWidth()/2,getHeight()/2);
-        addObject(p2bioDisplay,getWidth()/2,getHeight()/2);
         Color rust = new Color(171,69,0);
         Font bioFont = new Font(false,false,12);
+        addObject(p1bioDisplay,getWidth()/2,getHeight()/2);
         bioP1.setFont(bioFont);
         bioP1.setColor(rust);
-        bioP2.setFont(bioFont);
-        bioP2.setColor(rust);
+        if(!campaign){
+            addObject(p2bioDisplay,getWidth()/2,getHeight()/2);
+            bioP2.setFont(bioFont);
+            bioP2.setColor(rust);
+        }
     }
 
     public void manageBios(boolean firstTime)
@@ -375,7 +392,7 @@ public class CharacterSelect extends World
             bioP1.drawString(getBio(p1Selection),50,350);
             p1bioDisplay.setImage(bioP1);
         }
-        if(p2PreviousSelection!=p2Selection||firstTime){ 
+        if((p2PreviousSelection!=p2Selection||firstTime)&&!campaign){ 
             bioP2.clear();
             bioP2.drawString(getBio(p2Selection),1100,350);
             p2bioDisplay.setImage(bioP2);

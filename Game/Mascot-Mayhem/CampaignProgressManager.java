@@ -15,7 +15,7 @@ public class CampaignProgressManager
     //debug fields
     private String playerCharacterString;
 
-    public CampaignProgressManager(String saveName,char playerCharacter)
+    public CampaignProgressManager(String saveName,int playerCharacter)
     {
         this.playerCharacter=playerCharacter;
         this.saveName=saveName;
@@ -161,7 +161,7 @@ public class CampaignProgressManager
     }
 
     public void start()
-    [
+    {
         Greenfoot.setWorld(new Arena(playerCharacter,4,true,0));
-    ]
+    }
 }
