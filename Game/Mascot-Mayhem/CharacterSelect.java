@@ -204,7 +204,7 @@ public class CharacterSelect extends World
         }
         if(!p2Confirmed){
             switch(InputManager.getPlayerTwoInput(false)){
-                case "right":
+                case "left":
                     if(p2Selection==1){
                         p2Selection=7;
                     }
@@ -212,7 +212,7 @@ public class CharacterSelect extends World
                         --p2Selection;
                     }
                     break;
-                case "left":
+                case "right":
                     if(p2Selection==7){
                         p2Selection=1;
                     }
