@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class CharacterSelect extends World
 {
-    private GreenfootImage bg = getBackground();
+    private GreenfootImage bg;
     private int p1Selection = 3;
     private int p2Selection = 5;
     private Selector selector1 = new Selector();
@@ -31,10 +31,15 @@ public class CharacterSelect extends World
     private String tuxBio;
     private String wilburBio;
     private boolean campaign;
+    private Color grey = new Color(68,68,68);
+    private Color lightGrey = new Color(90,90,90);
+
     
     public CharacterSelect(boolean campaign)
     {    
         super(1280, 720, 1); 
+        setBackground("matrixBinaryOogaBooga.png");
+        bg = getBackground();
         this.campaign=campaign;
         draw();
         drawOptions();
@@ -57,34 +62,14 @@ public class CharacterSelect extends World
         bg.setFont(new Font(true, true, 36));
         bg.drawString("PLAYER ONE", 15, 50);
         if(!campaign)bg.drawString("PLAYER TWO", 1015, 50);
-        //random selector box
-        int[] xPoints1={(getWidth()/2-75),(getWidth()/2+75),(getWidth()/2+120),(getWidth()/2-120)};
-        int[] yPoints1={650,650,550,550};
-        bg.fillPolygon(xPoints1,yPoints1,4);
-        //left 1 box (option 3)
-        int[] xPoints2={(getWidth()/2-95),(getWidth()/2-200),(getWidth()/2-245),(getWidth()/2-140)};
-        int[] yPoints2={625,625,525,525};
-        bg.fillPolygon(xPoints2,yPoints2,4);
-        //right 1 box (option 4)
-        int[] xPoints3={(getWidth()/2+95),(getWidth()/2+200),(getWidth()/2+245),(getWidth()/2+140)};
-        int[] yPoints3={625,625,525,525};
-        bg.fillPolygon(xPoints3,yPoints3,4);
-        //left 2 box (option 2)
-        int[] xPoints4={(getWidth()/2-220),(getWidth()/2-325),(getWidth()/2-370),(getWidth()/2-265)};
-        int[] yPoints4={600,600,500,500};
-        bg.fillPolygon(xPoints4,yPoints4,4);
-        //right 2 box (option 5)
-        int[] xPoints5={(getWidth()/2+220),(getWidth()/2+325),(getWidth()/2+370),(getWidth()/2+265)};
-        int[] yPoints5={600,600,500,500};
-        bg.fillPolygon(xPoints5,yPoints5,4);
-        //left 3 box (option 1)
-        int[] xPoints6={(getWidth()/2-345),(getWidth()/2-450),(getWidth()/2-495),(getWidth()/2-390)};
-        int[] yPoints6={575,575,475,475};
-        bg.fillPolygon(xPoints6,yPoints6,4);
-        //right 3 box (option 6)
-        int[] xPoints7={(getWidth()/2+345),(getWidth()/2+450),(getWidth()/2+495),(getWidth()/2+390)};
-        int[] yPoints7={575,575,475,475};
-        bg.fillPolygon(xPoints7,yPoints7,4);
+        bg.setColor(grey);
+        bg.fillOval(getWidth()/2-65,530,140,140);
+        bg.fillOval(getWidth()/2-220,500,140,140);
+        bg.fillOval(getWidth()/2-375,470,140,140);
+        bg.fillOval(getWidth()/2-530,440,140,140);
+        bg.fillOval(getWidth()/2+90,500,140,140);
+        bg.fillOval(getWidth()/2+245,470,140,140);
+        bg.fillOval(getWidth()/2+400,440,140,140);
     }
 
     public void drawOptions()
@@ -92,6 +77,7 @@ public class CharacterSelect extends World
         bg.setColor(Color.RED);
         bg.setFont(new Font(true,false,120));
         bg.drawString("?",getWidth()/2-31,642);
+        
         Tux tux = new Tux(true,false,0,false,10,"");
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
@@ -126,49 +112,49 @@ public class CharacterSelect extends World
     {
         switch(p1Selection){
             case 1:
-                selector1.setLocation(getWidth()/2-490,480);
+                selector1.setLocation(getWidth()/2-530,510);
                 break;
             case 2:
-                selector1.setLocation(getWidth()/2-365,505);
+                selector1.setLocation(getWidth()/2-375,540);
                 break;
             case 3:
-                selector1.setLocation(getWidth()/2-240,530);
+                selector1.setLocation(getWidth()/2-220,570);
                 break;
             case 4:
-                selector1.setLocation(getWidth()/2-115,555);
+                selector1.setLocation(getWidth()/2-65,600);
                 break;
             case 5:
-                selector1.setLocation(getWidth()/2+145,530);
+                selector1.setLocation(getWidth()/2+90,570);
                 break;
             case 6:
-                selector1.setLocation(getWidth()/2+270,505);
+                selector1.setLocation(getWidth()/2+245,540);
                 break;
             case 7:
-                selector1.setLocation(getWidth()/2+395,480);
+                selector1.setLocation(getWidth()/2+400,510);
                 break;
         }
         if(!campaign){
             switch(p2Selection){
                 case 1:
-                    selector2.setLocation(getWidth()/2-390,480);
+                    selector2.setLocation(getWidth()/2-390,510);
                     break;
                 case 2:
-                    selector2.setLocation(getWidth()/2-265,505);
+                    selector2.setLocation(getWidth()/2-235,540);
                     break;
                 case 3:
-                    selector2.setLocation(getWidth()/2-140,530);
+                    selector2.setLocation(getWidth()/2-80,570);
                     break;
                 case 4:
-                    selector2.setLocation(getWidth()/2+115,555);
+                    selector2.setLocation(getWidth()/2+75,600);
                     break;
                 case 5:
-                    selector2.setLocation(getWidth()/2+240,530);
+                    selector2.setLocation(getWidth()/2+230,570);
                     break;
                 case 6:
-                    selector2.setLocation(getWidth()/2+365,505);
+                    selector2.setLocation(getWidth()/2+385,540);
                     break;
                 case 7:
-                    selector2.setLocation(getWidth()/2+490,480);
+                    selector2.setLocation(getWidth()/2+540,510);
                     break;
             }
         }
@@ -176,7 +162,7 @@ public class CharacterSelect extends World
 
     public void initializeSelectors()
     {
-        addObject(selector1,(getWidth()/2-240),530);
+        addObject(selector1,(getWidth()/2-220),570);
         if(!campaign)addObject(selector2,(getWidth()/2+240),530);
     }
 
@@ -187,7 +173,7 @@ public class CharacterSelect extends World
         p2PreviousSelection=p2Selection;
         if(!p1Confirmed){
             switch(InputManager.getPlayerOneInput(false)){
-                case "right":
+                case "left":
                     if(p1Selection==1){
                         p1Selection=7;
                     }
@@ -195,7 +181,7 @@ public class CharacterSelect extends World
                         --p1Selection;
                     }
                     break;
-                case "left":
+                case "right":
                     if(p1Selection==7){
                         p1Selection=1;
                     }
@@ -350,7 +336,6 @@ public class CharacterSelect extends World
     public void setUpAiIndicator()
     {
         addObject(aiIndicator,getWidth()/2,getHeight()/2);
-        Color grey = new Color(68,68,68);
         aiControlled.setFont(new Font(true,true,25));
         aiControlled.setColor(grey);
         aiControlled.drawString("(AI controlled)",1087,75);
@@ -359,7 +344,6 @@ public class CharacterSelect extends World
         playerControlled.drawString("(Player controlled)",1038,75);
         addObject(aiDifficultyIndicator,getWidth()/2,getHeight()/2);
         Font difficultyFont = new Font(false,true,20);
-        Color lightGrey = new Color(90,90,90);
         easyAI.setFont(difficultyFont);
         easyAI.setColor(lightGrey);
         easyAI.drawString("AI difficulty: \n      easy :)",1145,100);

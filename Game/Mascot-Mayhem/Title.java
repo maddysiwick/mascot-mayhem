@@ -10,7 +10,7 @@ public class Title extends World
 {
     private int optionSelected=1;
     private final Color ORANGE = new Color(255, 126, 10);
-    private GreenfootImage bg = getBackground();
+    private GreenfootImage bg;
     private Selector selector = new Selector();
     private String input1;
     private String input2;
@@ -20,6 +20,8 @@ public class Title extends World
     public Title()
     {    
         super(1280, 720, 1);
+        setBackground("matrixBinaryOogaBooga.png");
+        bg = getBackground();
         drawScreen();
         addObject(selector, 450, 250);
         selector.turn(90);
@@ -39,18 +41,6 @@ public class Title extends World
         drawOptionNames();
     }
 
-    /*
-    public void drawTitle()
-    {
-        bg.setColor(ORANGE);
-        bg.setFont(new Font(true,false,75));
-        bg.drawString("MASCOT",450,125);
-        bg.setColor(Color.RED);
-        bg.setFont(new Font(false,true,60));
-        bg.drawString("MAYHEM",525,175);
-    }
-    */
-
     public void drawTitle()
     {
         title=new AddedImage(3, true, false);
@@ -59,15 +49,19 @@ public class Title extends World
         titleCard.rotate(-90);
         titleCard.scale(1000,970);
         title.setImage(titleCard);
+        bg.setColor(Color.WHITE);
+        bg.fillOval(245,80,750,160);
+        bg.fillOval(373,19,500,85);
     }
 
     public void drawBoxes()
     {
         bg.setColor(Color.WHITE);
-        bg.fillRect(450,250,325,75);
-        bg.fillRect(450,350,325,75);
-        bg.fillRect(450,450,325,75);
-        bg.fillRect(450,550,325,75);
+        bg.fillOval(425,245,375,85);
+        bg.fillOval(425,345,375,85);
+        bg.fillOval(425,445,375,85);
+        bg.fillOval(425,545,375,85);
+
     }
 
     public void drawOptionNames()
@@ -75,9 +69,9 @@ public class Title extends World
         bg.setColor(Color.BLACK);
         bg.setFont(new Font(60));
         bg.drawString("CAMPAIGN",453,310);
-        bg.drawString("DUEL",453,410);
-        bg.drawString("INFO",453,510);
-        bg.drawString("QUIT",453,610);
+        bg.drawString("DUEL",540,410);
+        bg.drawString("INFO",545,510);
+        bg.drawString("QUIT",540,610);
     }
 
     public void getInputs()
@@ -130,16 +124,16 @@ public class Title extends World
     {
         switch(optionSelected){
             case 1:
-                selector.setLocation(450,250);
+                selector.setLocation(425,287);
                 break;
             case 2:
-                selector.setLocation(450,350);
+                selector.setLocation(425,387);
                 break;
             case 3:
-                selector.setLocation(450,450);
+                selector.setLocation(425,487);
                 break;
             case 4:
-                selector.setLocation(450,550);
+                selector.setLocation(425,587);
                 break;
         }
     }
