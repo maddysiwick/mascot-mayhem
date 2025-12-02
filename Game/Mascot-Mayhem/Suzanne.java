@@ -14,7 +14,8 @@ public class Suzanne extends Player
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png"; 
         hitPoints=100;
-        damage=5;
+        damage=7;
+        cooldownMaximum=12;
         characterReference=7;
         name="Suzanne";
         bio="\n                          Suzanne: \nA mischief-loving monkey who stabs \n  people with her surprisingly sharp \n                          bananas.";

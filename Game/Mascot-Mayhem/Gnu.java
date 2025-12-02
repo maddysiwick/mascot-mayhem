@@ -14,8 +14,8 @@ public class Gnu extends Player
         super(playerOne,aiControlled,aiDifficulty,"gnuTEMP.png","gnuHeadbuttTEMP.png",campaign,currentLevel,saveName);
         baseSprite="gnuTEMP.png";
         hitImage="images/gnuHeadbuttTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=100;
-        damage=5;
+        hitPoints=120;
+        damage=10;
         characterReference=5;
         this.clone=clone;
         if(clone){
@@ -24,6 +24,8 @@ public class Gnu extends Player
             baseSprite="gnuCloneTEMP.png";//make this a slightly altered version of the base one once we have the sprites
             ultTimer=500;
         }
+        speedMultiplier=4;
+        cooldownMaximum=20;
         bio="\n                            Gnu: \n      A strongheaded, mildly magical, \nwildebeest, with a burning rivalry with \n  Tux. Attacks slowly but with large \n                         strength."; 
     }
     

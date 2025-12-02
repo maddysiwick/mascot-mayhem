@@ -26,9 +26,19 @@ public class EbodaHead extends Player
         if(firstTime){
             getWorld().addObject(manager,0,0);//should do this in the world probably to avoid delay
             firstTime=false;
+            initializeHealthBar();
         }
     }
     public GreenfootImage createLeftSprite(String filename){
         return new GreenfootImage(filename);
+    }
+
+    public void initializeHealthBar()
+    {
+        healthBar = new Bar("","Health%",hitPoints,hitPoints);
+        getWorld().addObject(healthBar,650,715);
+        healthBar.setBarHeight(100);
+        healthBar.setBarWidth(1000);
+        healthBar.setShowTextualUnits(false);
     }
 }

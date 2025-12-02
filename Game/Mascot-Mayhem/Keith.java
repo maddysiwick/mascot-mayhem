@@ -13,9 +13,10 @@ public class Keith extends Player
         super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png",campaign,currentLevel,saveName);
         baseSprite="mouse.png";
         hitImage="images/keithHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=100;
-        damage=5;
-        currentLevel=2;
+        hitPoints=75;
+        damage=3;
+        cooldownMaximum=5;
+        speedMultiplier=10;
         bio="                            Keith:\n    A rat who’s obese, diseased, and \n missing a leg. Despite this he’s loved \nby everyone, but has an especially close \nrelationship with Duke. Holds a hidden \n power which even he is unaware of. \n                      Extremely fast.";
     }
     
@@ -30,7 +31,7 @@ public class Keith extends Player
             damageMultiplier=3;
             usingUltimate=true;
             ultTimer=200;
-            speedMultiplier=10;
+            speedMultiplier=20;
             baseSprite="keith.png";
         }
     }
@@ -41,7 +42,7 @@ public class Keith extends Player
             damageMultiplier=1;
             usingUltimate=false;
             baseSprite="mouse.png";
-            speedMultiplier=5;
+            speedMultiplier=10;
         }
     }
 }

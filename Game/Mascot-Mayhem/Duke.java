@@ -17,7 +17,8 @@ public class Duke extends Player
         baseSprite="dukeTEMP.png";
         hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
-        damage=5;
+        damage=7;
+        cooldownMaximum=17;
         characterReference=6;
         bio="\n                             Duke: \n The sweetest robot, and Keith's best \nfriend. Loves slapping those who annoy \n     him, but can shoot a laser in dire \n                          situations.";
     }

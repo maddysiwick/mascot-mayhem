@@ -25,7 +25,7 @@ public class Player extends Actor
     private int jumpTimer;
     private boolean blocking;
     protected Bar ultimateBar = new Bar("","Ultimate%",0,100);
-    protected Bar healthBar = new Bar("","Health%",100,100);
+    protected Bar healthBar;
     protected boolean firstTime = true;
     protected boolean facingLeft;
     protected static String bio;
@@ -49,6 +49,7 @@ public class Player extends Actor
     private boolean moving=false;
     private int runTimer;
     private boolean willUltimateHit;
+    protected int cooldownMaximum=15;
     //ai difficulty checks
     private int startMovingCheck;
     private int stopMovingCheck;
@@ -61,7 +62,7 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
-    //campaign filesd
+    //campaign files
     protected boolean isEbodaHead;
     private boolean campaign;
     private int currentLevel;
@@ -272,6 +273,7 @@ public class Player extends Actor
     
     private void initializeHealthBar()
     {
+        healthBar = new Bar("","Health%",hitPoints,hitPoints);
         getWorld().addObject(healthBar,healthBarPosition+100,50);
         healthBar.setBarHeight(50);
         healthBar.setBarWidth(500);
@@ -289,7 +291,7 @@ public class Player extends Actor
     {
         unblock();
         if(attackCooldown<=0){
-            attackCooldown=15;
+            attackCooldown=cooldownMaximum;
             setSprite(leftHitImage, hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
             Player jumpee = (Player) victim;
@@ -473,7 +475,7 @@ public class Player extends Actor
             if(aiControlled){
                 setUpAI();
             }
-            secondTime=false;
+            firstTime=false;
         }   
     }
     protected void setSprite(GreenfootImage leftSprite,String rightSprite){

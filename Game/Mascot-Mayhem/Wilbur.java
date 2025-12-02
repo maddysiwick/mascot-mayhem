@@ -10,9 +10,10 @@ public class Wilbur extends Player
         super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel,saveName);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
-        hitPoints=100;
-        damage=5;
+        hitPoints=80;
+        damage=4;
         characterReference=1;
+        cooldownMaximum=10;
         bio="\n                           Wilbur:  \nAn unstable gimp who loves painting. \n    Not the strongest, but quite fast.";
     }
 
