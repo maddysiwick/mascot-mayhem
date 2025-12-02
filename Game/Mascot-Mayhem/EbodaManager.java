@@ -45,6 +45,5 @@ public class EbodaManager extends Actor
     private void setUp(){
         getWorld().addObject(firstHand,getWorld().getWidth()-400,200);
         getWorld().addObject(secondHand,getWorld().getWidth()+400,200);
-        ((Arena)getWorld()).getPlayer2().setLocation(0,0); //TEMP just so i can test without the campaign manager
     }
 }
