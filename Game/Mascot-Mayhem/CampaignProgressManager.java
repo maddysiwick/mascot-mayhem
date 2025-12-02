@@ -44,6 +44,7 @@ public class CampaignProgressManager
         while(saveFileReader.hasNext()){
             decodeToken(saveFileReader.next());
         }
+        System.out.println("save opened ("+saveName+")");
     }
 
     public void makeNewSave()
@@ -77,47 +78,58 @@ public class CampaignProgressManager
             //character tokens
             case "6":
                 playerCharacterString="Duke";
+                System.out.println("decoded: duke selected");
                 playerCharacter=6;
                 break;
             case "5":
                 playerCharacterString="Gnu";
+                System.out.println("decoded: gnu selected");
                 playerCharacter=5;
                 break;
             case "2":
                 playerCharacterString="Keith";
+                System.out.println("decoded: keith selected");
                 playerCharacter=2;
                 break;
             case "7":
                 playerCharacterString="Suzanne";
+                System.out.println("decoded: suzanne selected");
                 playerCharacter=7;
                 break;
             case "3":
                 playerCharacterString="Tux";
+                System.out.println("decoded: tux selected");
                 playerCharacter=3;
                 break;
             case "1":
                 playerCharacterString="Wilbur";
+                System.out.println("decoded: wilbur selected");
                 playerCharacter=1;
                 break;
             //level tokens
             case "10":
                 //agaisnt easy ai
+                System.out.println("decoded: level 10");
                 currentLevel=10;
                 break;
             case "11":
                 //agaisnt medium ai
+                System.out.println("decoded: level 11");
                 currentLevel=11;
                 break;
             case "12":
                 //agaisnt hard ai
+                System.out.println("decoded: level 12");
                 currentLevel=12;
                 break;
             case "13":
                 //agaisnt eboda
+                System.out.println("decoded: level 13");
                 currentLevel=13;
                 break;
             case "14":
                 //final win screen
+                System.out.println("decoded: level 14");
                 currentLevel=14;
                 break;
         }
@@ -139,9 +151,11 @@ public class CampaignProgressManager
         if(currentLevel==4) return;
         try{
             ++currentLevel;
+            System.out.println("completeLevel(); currentLevel (post-increment): "+currentLevel);
             saveFileWriter=new FileWriter(saveName,true);
             saveFileWriter.write(currentLevel+";");
             saveFileWriter.close();
+            System.out.println("completeLevel(): new level written");
         }
         catch(IOException e){
             System.out.println("An exception occured.");
@@ -153,6 +167,7 @@ public class CampaignProgressManager
     {
         completeLevel();
         Greenfoot.setWorld(getLevel());
+        System.out.println("new world set, level: "+currentLevel);
     }
 
     public void start()
@@ -174,6 +189,7 @@ public class CampaignProgressManager
             saveFileWriter.write("10;");
             System.out.println("level written");
             saveFileWriter.close();
+            currentLevel=10;
         }
         catch(IOException e){
             System.out.println("An exception occured. cant write the character");
@@ -185,16 +201,22 @@ public class CampaignProgressManager
     {
         switch(currentLevel){
             case 10:
+                System.out.println("level 10 selected");
                 return new Arena(playerCharacter,4,true,0,true,10,saveName);
             case 11:
+                System.out.println("level 11 selected");
                 return new Arena(playerCharacter,4,true,1,true,11,saveName);
             case 12:
+                System.out.println("level 12 selected");
                 return new Arena(playerCharacter,4,true,2,true,12,saveName);
             case 13:
+                System.out.println("level 13 selected");
                 return new Arena(playerCharacter,saveName);
             case 14:
                 
         }
+        System.out.println("level selection error: fell out of switch-case");
+        System.out.println("    currentLevel value: "+currentLevel);
         return new Arena(playerCharacter,saveName);
     }
 }
