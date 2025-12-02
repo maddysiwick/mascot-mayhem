@@ -61,12 +61,21 @@ public class Player extends Actor
     private String input;
     protected int damageMultiplier=1;
     protected int aiDifficulty;
+    //campaign filesd
     protected boolean isEbodaHead;
-    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage)
+    private boolean campaign;
+    private int currentLevel;
+    private String saveName;
+    protected int characterReference;
+
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage,boolean campaign,int currentLevel,int characterReference)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
         this.aiDifficulty=aiDifficulty;
+        this.campaign=campaign;
+        this.currentLevel=currentLevel;
+        this.characterReference=characterReference;
         isEbodaHead=false;
         blockSprite="block.png";
         if(playerOne){
@@ -410,7 +419,12 @@ public class Player extends Actor
 
     public void die()
     {
-        Greenfoot.setWorld(new WinScreen(this));
+        if(!campaign){
+            Greenfoot.setWorld(new WinScreen(this));
+        }
+        else{
+            CampaignProgressManager manager=new CampaignProgressManager(saveName,characterReference);
+        }
     }
 
     public void setUpAI()
@@ -477,5 +491,10 @@ public class Player extends Actor
     }
     public boolean getIsEbodaHead(){
         return isEbodaHead;
+    }
+
+    public Player getPlayer()
+    {
+        return player;
     }
 }
