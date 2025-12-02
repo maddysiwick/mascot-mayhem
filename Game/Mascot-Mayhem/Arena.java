@@ -15,7 +15,8 @@ public class Arena extends World
     private ActionOrderManager queue;
     private boolean withAi;
     private int aiDifficulty;
-    private boolean campaignBattle;
+    private boolean campaign;
+    private int currentLevel;
 
     /**
      * Constructor for objects of class Arena.
@@ -39,8 +40,8 @@ public class Arena extends World
     
     private void prepare()
     {
-        p1 = getCharacter(p1Selection,true,false);
-        p2 = getCharacter(p2Selection,false,withAi);
+        p1 = getCharacter(p1Selection,true,false,campaign,currentLevel);
+        p2 = getCharacter(p2Selection,false,withAi,campaign,currentLevel);
         queue = new ActionOrderManager(p1,p2);
         addObject(queue,0,0);
         addObject(p1,140,614);
@@ -52,24 +53,24 @@ public class Arena extends World
         }
     }
 
-    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled)
+    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled,boolean campaign,int currentLevel)
     {
         switch(selection){
             case 1:
-                return new Wilbur(playerOne,aiControlled,aiDifficulty);
+                return new Wilbur(playerOne,aiControlled,aiDifficulty,campaign,currentLevel);
             case 2:
-                return new Keith(playerOne,aiControlled,aiDifficulty);
+                return new Keith(playerOne,aiControlled,aiDifficulty,campaign,currentLevel);
             case 3:
-                return new Tux(playerOne,aiControlled,aiDifficulty);
+                return new Tux(playerOne,aiControlled,aiDifficulty,campaign,currentLevel);
             case 4:
-                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
+                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled,campaign,currentLevel);
             case 5:
                 //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne,aiControlled,aiDifficulty);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaign,currentLevel);
             case 6:
-                return new Duke(playerOne,aiControlled,aiDifficulty);
+                return new Duke(playerOne,aiControlled,aiDifficulty,campaign,currentLevel);
             case 7:
-                return new Gnu(playerOne,aiControlled,aiDifficulty,false);
+                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaign,currentLevel);
             case 8:
                 return new EbodaHead();
         }
