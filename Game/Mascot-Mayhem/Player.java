@@ -473,7 +473,7 @@ public class Player extends Actor
             if(aiControlled){
                 setUpAI();
             }
-            firstTime=false;
+            secondTime=false;
         }   
     }
     protected void setSprite(GreenfootImage leftSprite,String rightSprite){
