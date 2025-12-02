@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Framework\ for\ player\ characters\r\n\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=playerOne\ aiControlled\ aiDifficulty\ baseSprite\ hitImage
-comment1.target=Player(boolean,\ boolean,\ int,\ java.lang.String,\ java.lang.String)
+comment1.params=playerOne\ aiControlled\ aiDifficulty\ baseSprite\ hitImage\ campaign\ currentLevel\ saveName
+comment1.target=Player(boolean,\ boolean,\ int,\ java.lang.String,\ java.lang.String,\ boolean,\ int,\ java.lang.String)
 comment10.params=
 comment10.target=void\ triggerUltimate()
 comment11.params=
@@ -63,6 +63,8 @@ comment36.params=
 comment36.target=boolean\ getPlayerOneStatus()
 comment37.params=
 comment37.target=boolean\ getIsEbodaHead()
+comment38.params=
+comment38.target=Player\ getPlayer()
 comment4.params=playerAction
 comment4.target=void\ actionsAI(java.lang.String)
 comment5.params=playerOne\ ultimateBarPosition\ healthBarPosition
@@ -75,4 +77,4 @@ comment8.params=
 comment8.target=void\ getPlayerInput()
 comment9.params=damage
 comment9.target=void\ takeHit(int)
-numComments=38
+numComments=39

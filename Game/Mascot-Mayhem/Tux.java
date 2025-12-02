@@ -9,9 +9,9 @@ import java.util.*;
  */
 public class Tux extends Player
 {   
-    public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
+    public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel);
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel,saveName);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;

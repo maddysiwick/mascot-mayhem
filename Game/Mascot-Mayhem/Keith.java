@@ -8,9 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Keith extends Player
 {    
-    public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
+    public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png",campaign,currentLevel);
+        super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png",campaign,currentLevel,saveName);
         baseSprite="mouse.png";
         hitImage="images/keithHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;

@@ -11,10 +11,10 @@ public class Duke extends Player
 {
     protected GreenfootImage laserLine;
     private List players;
-    public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
+    public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"dukeTemp.png","dukeHitTEMP.png",campaign,currentLevel);  
-        baseSprite="dukeTemp.png";
+        super(playerOne,aiControlled,aiDifficulty,"dukeTEMP.png","dukeHitTEMP.png",campaign,currentLevel,saveName);  
+        baseSprite="dukeTEMP.png";
         hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;

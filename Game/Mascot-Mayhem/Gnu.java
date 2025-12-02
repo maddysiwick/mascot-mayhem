@@ -9,9 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Gnu extends Player
 {
     private boolean clone;
-    public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone,boolean campaign,int currentLevel)    
+    public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone,boolean campaign,int currentLevel,String saveName)    
     {
-        super(playerOne,aiControlled,aiDifficulty,"gnuTEMP.png","gnuHeadbuttTEMP.png",campaign,currentLevel);
+        super(playerOne,aiControlled,aiDifficulty,"gnuTEMP.png","gnuHeadbuttTEMP.png",campaign,currentLevel,saveName);
         baseSprite="gnuTEMP.png";
         hitImage="images/gnuHeadbuttTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
@@ -48,7 +48,7 @@ public class Gnu extends Player
         if(ultPossible()){
             super.triggerUltimate();
             usingUltimate=true;
-            getWorld().addObject(new Gnu(playerOne,true,1,true,false,0),getX()+getOffset(),getY());
+            getWorld().addObject(new Gnu(playerOne,true,1,true,false,0,""),getX()+getOffset(),getY());
         }
     }
 

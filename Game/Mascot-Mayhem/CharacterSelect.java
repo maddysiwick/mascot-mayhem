@@ -92,23 +92,23 @@ public class CharacterSelect extends World
         bg.setColor(Color.RED);
         bg.setFont(new Font(true,false,120));
         bg.drawString("?",getWidth()/2-31,642);
-        Tux tux = new Tux(true,false,0,false,10);
+        Tux tux = new Tux(true,false,0,false,10,"");
         addObject(tux,getWidth()/2-160,575);
         tux.makeStatic();
         tuxBio=tux.getBio();
-        Suzanne suzanne = new Suzanne(true,false,0,false,10);
+        Suzanne suzanne = new Suzanne(true,false,0,false,10,"");
         addObject(suzanne,getWidth()/2+160,575);
         suzanne.makeStatic();
         suzanneBio=suzanne.getBio();
-        Keith keith = new Keith(true,false,0,false,10);
+        Keith keith = new Keith(true,false,0,false,10,"");
         addObject(keith,getWidth()/2-290,550);
         keith.makeStatic();
         keithBio=keith.getBio();
         keithBio=keith.getBio();
-        Duke duke = new Duke(true,false,0,false,10);
+        Duke duke = new Duke(true,false,0,false,10,"");
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
-        Gnu gnu=new Gnu(true,false,0,false,false,10);
+        Gnu gnu=new Gnu(true,false,0,false,false,10,"");
         addObject(gnu,getWidth()+410,525);
         gnu.makeStatic();
         dukeBio=duke.getBio();
@@ -272,7 +272,7 @@ public class CharacterSelect extends World
     public void moveOn()
     {
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")&&!campaign){
-            Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty));
+            Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty,false,0,""));
         }
         else if(p1Confirmed&&campaign&&InputManager.getPlayerOneInput(false)=="ultimate"){
             Greenfoot.setWorld(new SaveSelect(p1Selection));

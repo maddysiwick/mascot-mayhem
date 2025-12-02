@@ -16,24 +16,33 @@ public class Arena extends World
     private boolean withAi;
     private int aiDifficulty;
     private boolean campaignBattle;
+    private int currentLevel;
+    private String saveName;
 
     /**
      * Constructor for objects of class Arena.
      * 
      */
-    public Arena(int p1Selection, int p2Selection, boolean withAi,int aiDifficulty)
+    public Arena(int p1Selection, int p2Selection, boolean withAi,int aiDifficulty,boolean campaignBattle,int currentLevel,String saveName)
     {
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
         this.p2Selection=p2Selection;
         this.withAi=withAi;
         this.aiDifficulty=aiDifficulty;
+        this.campaignBattle=campaignBattle;
+        this.currentLevel=currentLevel;
+        this.saveName=saveName;
         prepare();
     }
-    public Arena(int p1Selection){
+    public Arena(int p1Selection,String saveName){
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
+        campaignBattle=true;
+        currentLevel=13;
         this.p2Selection=8;
+        campaignBattle=true;
+        this.saveName=saveName;
         prepare();
     }
     
@@ -56,22 +65,22 @@ public class Arena extends World
     {
         switch(selection){
             case 1:
-                return new Wilbur(playerOne,aiControlled,aiDifficulty);
+                return new Wilbur(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
             case 2:
-                return new Keith(playerOne,aiControlled,aiDifficulty);
+                return new Keith(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
             case 3:
-                return new Tux(playerOne,aiControlled,aiDifficulty);
+                return new Tux(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
             case 4:
                 return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
             case 5:
                 //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne,aiControlled,aiDifficulty);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
             case 6:
-                return new Duke(playerOne,aiControlled,aiDifficulty);
+                return new Duke(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
             case 7:
-                return new Gnu(playerOne,aiControlled,aiDifficulty,false);
+                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaignBattle,currentLevel,saveName);
             case 8:
-                return new EbodaHead();
+                return new EbodaHead(saveName);
         }
         return null;
     }

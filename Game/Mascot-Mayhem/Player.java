@@ -68,7 +68,7 @@ public class Player extends Actor
     private String saveName;
     protected int characterReference;
 
-    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage,boolean campaign,int currentLevel)
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage,boolean campaign,int currentLevel,String saveName)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
@@ -76,6 +76,7 @@ public class Player extends Actor
         this.campaign=campaign;
         this.currentLevel=currentLevel;
         this.characterReference=characterReference;
+        this.saveName=saveName;
         isEbodaHead=false;
         blockSprite="block.png";
         if(playerOne){
