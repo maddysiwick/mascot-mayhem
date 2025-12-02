@@ -156,20 +156,28 @@ public class CampaignProgressManager
     public void nextLevel()
     {
         completeLevel(currentLevel);
-        switch(currentLevel){
-            case 11:
-                Greenfoot.setWorld(new Arena(playerCharacter,4,true,1,true,11,saveName));
-            case 12:
-                Greenfoot.setWorld(new Arena(playerCharacter,4,true,2,true,12,saveName));
-            case 13:
-                Greenfoot.setWorld(new Arena(playerCharacter,saveName));
-            case 14:
-                
-        }
+        Greenfoot.setWorld(getLevel());
     }
 
     public void start()
     {
-        Greenfoot.setWorld(new Arena(playerCharacter,4,true,0,true,10,saveName));
+        Greenfoot.setWorld(getLevel());
+    }
+    
+    public Arena getLevel()
+    {
+        switch(currentLevel){
+            case 10:
+                return new Arena(playerCharacter,4,true,0,true,10,saveName);
+            case 11:
+                return new Arena(playerCharacter,4,true,1,true,11,saveName);
+            case 12:
+                return new Arena(playerCharacter,4,true,2,true,12,saveName);
+            case 13:
+                return new Arena(playerCharacter,saveName);
+            case 14:
+                
+        }
+        return new Arena(playerCharacter,saveName);
     }
 }

@@ -425,7 +425,12 @@ public class Player extends Actor
         }
         else{
             CampaignProgressManager manager=new CampaignProgressManager(saveName,characterReference);
+            if(playerOne){
+                manager.start();
+            }
+            else{
             manager.nextLevel();
+            }
         }
     }
 
