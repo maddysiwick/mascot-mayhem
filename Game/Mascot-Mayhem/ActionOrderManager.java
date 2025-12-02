@@ -19,7 +19,6 @@ public class ActionOrderManager extends Actor
     }
     
     public void act(){
-        System.out.println(deadCharacterFlag);
         if(player2.getAIControlled()){
             player2.actionsAI(player1.getInput());
         }
@@ -52,7 +51,6 @@ public class ActionOrderManager extends Actor
     private void executeInputs(){
         if(playerOneGoesFirst()){
             if(!deadCharacterFlag){
-                System.out.println("player1 going");
                 player1.actions();
             }
             if(!deadCharacterFlag){
@@ -64,7 +62,6 @@ public class ActionOrderManager extends Actor
                 player2.actions();
             }
             if(!deadCharacterFlag){
-                System.out.println("player1 going");
                 player1.actions();
             }
         }
