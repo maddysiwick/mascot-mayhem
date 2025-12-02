@@ -16,7 +16,7 @@ public class Keith extends Player
         hitPoints=100;
         damage=5;
         currentLevel=2;
-        bio="Keith \n A rat who’s obese, diseased, and missing a leg. Despite this he’s loved by everyone, but has an especially close relationship with Duke. Holds a hidden power which even he is unaware of. Extremely fast.";
+        bio="                            Keith:\n    A rat who’s obese, diseased, and \n missing a leg. Despite this he’s loved \nby everyone, but has an especially close \nrelationship with Duke. Holds a hidden \n power which even he is unaware of. \n                      Extremely fast.";
     }
     
     public void act()

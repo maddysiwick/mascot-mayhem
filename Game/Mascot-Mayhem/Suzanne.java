@@ -17,7 +17,7 @@ public class Suzanne extends Player
         damage=5;
         characterReference=7;
         name="Suzanne";
-        bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
+        bio="\n                          Suzanne: \nA mischief-loving monkey who stabs \n  people with her surprisingly sharp \n                          bananas.";
     }
     
     public void act()

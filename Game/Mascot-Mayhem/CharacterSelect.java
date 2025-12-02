@@ -32,7 +32,7 @@ public class CharacterSelect extends World
     private String wilburBio;
     private boolean campaign;
     private Color grey = new Color(68,68,68);
-    private Color lightGrey = new Color(90,90,90);
+    private Color lightGrey = new Color(120,120,120);
 
     
     public CharacterSelect(boolean campaign)
@@ -58,10 +58,17 @@ public class CharacterSelect extends World
 
     public void draw()
     {
+        bg.setColor(lightGrey);
+        bg.fillOval(0,0,275,75);
         bg.setColor(Color.BLACK);
         bg.setFont(new Font(true, true, 36));
-        bg.drawString("PLAYER ONE", 15, 50);
-        if(!campaign)bg.drawString("PLAYER TWO", 1015, 50);
+        bg.drawString("PLAYER ONE", 16, 50);
+        if(!campaign){
+            bg.setColor(lightGrey);
+            bg.fillOval(getWidth()-280,0,275,75);
+            bg.setColor(Color.BLACK);
+            bg.drawString("PLAYER TWO", 1015, 50);
+        }
         bg.setColor(grey);
         bg.fillOval(getWidth()/2-65,530,140,140);
         bg.fillOval(getWidth()/2-220,500,140,140);
@@ -90,22 +97,17 @@ public class CharacterSelect extends World
         addObject(keith,getWidth()/2-290,550);
         keith.makeStatic();
         keithBio=keith.getBio();
-        keithBio=keith.getBio();
         Duke duke = new Duke(true,false,0,false,10,"");
         addObject(duke,getWidth()/2+290,550);
         duke.makeStatic();
+        dukeBio=duke.getBio();
         Gnu gnu=new Gnu(true,false,0,false,false,10,"");
         addObject(gnu,getWidth()+410,525);
         gnu.makeStatic();
-        dukeBio=duke.getBio();
-        wilburBio="";
-        gnuBio="";
-        dukeBio=duke.getBio();
-        wilburBio="";
-        gnuBio="";
-        dukeBio=duke.getBio();
-        wilburBio="";
-        gnuBio="";
+        gnuBio=gnu.getBio();
+        Wilbur wilbur = new Wilbur(true,false,0,false,10,"");
+        wilbur.makeStatic();
+        wilburBio=wilbur.getBio();
     }
 
     public void moveSelectors()
@@ -275,7 +277,7 @@ public class CharacterSelect extends World
             case 3:
                 return tuxBio;
             case 4:
-                return "Selects a random character!";
+                return "\n\n\n       Selects a random character!";
             case 5:
                 return gnuBio;
             case 6:
@@ -337,35 +339,48 @@ public class CharacterSelect extends World
     {
         addObject(aiIndicator,getWidth()/2,getHeight()/2);
         aiControlled.setFont(new Font(true,true,25));
-        aiControlled.setColor(grey);
-        aiControlled.drawString("(AI controlled)",1087,75);
+        aiControlled.setColor(lightGrey);
+        aiControlled.fillOval(1075,67,198,57);
+        aiControlled.setColor(Color.BLACK);
+        aiControlled.drawString("(AI controlled)",1087,100);
         playerControlled.setFont(new Font(true,true,25));
         playerControlled.setColor(grey);
-        playerControlled.drawString("(Player controlled)",1038,75);
+        playerControlled.drawString("(Player controlled)",1038,100);
         addObject(aiDifficultyIndicator,getWidth()/2,getHeight()/2);
         Font difficultyFont = new Font(false,true,20);
-        easyAI.setFont(difficultyFont);
         easyAI.setColor(lightGrey);
-        easyAI.drawString("AI difficulty: \n      easy :)",1145,100);
-        mediumAI.setFont(difficultyFont);
+        easyAI.fillOval(1120,100,150,68);
+        easyAI.setFont(difficultyFont);
+        easyAI.setColor(Color.BLACK);
+        easyAI.drawString("AI difficulty: \n      easy :)",1145,125);
         mediumAI.setColor(lightGrey);
-        mediumAI.drawString("AI difficulty: \n  medium :|",1145,100);
-        hardAI.setFont(difficultyFont);
+        mediumAI.fillOval(1120,100,150,68);
+        mediumAI.setFont(difficultyFont);
+        mediumAI.setColor(Color.BLACK);
+        mediumAI.drawString("AI difficulty: \n  medium :|",1145,125);
         hardAI.setColor(lightGrey);
-        hardAI.drawString("AI difficulty: \n      hard :<",1145,100);
+        hardAI.fillOval(1120,100,150,68);
+        hardAI.setFont(difficultyFont);
+        hardAI.setColor(Color.BLACK);
+        hardAI.drawString("AI difficulty: \n      hard :<",1145,125);
     }
 
     public void setUpBios()
     {
         Color rust = new Color(171,69,0);
-        Font bioFont = new Font(false,false,12);
+        Font bioFont = new Font(true,false,11);
         addObject(p1bioDisplay,getWidth()/2,getHeight()/2);
+        GreenfootImage bg = getBackground();
+        bg.setColor(lightGrey);
+        bg.fillOval(175,280,250,150);
         bioP1.setFont(bioFont);
-        bioP1.setColor(rust);
+        bioP1.setColor(Color.BLACK);
         if(!campaign){
             addObject(p2bioDisplay,getWidth()/2,getHeight()/2);
+            bg.setColor(lightGrey);
+            bg.fillOval(855,280,250,150);
             bioP2.setFont(bioFont);
-            bioP2.setColor(rust);
+            bioP2.setColor(Color.BLACK);
         }
     }
 
@@ -373,12 +388,12 @@ public class CharacterSelect extends World
     {
         if(p1PreviousSelection!=p1Selection||firstTime){ 
             bioP1.clear();
-            bioP1.drawString(getBio(p1Selection),50,350);
+            bioP1.drawString(getBio(p1Selection),196,316);
             p1bioDisplay.setImage(bioP1);
         }
         if((p2PreviousSelection!=p2Selection||firstTime)&&!campaign){ 
             bioP2.clear();
-            bioP2.drawString(getBio(p2Selection),1100,350);
+            bioP2.drawString(getBio(p2Selection),880,316);
             p2bioDisplay.setImage(bioP2);
         }
     }
