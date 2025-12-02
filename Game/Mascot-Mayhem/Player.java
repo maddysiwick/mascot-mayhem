@@ -422,12 +422,12 @@ public class Player extends Actor
             Greenfoot.setWorld(new WinScreen(this));
         }
         else{
-            CampaignProgressManager manager=new CampaignProgressManager(saveName,characterReference);
+            CampaignProgressManager manager=new CampaignProgressManager(saveName);
             if(playerOne){
-                manager.start();
+                Greenfoot.setWorld(new WinScreen(player));
             }
             else{
-            manager.nextLevel();
+                manager.nextLevel();
             }
         }
     }

@@ -105,7 +105,7 @@ public class Title extends World
         if(input1=="attack"||input2=="attack"){
             switch(optionSelected){
                 case 1:
-                    Greenfoot.setWorld(new CharacterSelect(true)); 
+                    Greenfoot.setWorld(new SaveSelect()); 
                     break;
                 case 2:
                     Greenfoot.setWorld(new CharacterSelect(false)); 

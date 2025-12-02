@@ -33,8 +33,24 @@ public class CharacterSelect extends World
     private boolean campaign;
     private Color grey = new Color(68,68,68);
     private Color lightGrey = new Color(90,90,90);
-
+    private String saveName;
+    private CampaignProgressManager manager;
     
+    public CharacterSelect(boolean campaign,String saveName,CampaignProgressManager manager)
+    {    
+        super(1280, 720, 1); 
+        setBackground("matrixBinaryOogaBooga.png");
+        bg = getBackground();
+        this.campaign=campaign;
+        draw();
+        drawOptions();
+        initializeSelectors();
+        if(!campaign)setUpAiIndicator();
+        setUpBios();
+        manageBios(true);
+        this.saveName=saveName;
+        this.manager=manager;
+    }
     public CharacterSelect(boolean campaign)
     {    
         super(1280, 720, 1); 
@@ -261,7 +277,8 @@ public class CharacterSelect extends World
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty,false,0,""));
         }
         else if(p1Confirmed&&campaign&&InputManager.getPlayerOneInput(false)=="ultimate"){
-            Greenfoot.setWorld(new SaveSelect(p1Selection));
+            manager.writePlayer(p1Selection);
+            manager.start();
         }
     }
 

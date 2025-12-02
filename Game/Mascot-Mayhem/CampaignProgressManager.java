@@ -11,19 +11,19 @@ public class CampaignProgressManager
     private int currentLevel;
     private String saveFileString;
     private String saveName;
-
     //debug fields
     private String playerCharacterString;
 
-    public CampaignProgressManager(String saveName,int playerCharacter)
+    public CampaignProgressManager(String saveName)
     {
-        this.playerCharacter=playerCharacter;
         this.saveName=saveName;
         saveFile=new File(saveName);
         if(isNewSave()){
             makeNewSave();
         }
-        openSave();
+        else{
+            openSave();
+        }
     }
 
     public boolean isNewSave()
@@ -51,10 +51,6 @@ public class CampaignProgressManager
         try{
             saveFileWriter=new FileWriter(saveName);
             System.out.println("saveFileWriter created");
-            saveFileWriter.write(playerCharacter + ";");
-            System.out.println("character written");
-            saveFileWriter.write("10;");
-            System.out.println("level written");
             saveFileWriter.close();
             System.out.println("saveFileWriter closed");
         }
@@ -138,13 +134,13 @@ public class CampaignProgressManager
         return playerCharacter;
     }
 
-    public void completeLevel(int level)
+    public void completeLevel()
     {
         if(currentLevel==4) return;
         try{
             ++currentLevel;
             saveFileWriter=new FileWriter(saveName,true);
-            saveFileWriter.write(level+";");
+            saveFileWriter.write(currentLevel+";");
             saveFileWriter.close();
         }
         catch(IOException e){
@@ -155,13 +151,34 @@ public class CampaignProgressManager
 
     public void nextLevel()
     {
-        completeLevel(currentLevel);
+        completeLevel();
         Greenfoot.setWorld(getLevel());
     }
 
     public void start()
     {
-        Greenfoot.setWorld(getLevel());
+        File f = new File(saveName);
+        if(f.length()==0){
+            Greenfoot.setWorld(new CharacterSelect(true,saveName,this));
+        }
+        else{
+            Greenfoot.setWorld(getLevel());
+        }
+    }
+    public void writePlayer(int player){
+        try{
+            playerCharacter=player;
+            FileWriter saveFileWriter=new FileWriter(saveName);
+            saveFileWriter.write(playerCharacter + ";");
+            System.out.println("character written");
+            saveFileWriter.write("10;");
+            System.out.println("level written");
+            saveFileWriter.close();
+        }
+        catch(IOException e){
+            System.out.println("An exception occured. cant write the character");
+            e.printStackTrace();
+        }
     }
     
     public Arena getLevel()
