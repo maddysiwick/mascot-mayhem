@@ -15,7 +15,7 @@ public class Title extends World
     private String input1;
     private String input2;
     private String control;
-
+    private AddedImage title;
     
     public Title()
     {    
@@ -39,6 +39,7 @@ public class Title extends World
         drawOptionNames();
     }
 
+    /*
     public void drawTitle()
     {
         bg.setColor(ORANGE);
@@ -48,10 +49,21 @@ public class Title extends World
         bg.setFont(new Font(false,true,60));
         bg.drawString("MAYHEM",525,175);
     }
+    */
+
+    public void drawTitle()
+    {
+        title=new AddedImage(3, true, false);
+        addObject(title,getWidth()/2-85,getHeight()/2-250);
+        GreenfootImage titleCard=new GreenfootImage("title card.PNG");
+        titleCard.rotate(-90);
+        titleCard.scale(1000,970);
+        title.setImage(titleCard);
+    }
 
     public void drawBoxes()
     {
-        bg.setColor(Color.BLACK);
+        bg.setColor(Color.WHITE);
         bg.fillRect(450,250,325,75);
         bg.fillRect(450,350,325,75);
         bg.fillRect(450,450,325,75);
@@ -60,7 +72,7 @@ public class Title extends World
 
     public void drawOptionNames()
     {
-        bg.setColor(Color.WHITE);
+        bg.setColor(Color.BLACK);
         bg.setFont(new Font(60));
         bg.drawString("CAMPAIGN",453,310);
         bg.drawString("DUEL",453,410);
