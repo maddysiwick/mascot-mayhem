@@ -9,13 +9,14 @@ import java.util.*;
  */
 public class Tux extends Player
 {   
-    public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png");
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";
         hitPoints=100;
         damage=5;
+        characterReference=3;
         name="Tux";
         bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
         firstTime=true;

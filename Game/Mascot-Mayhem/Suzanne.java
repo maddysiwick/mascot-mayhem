@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Suzanne extends Player
 {
-    public Suzanne(boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Suzanne(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
     {
-        super(playerOne,aiControlled,aiDifficulty,"lemur.png","suzannePunchTemp.png");
+        super(playerOne,aiControlled,aiDifficulty,"lemur.png","suzannePunchTemp.png",campaign,currentLevel);
         baseSprite="lemur.png";
         hitImage="images/suzannePunchTemp.png"; 
         hitPoints=100;
         damage=5;
+        characterReference=7;
         name="Suzanne";
         bio="Suzanne: \n A mischief-loving monkey who stabs people with her surprisingly sharp bananas.";
     }

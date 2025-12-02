@@ -15,7 +15,7 @@ public class EbodaHead extends Player
     boolean firstTime=true;
     EbodaManager manager;
     public EbodaHead(){
-        super(false,false,0,"ebodaHeadTEMP.png","ebodaHeadTEMP.png");
+        super(false,false,0,"ebodaHeadTEMP.png","ebodaHeadTEMP.png",true,13);
         manager=new EbodaManager();
         hitPoints=200;
         isEbodaHead=true;

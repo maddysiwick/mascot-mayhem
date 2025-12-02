@@ -5,13 +5,14 @@ public class Wilbur extends Player
     private int ultXPosition;
     private int ultYPosition=614;
 
-    public Wilbur(boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Wilbur(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png");
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel);
         baseSprite="tux.png";
         hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;
+        characterReference=1;
         bio="Wilbur \n An unstable gimp who loves painting. Not the strongest, but quite fast.";
     }
 

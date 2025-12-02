@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Keith extends Player
 {    
-    public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty)
+    public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel)
     {
-        super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png");
+        super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png",campaign,currentLevel);
         baseSprite="mouse.png";
         hitImage="images/keithHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=5;
+        currentLevel=2;
         bio="Keith \n A rat who’s obese, diseased, and missing a leg. Despite this he’s loved by everyone, but has an especially close relationship with Duke. Holds a hidden power which even he is unaware of. Extremely fast.";
     }
     

@@ -68,7 +68,7 @@ public class Player extends Actor
     private String saveName;
     protected int characterReference;
 
-    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage,boolean campaign,int currentLevel,int characterReference)
+    public Player(boolean playerOne,boolean aiControlled,int aiDifficulty,String baseSprite,String hitImage,boolean campaign,int currentLevel)
     {
         this.playerOne=playerOne;
         this.aiControlled=aiControlled;
@@ -424,6 +424,7 @@ public class Player extends Actor
         }
         else{
             CampaignProgressManager manager=new CampaignProgressManager(saveName,characterReference);
+            manager.nextLevel();
         }
     }
 

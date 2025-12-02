@@ -53,7 +53,7 @@ public class CampaignProgressManager
             System.out.println("saveFileWriter created");
             saveFileWriter.write(playerCharacter + ";");
             System.out.println("character written");
-            saveFileWriter.write("0;");
+            saveFileWriter.write("10;");
             System.out.println("level written");
             saveFileWriter.close();
             System.out.println("saveFileWriter closed");
@@ -104,20 +104,20 @@ public class CampaignProgressManager
                 playerCharacter=1;
                 break;
             //level tokens
-            case "0":
-                currentLevel=0;
+            case "10":
+                currentLevel=10;
                 break;
-            case "1":
-                currentLevel=1;
+            case "11":
+                currentLevel=11;
                 break;
-            case "2":
-                currentLevel=2;
+            case "12":
+                currentLevel=12;
                 break;
-            case "3":
-                currentLevel=3;
+            case "13":
+                currentLevel=13;
                 break;
-            case "4":
-                currentLevel=4;
+            case "14":
+                currentLevel=14;
                 break;
         }
         System.out.println("player character: " + playerCharacterString + " current level: " + currentLevel);
