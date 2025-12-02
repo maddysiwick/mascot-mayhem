@@ -15,18 +15,25 @@ public class Arena extends World
     private ActionOrderManager queue;
     private boolean withAi;
     private int aiDifficulty;
+    private boolean campaignBattle;
 
     /**
      * Constructor for objects of class Arena.
      * 
      */
     public Arena(int p1Selection, int p2Selection, boolean withAi,int aiDifficulty)
-    {    
+    {
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
         this.p2Selection=p2Selection;
         this.withAi=withAi;
         this.aiDifficulty=aiDifficulty;
+        prepare();
+    }
+    public Arena(int p1Selection){
+        super(1280, 720, 1); 
+        this.p1Selection=p1Selection;
+        this.p2Selection=8;
         prepare();
     }
     
@@ -37,7 +44,12 @@ public class Arena extends World
         queue = new ActionOrderManager(p1,p2);
         addObject(queue,0,0);
         addObject(p1,140,614);
-        addObject(p2,1126,614);
+        if(!p2.getIsEbodaHead()){
+            addObject(p2,1126,614);
+        }
+        else{
+            addObject(p2,getWidth()/2,400);
+        }
     }
 
     public Player getCharacter(int selection,boolean playerOne,boolean aiControlled)
@@ -58,6 +70,8 @@ public class Arena extends World
                 return new Duke(playerOne,aiControlled,aiDifficulty);
             case 7:
                 return new Gnu(playerOne,aiControlled,aiDifficulty,false);
+            case 8:
+                return new EbodaHead();
         }
         return null;
     }
