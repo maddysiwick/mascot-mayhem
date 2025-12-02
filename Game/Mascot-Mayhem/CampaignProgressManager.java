@@ -68,11 +68,11 @@ public class CampaignProgressManager
     {
         try{
             saveFileReader=new Scanner(saveFile);
+            saveFileReader.useDelimiter(";");
         }
         catch(FileNotFoundException e){
             System.out.println("exception occured: file not found");
         }
-        saveFileReader.useDelimiter(";");
     }
 
     public void decodeToken(String token)
@@ -105,18 +105,23 @@ public class CampaignProgressManager
                 break;
             //level tokens
             case "10":
+                //agaisnt easy ai
                 currentLevel=10;
                 break;
             case "11":
+                //agaisnt medium ai
                 currentLevel=11;
                 break;
             case "12":
+                //agaisnt hard ai
                 currentLevel=12;
                 break;
             case "13":
+                //agaisnt eboda
                 currentLevel=13;
                 break;
             case "14":
+                //final win screen
                 currentLevel=14;
                 break;
         }
@@ -151,17 +156,28 @@ public class CampaignProgressManager
     public void nextLevel()
     {
         completeLevel(currentLevel);
-        switch(currentLevel){
-            case 1:
-                Greenfoot.setWorld(new Arena(playerCharacter,4,true,1));
-            case 2:
-                Greenfoot.setWorld(new Arena(playerCharacter,4,true,2));
-            case 3:
-        }
+        Greenfoot.setWorld(getLevel());
     }
 
     public void start()
     {
-        Greenfoot.setWorld(new Arena(playerCharacter,4,true,0));
+        Greenfoot.setWorld(getLevel());
+    }
+    
+    public Arena getLevel()
+    {
+        switch(currentLevel){
+            case 10:
+                return new Arena(playerCharacter,4,true,0,true,10,saveName);
+            case 11:
+                return new Arena(playerCharacter,4,true,1,true,11,saveName);
+            case 12:
+                return new Arena(playerCharacter,4,true,2,true,12,saveName);
+            case 13:
+                return new Arena(playerCharacter,saveName);
+            case 14:
+                
+        }
+        return new Arena(playerCharacter,saveName);
     }
 }

@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Framework\ for\ player\ characters\r\n\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=playerOne\ aiControlled\ aiDifficulty\ baseSprite\ hitImage\ campaign\ currentLevel
-comment1.target=Player(boolean,\ boolean,\ int,\ java.lang.String,\ java.lang.String,\ boolean,\ int)
+comment1.params=playerOne\ aiControlled\ aiDifficulty\ baseSprite\ hitImage\ campaign\ currentLevel\ saveName
+comment1.target=Player(boolean,\ boolean,\ int,\ java.lang.String,\ java.lang.String,\ boolean,\ int,\ java.lang.String)
 comment10.params=
 comment10.target=void\ triggerUltimate()
 comment11.params=
