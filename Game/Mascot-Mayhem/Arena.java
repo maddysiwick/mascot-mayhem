@@ -30,7 +30,7 @@ public class Arena extends World
         this.p2Selection=p2Selection;
         this.withAi=withAi;
         this.aiDifficulty=aiDifficulty;
-        this.campaignBattle=campaignBattle;
+        this.campaign=campaignBattle;
         this.currentLevel=currentLevel;
         this.saveName=saveName;
         prepare();
@@ -38,10 +38,10 @@ public class Arena extends World
     public Arena(int p1Selection,String saveName){
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
-        campaignBattle=true;
+        campaign=true;
         currentLevel=13;
         this.p2Selection=8;
-        campaignBattle=true;
+        campaign=true;
         this.saveName=saveName;
         prepare();
     }
@@ -50,8 +50,6 @@ public class Arena extends World
     {
         p1 = getCharacter(p1Selection,true,false,campaign,currentLevel);
         p2 = getCharacter(p2Selection,false,withAi,campaign,currentLevel);
-        queue = new ActionOrderManager(p1,p2);
-        addObject(queue,0,0);
         addObject(p1,140,614);
         if(!p2.getIsEbodaHead()){
             addObject(p2,1126,614);
@@ -59,6 +57,8 @@ public class Arena extends World
         else{
             addObject(p2,getWidth()/2,400);
         }
+        queue = new ActionOrderManager(p1,p2);
+        addObject(queue,0,0);
     }
 
     public Player getCharacter(int selection,boolean playerOne,boolean aiControlled,boolean campaign,int currentLevel)
@@ -89,5 +89,8 @@ public class Arena extends World
     }
     public Player getPlayer2(){
         return p2;
+    }
+    public ActionOrderManager getQueue(){
+        return queue;
     }
 }

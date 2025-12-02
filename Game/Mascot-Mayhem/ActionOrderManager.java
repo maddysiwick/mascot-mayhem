@@ -9,14 +9,17 @@ public class ActionOrderManager extends Actor
 {
     Player player1;
     Player player2;
+    boolean deadCharacterFlag;
     
     public ActionOrderManager(Player player1,Player player2)
     {
         this.player1=player1;
         this.player2=player2;
+        deadCharacterFlag=false;
     }
     
     public void act(){
+        System.out.println(deadCharacterFlag);
         if(player2.getAIControlled()){
             player2.actionsAI(player1.getInput());
         }
@@ -48,12 +51,26 @@ public class ActionOrderManager extends Actor
     
     private void executeInputs(){
         if(playerOneGoesFirst()){
-            player1.actions();
-            player2.actions();
+            if(!deadCharacterFlag){
+                System.out.println("player1 going");
+                player1.actions();
+            }
+            if(!deadCharacterFlag){
+                player2.actions();
+            }
         }
         else{
-            player2.actions();
-            player1.actions();
+            if(!deadCharacterFlag){
+                player2.actions();
+            }
+            if(!deadCharacterFlag){
+                System.out.println("player1 going");
+                player1.actions();
+            }
         }
+    }
+    
+    public void flagDeadCharacter(){
+        deadCharacterFlag=true;
     }
 }

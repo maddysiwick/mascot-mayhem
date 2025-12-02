@@ -49,7 +49,7 @@ public class CampaignProgressManager
     public void makeNewSave()
     {
         try{
-            saveFileWriter=new FileWriter(saveName,true);
+            saveFileWriter=new FileWriter(saveName);
             System.out.println("saveFileWriter created");
             saveFileWriter.write(playerCharacter + ";");
             System.out.println("character written");
@@ -142,10 +142,10 @@ public class CampaignProgressManager
     {
         if(currentLevel==4) return;
         try{
+            ++currentLevel;
             saveFileWriter=new FileWriter(saveName,true);
             saveFileWriter.write(level+";");
             saveFileWriter.close();
-            ++currentLevel;
         }
         catch(IOException e){
             System.out.println("An exception occured.");
