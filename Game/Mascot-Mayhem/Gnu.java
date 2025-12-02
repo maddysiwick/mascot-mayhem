@@ -24,7 +24,7 @@ public class Gnu extends Player
             baseSprite="gnuCloneTEMP.png";//make this a slightly altered version of the base one once we have the sprites
             ultTimer=500;
         }
-        bio=""; 
+        bio="\n                            Gnu: \n      A strongheaded, mildly magical, \nwildebeest, with a burning rivalry with \n  Tux. Attacks slowly but with large \n                         strength."; 
     }
     
     public void act()

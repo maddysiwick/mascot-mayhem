@@ -19,7 +19,7 @@ public class Duke extends Player
         hitPoints=100;
         damage=5;
         characterReference=6;
-        bio="Duke \n The sweetest robot, and Keith's best friend. Loves slapping those who annoy him, but can shoot a laser in dire situations.";
+        bio="\n                             Duke: \n The sweetest robot, and Keith's best \nfriend. Loves slapping those who annoy \n     him, but can shoot a laser in dire \n                          situations.";
     }
     
     public void act()

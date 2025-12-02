@@ -18,7 +18,7 @@ public class Tux extends Player
         damage=5;
         characterReference=3;
         name="Tux";
-        bio="Tux: \n Though he isn't the brightest, he's a fairly balanced fighter. Mortal enemy of the one with horns.";
+        bio="\n                              Tux: \nThough he isn't the brightest, he's a \n     fairly balanced fighter. Mortal \n     enemy of the one with horns.";
         firstTime=true;
     }
     

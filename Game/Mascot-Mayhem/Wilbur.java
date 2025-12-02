@@ -13,7 +13,7 @@ public class Wilbur extends Player
         hitPoints=100;
         damage=5;
         characterReference=1;
-        bio="Wilbur \n An unstable gimp who loves painting. Not the strongest, but quite fast.";
+        bio="\n                           Wilbur:  \nAn unstable gimp who loves painting. \n    Not the strongest, but quite fast.";
     }
 
     public void act()
