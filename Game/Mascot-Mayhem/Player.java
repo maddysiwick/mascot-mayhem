@@ -115,10 +115,7 @@ public class Player extends Actor
     
     public void actions()
     {
-        if(firstTime){
-            firstTime=false;
-            secondTime=true;
-        }
+    
         if(!doNothing && input!=null){
             setUp();
             getActions();
@@ -420,6 +417,7 @@ public class Player extends Actor
 
     public void die()
     {
+        ((Arena)getWorld()).getQueue().flagDeadCharacter();
         if(!campaign){
             Greenfoot.setWorld(new WinScreen(this));
         }
@@ -466,7 +464,7 @@ public class Player extends Actor
 
     public void setUp()
     {
-        if(secondTime){
+        if(firstTime){
             playersManager = new PlayersManager();
             getWorld().addObject(playersManager,0,0);
             player=playersManager.getOppositePlayer(playerOne);

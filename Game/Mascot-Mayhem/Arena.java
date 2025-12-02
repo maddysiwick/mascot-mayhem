@@ -15,7 +15,7 @@ public class Arena extends World
     private ActionOrderManager queue;
     private boolean withAi;
     private int aiDifficulty;
-    private boolean campaignBattle;
+    private boolean campaign;
     private int currentLevel;
     private String saveName;
 
@@ -30,7 +30,7 @@ public class Arena extends World
         this.p2Selection=p2Selection;
         this.withAi=withAi;
         this.aiDifficulty=aiDifficulty;
-        this.campaignBattle=campaignBattle;
+        this.campaign=campaignBattle;
         this.currentLevel=currentLevel;
         this.saveName=saveName;
         prepare();
@@ -38,20 +38,18 @@ public class Arena extends World
     public Arena(int p1Selection,String saveName){
         super(1280, 720, 1); 
         this.p1Selection=p1Selection;
-        campaignBattle=true;
+        campaign=true;
         currentLevel=13;
         this.p2Selection=8;
-        campaignBattle=true;
+        campaign=true;
         this.saveName=saveName;
         prepare();
     }
     
     private void prepare()
     {
-        p1 = getCharacter(p1Selection,true,false);
-        p2 = getCharacter(p2Selection,false,withAi);
-        queue = new ActionOrderManager(p1,p2);
-        addObject(queue,0,0);
+        p1 = getCharacter(p1Selection,true,false,campaign,currentLevel);
+        p2 = getCharacter(p2Selection,false,withAi,campaign,currentLevel);
         addObject(p1,140,614);
         if(!p2.getIsEbodaHead()){
             addObject(p2,1126,614);
@@ -59,26 +57,28 @@ public class Arena extends World
         else{
             addObject(p2,getWidth()/2,400);
         }
+        queue = new ActionOrderManager(p1,p2);
+        addObject(queue,0,0);
     }
 
-    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled)
+    public Player getCharacter(int selection,boolean playerOne,boolean aiControlled,boolean campaign,int currentLevel)
     {
         switch(selection){
             case 1:
-                return new Wilbur(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
+                return new Wilbur(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 2:
-                return new Keith(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
+                return new Keith(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 3:
-                return new Tux(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
+                return new Tux(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 4:
-                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled);
+                return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled,campaign,currentLevel);
             case 5:
                 //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 6:
-                return new Duke(playerOne,aiControlled,aiDifficulty,campaignBattle,currentLevel,saveName);
+                return new Duke(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 7:
-                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaignBattle,currentLevel,saveName);
+                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaign,currentLevel,saveName);
             case 8:
                 return new EbodaHead(saveName);
         }
@@ -89,5 +89,8 @@ public class Arena extends World
     }
     public Player getPlayer2(){
         return p2;
+    }
+    public ActionOrderManager getQueue(){
+        return queue;
     }
 }

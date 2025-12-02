@@ -19,10 +19,10 @@ public class PlayersManager extends Actor
     {
         getPlayers();
         if(playerOne){
-            return (Player)players.get(1);
+            return ((Arena)getWorld()).getPlayer2();
         }
         else{
-            return (Player)players.get(0);
+            return ((Arena)getWorld()).getPlayer1();
         }
     }
 }

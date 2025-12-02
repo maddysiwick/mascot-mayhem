@@ -23,6 +23,7 @@ public class EbodaHand extends Actor
     boolean slamming;
     int telegraphTimer;
     EbodaManager manager;
+    boolean hitForAttack;
     /**
      * Act - do whatever the EbodaHand wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -104,6 +105,7 @@ public class EbodaHand extends Actor
     private void slam(){
         doDamage();
         if(!slamming){
+            hitForAttack=false;
             slamming=true;
             telegraphTimer=15;
             setLocation(slamPostitionsX[Greenfoot.getRandomNumber(3)],300);
@@ -121,6 +123,7 @@ public class EbodaHand extends Actor
     }
     private void rest(){
         if(!resting){
+            hitForAttack=false;
             resting=true;
             restTimer=40;
         }
@@ -135,8 +138,9 @@ public class EbodaHand extends Actor
     private void doDamage(){
         Actor victim = getOneIntersectingObject(Player.class);
         Player jumpee = (Player) victim;
-        if(jumpee!=null&&!jumpee.getIsEbodaHead()){
-            jumpee.takeHit(1);
+        if(jumpee!=null&&!jumpee.getIsEbodaHead()&&!hitForAttack){
+            hitForAttack=true;
+            jumpee.takeHit(4);
         }
     }
     public void setMyTurn(boolean myTurn){
