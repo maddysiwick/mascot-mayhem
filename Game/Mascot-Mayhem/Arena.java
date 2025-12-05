@@ -77,12 +77,11 @@ public class Arena extends World
             case 4:
                 return getCharacter(Greenfoot.getRandomNumber(7)+1,playerOne,aiControlled,campaign,currentLevel);
             case 5:
-                //this will be gnu but its suzanne atm
-                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
+                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaign,currentLevel,saveName);
             case 6:
                 return new Duke(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 7:
-                return new Gnu(playerOne,aiControlled,aiDifficulty,false,campaign,currentLevel,saveName);
+                return new Suzanne(playerOne,aiControlled,aiDifficulty,campaign,currentLevel,saveName);
             case 8:
                 return new EbodaHead(saveName);
         }

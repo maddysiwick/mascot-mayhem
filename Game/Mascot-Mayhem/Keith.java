@@ -10,7 +10,7 @@ public class Keith extends Player
 {    
     public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"Keith.png","KeithBite.png",campaign,currentLevel,saveName);
+        super(playerOne,aiControlled,aiDifficulty,"keith.png","KeithBite.png",campaign,currentLevel,saveName);
         baseSprite="keith.png";
         hitImage="images/KeithBite.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=75;

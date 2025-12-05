@@ -39,7 +39,8 @@ public class CharacterSelect extends World
     
     public CharacterSelect(boolean campaign,String saveName,CampaignProgressManager manager)
     {    
-        super(1280, 720, 1); 
+        super(1280, 720, 1);
+        music.playLoop();
         setBackground("matrixBinaryOogaBooga.png");
         bg = getBackground();
         this.campaign=campaign;
@@ -51,11 +52,11 @@ public class CharacterSelect extends World
         manageBios(true);
         this.saveName=saveName;
         this.manager=manager;
-        music.playLoop();
     }
     public CharacterSelect(boolean campaign)
     {    
         super(1280, 720, 1); 
+        music.playLoop();        
         setBackground("matrixBinaryOogaBooga.png");
         bg = getBackground();
         this.campaign=campaign;
@@ -108,7 +109,7 @@ public class CharacterSelect extends World
         tux.makeStatic();
         tuxBio=tux.getBio();
         Suzanne suzanne = new Suzanne(true,false,0,false,10,"");
-        addObject(suzanne,getWidth()/2+160,575);
+        addObject(suzanne,getWidth()/2+470,525);
         suzanne.makeStatic();
         suzanneBio=suzanne.getBio();
         Keith keith = new Keith(true,false,0,false,10,"");
@@ -116,11 +117,11 @@ public class CharacterSelect extends World
         keith.makeStatic();
         keithBio=keith.getBio();
         Duke duke = new Duke(true,false,0,false,10,"");
-        addObject(duke,getWidth()/2+290,550);
+        addObject(duke,getWidth()/2+320,545);
         duke.makeStatic();
         dukeBio=duke.getBio();
         Gnu gnu=new Gnu(true,false,0,false,false,10,"");
-        addObject(gnu,getWidth()/2+450,525);
+        addObject(gnu,getWidth()/2+170,575);
         gnu.makeStatic();
         gnuBio=gnu.getBio();
         Wilbur wilbur = new Wilbur(true,false,0,false,10,"");
