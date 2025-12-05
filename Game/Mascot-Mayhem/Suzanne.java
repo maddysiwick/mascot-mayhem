@@ -10,9 +10,9 @@ public class Suzanne extends Player
 {
     public Suzanne(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"lemur.png","suzannePunchTemp.png",campaign,currentLevel,saveName);
-        baseSprite="lemur.png";
-        hitImage="images/suzannePunchTemp.png"; 
+        super(playerOne,aiControlled,aiDifficulty,"suzanne.png","suzanneHit.png",campaign,currentLevel,saveName);
+        baseSprite="suzanne.png";
+        hitImage="images/suzanneHit.png"; 
         hitPoints=100;
         damage=7;
         cooldownMaximum=12;
@@ -34,7 +34,7 @@ public class Suzanne extends Player
             ultTimer=30;
             usingUltimate=true;
             damage=2;
-            setImage("images/suzanne_ult_TEMP.png");
+            setImage("images/suzanneUlt.png");
             unblock();
         }
     }
@@ -51,7 +51,7 @@ public class Suzanne extends Player
             --ultTimer;
             if(ultTimer==0){
                 usingUltimate=false;
-                hitImage="images/suzannePunchTemp.png";
+                hitImage="images/suzanneHit.png";
                 speedMultiplier=5;
                 damage=5;
             }

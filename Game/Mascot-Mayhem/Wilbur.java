@@ -7,9 +7,9 @@ public class Wilbur extends Player
 
     public Wilbur(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel,saveName);
-        baseSprite="tux.png";
-        hitImage="images/tuxKickTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        super(playerOne,aiControlled,aiDifficulty,"wilbur.png","wilburHit.png",campaign,currentLevel,saveName);
+        baseSprite="wilbur.png";
+        hitImage="images/wilburHit.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=80;
         damage=4;
         characterReference=1;

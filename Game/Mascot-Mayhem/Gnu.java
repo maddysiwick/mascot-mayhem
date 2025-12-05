@@ -11,9 +11,9 @@ public class Gnu extends Player
     private boolean clone;
     public Gnu(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean clone,boolean campaign,int currentLevel,String saveName)    
     {
-        super(playerOne,aiControlled,aiDifficulty,"gnuTEMP.png","gnuHeadbuttTEMP.png",campaign,currentLevel,saveName);
-        baseSprite="gnuTEMP.png";
-        hitImage="images/gnuHeadbuttTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        super(playerOne,aiControlled,aiDifficulty,"Gnu.png","GnuHeadbutt.png",campaign,currentLevel,saveName);
+        baseSprite="Gnu.png";
+        hitImage="images/GnuHeadbutt.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=120;
         damage=10;
         characterReference=5;
@@ -21,7 +21,8 @@ public class Gnu extends Player
         if(clone){
             hitPoints=20;
             damage=3;
-            baseSprite="gnuCloneTEMP.png";//make this a slightly altered version of the base one once we have the sprites
+            baseSprite="GnuClone.png";
+            hitImage="images/GnuCloneHeadbutt.png";//make this a slightly altered version of the base one once we have the sprites
             ultTimer=500;
         }
         speedMultiplier=4;

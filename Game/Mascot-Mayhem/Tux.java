@@ -11,9 +11,9 @@ public class Tux extends Player
 {   
     public Tux(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKickTEMP.png",campaign,currentLevel,saveName);
+        super(playerOne,aiControlled,aiDifficulty,"tux.png","tuxKick.png",campaign,currentLevel,saveName);
         baseSprite="tux.png";
-        hitImage="images/tuxKickTEMP.png";
+        hitImage="images/tuxKick.png";
         hitPoints=100;
         damage=5;
         characterReference=3;
