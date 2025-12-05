@@ -504,4 +504,14 @@ public class Player extends Actor
     {
         return player;
     }
+    
+    public int getHitPoints()
+    {
+        return hitPoints;
+    }
+    
+    public String getSprite()
+    {
+        return baseSprite;
+    }
 }

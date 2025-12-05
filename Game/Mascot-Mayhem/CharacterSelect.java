@@ -363,7 +363,9 @@ public class CharacterSelect extends World
         aiControlled.setColor(Color.BLACK);
         aiControlled.drawString("(AI controlled)",1087,100);
         playerControlled.setFont(new Font(true,true,25));
-        playerControlled.setColor(grey);
+        playerControlled.setColor(lightGrey);
+        playerControlled.fillOval(1020,67,253,57);
+        playerControlled.setColor(Color.BLACK);
         playerControlled.drawString("(Player controlled)",1038,100);
         addObject(aiDifficultyIndicator,getWidth()/2,getHeight()/2);
         Font difficultyFont = new Font(false,true,20);

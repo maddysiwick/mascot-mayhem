@@ -20,10 +20,10 @@ public class Title extends World
     public Title()
     {    
         super(1280, 720, 1);
-        setBackground("matrixBinaryOogaBooga.png");
+        setBackground("startMenu.png");
         bg = getBackground();
-        drawScreen();
-        addObject(selector, 450, 250);
+        //drawScreen();
+        addObject(selector, 465, 265);
         selector.turn(90);
         moveSelector();
     }
@@ -124,16 +124,16 @@ public class Title extends World
     {
         switch(optionSelected){
             case 1:
-                selector.setLocation(425,287);
+                selector.setLocation(465,265);
                 break;
             case 2:
-                selector.setLocation(425,387);
+                selector.setLocation(465,378);
                 break;
             case 3:
-                selector.setLocation(425,487);
+                selector.setLocation(465,504);
                 break;
             case 4:
-                selector.setLocation(425,587);
+                selector.setLocation(465,626);
                 break;
         }
     }

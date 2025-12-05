@@ -4,10 +4,13 @@ public class SaveSelect extends World
 {
     private int selectedSave=1;
     private boolean newSave;
+    private AddedImage saveSelected=new AddedImage(0,true,false);
 
     public SaveSelect()
     {    
         super(1280, 720, 1);
+        drawBackground();
+        addObject(saveSelected,getWidth()/2,getHeight()/2);
     }
     
     public void act()
@@ -35,7 +38,7 @@ public class SaveSelect extends World
                 --selectedSave;
             }
         }
-        showText("Save Selected: "+selectedSave,getWidth()/2,getHeight()/2);
+        saveSelected.setImage(getSaveSelectedImage());
     }
 
     public void start()
@@ -57,5 +60,45 @@ public class SaveSelect extends World
                 return "save3.txt";
         }
         return "";
+    }
+    
+    public void drawBackground()
+    {
+        setBackground("matrixBinaryOogaBooga.png");
+        GreenfootImage bg=getBackground();
+        bg.setColor(Color.WHITE);
+        bg.fillOval(200,25,900,150);
+        bg.fillOval(422,297,450,110);
+        
+        bg.setFont(new Font(true,true,70));
+        bg.setColor(Color.BLACK);
+        bg.drawString("Select Your Save File!",260,120);
+    }
+    
+    public GreenfootImage getSaveSelectedImage()
+    {
+        GreenfootImage save1=new GreenfootImage(1280,720);
+        GreenfootImage save2=new GreenfootImage(1280,720);
+        GreenfootImage save3=new GreenfootImage(1280,720);
+        
+        save1.setColor(Color.BLACK);
+        save1.setFont(new Font(false,false,50));
+        save1.drawString("Save 1 Selected!",450,370);
+        save2.setColor(Color.BLACK);
+        save2.setFont(new Font(false,false,50));
+        save2.drawString("Save 2 Selected!",450,370);
+        save3.setColor(Color.BLACK);
+        save3.setFont(new Font(false,false,50));
+        save3.drawString("Save 3 Selected!",450,370);
+        
+        switch(selectedSave){
+            case 1:
+                return save1;
+            case 2:
+                return save2;
+            case 3:
+                return save3;
+        }
+        return save1;
     }
 }
