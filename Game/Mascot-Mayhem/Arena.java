@@ -56,6 +56,8 @@ public class Arena extends World
         }
         else{
             addObject(p2,getWidth()/2,400);
+            GreenfootImage bg = getBackground();
+            bg.drawImage(new GreenfootImage("ebodaSuit.png"),getWidth()/2-225,410);
         }
         queue = new ActionOrderManager(p1,p2);
         addObject(queue,0,0);

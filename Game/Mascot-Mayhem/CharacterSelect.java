@@ -119,10 +119,11 @@ public class CharacterSelect extends World
         duke.makeStatic();
         dukeBio=duke.getBio();
         Gnu gnu=new Gnu(true,false,0,false,false,10,"");
-        addObject(gnu,getWidth()+410,525);
+        addObject(gnu,getWidth()/2+450,525);
         gnu.makeStatic();
         gnuBio=gnu.getBio();
         Wilbur wilbur = new Wilbur(true,false,0,false,10,"");
+        addObject(wilbur,getWidth()/2-450,525);
         wilbur.makeStatic();
         wilburBio=wilbur.getBio();
     }

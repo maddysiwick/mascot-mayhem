@@ -13,9 +13,9 @@ public class Duke extends Player
     private List players;
     public Duke(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"dukeTEMP.png","dukeHitTEMP.png",campaign,currentLevel,saveName);  
-        baseSprite="dukeTEMP.png";
-        hitImage="images/dukeHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        super(playerOne,aiControlled,aiDifficulty,"duke.png","dukeHit.png",campaign,currentLevel,saveName);  
+        baseSprite="duke.png";
+        hitImage="images/dukeHit.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=100;
         damage=7;
         cooldownMaximum=17;

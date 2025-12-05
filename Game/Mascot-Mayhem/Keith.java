@@ -10,9 +10,9 @@ public class Keith extends Player
 {    
     public Keith(boolean playerOne,boolean aiControlled,int aiDifficulty,boolean campaign,int currentLevel,String saveName)
     {
-        super(playerOne,aiControlled,aiDifficulty,"mouse.png","keithHitTEMP.png",campaign,currentLevel,saveName);
-        baseSprite="mouse.png";
-        hitImage="images/keithHitTEMP.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
+        super(playerOne,aiControlled,aiDifficulty,"Keith.png","KeithBite.png",campaign,currentLevel,saveName);
+        baseSprite="Keith.png";
+        hitImage="images/KeithBite.png";//obviously not this CHANGE WHEN WE HAVE THE SPRITES 
         hitPoints=75;
         damage=3;
         cooldownMaximum=5;
@@ -32,7 +32,8 @@ public class Keith extends Player
             usingUltimate=true;
             ultTimer=200;
             speedMultiplier=20;
-            baseSprite="keith.png";
+            baseSprite="KeithUlt.png";
+            hitImage="images/KeithUltBite.png";
         }
     }
     
@@ -41,7 +42,8 @@ public class Keith extends Player
         if(ultTimer==0){
             damageMultiplier=1;
             usingUltimate=false;
-            baseSprite="mouse.png";
+            baseSprite="Keith.png";
+             hitImage="images/KeithBite.png";
             speedMultiplier=10;
         }
     }
