@@ -78,58 +78,47 @@ public class CampaignProgressManager
             //character tokens
             case "6":
                 playerCharacterString="Duke";
-                System.out.println("decoded: duke selected");
                 playerCharacter=6;
                 break;
             case "5":
                 playerCharacterString="Gnu";
-                System.out.println("decoded: gnu selected");
                 playerCharacter=5;
                 break;
             case "2":
                 playerCharacterString="Keith";
-                System.out.println("decoded: keith selected");
                 playerCharacter=2;
                 break;
             case "7":
                 playerCharacterString="Suzanne";
-                System.out.println("decoded: suzanne selected");
                 playerCharacter=7;
                 break;
             case "3":
                 playerCharacterString="Tux";
-                System.out.println("decoded: tux selected");
                 playerCharacter=3;
                 break;
             case "1":
                 playerCharacterString="Wilbur";
-                System.out.println("decoded: wilbur selected");
                 playerCharacter=1;
                 break;
             //level tokens
             case "10":
                 //agaisnt easy ai
-                System.out.println("decoded: level 10");
                 currentLevel=10;
                 break;
             case "11":
                 //agaisnt medium ai
-                System.out.println("decoded: level 11");
                 currentLevel=11;
                 break;
             case "12":
                 //agaisnt hard ai
-                System.out.println("decoded: level 12");
                 currentLevel=12;
                 break;
             case "13":
                 //agaisnt eboda
-                System.out.println("decoded: level 13");
                 currentLevel=13;
                 break;
             case "14":
                 //final win screen
-                System.out.println("decoded: level 14");
                 currentLevel=14;
                 break;
         }
