@@ -5,12 +5,14 @@ public class SaveSelect extends World
     private int selectedSave=1;
     private boolean newSave;
     private AddedImage saveSelected=new AddedImage(0,true,false);
+    private GreenfootSound music=new GreenfootSound("menuMusic.wav");
 
     public SaveSelect()
     {    
         super(1280, 720, 1);
         drawBackground();
         addObject(saveSelected,getWidth()/2,getHeight()/2);
+        music.playLoop();
     }
     
     public void act()
@@ -44,6 +46,8 @@ public class SaveSelect extends World
     public void start()
     {
         if(InputManager.getPlayerOneInput(false)=="attack"){
+            Greenfoot.playSound("nextScreen.wav");
+            music.pause();
             CampaignProgressManager manager = new CampaignProgressManager(getSaveName(selectedSave));
             manager.start();
         }

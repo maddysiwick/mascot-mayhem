@@ -205,7 +205,7 @@ public class Player extends Actor
     private void chargeUltimate()
     {
         if(ultimateCharge<ultimateMax){
-            if(Greenfoot.getRandomNumber(100)<5){
+            if(Greenfoot.getRandomNumber(100)<8){
                 ++ultimateCharge;
                 ultimateBar.add(1);
             }
@@ -245,6 +245,7 @@ public class Player extends Actor
         if(ultPossible()){
             ultimateCharge=0;
             ultimateBar.setValue(0);
+            Greenfoot.playSound("ultimate.wav");
         }
     }
 
@@ -285,12 +286,14 @@ public class Player extends Actor
     {
         blocking=true;
         setSprite(leftBlockSprite,blockSprite);
+        Greenfoot.playSound("block.wav");
     }
     
     protected void attack()
     {
         unblock();
         if(attackCooldown<=0){
+            Greenfoot.playSound("attack.wav");
             attackCooldown=cooldownMaximum;
             setSprite(leftHitImage, hitImage);
             Actor victim = getOneIntersectingObject(Player.class);
@@ -420,10 +423,15 @@ public class Player extends Actor
     public void die()
     {
         ((Arena)getWorld()).getQueue().flagDeadCharacter();
+        Arena world=(Arena)getWorld();
         if(!campaign){
+            Greenfoot.playSound("death.wav");
+            world.pauseMusic();
             Greenfoot.setWorld(new WinScreen(this));
         }
         else{
+            Greenfoot.playSound("death.wav");
+            world.pauseMusic();
             CampaignProgressManager manager=new CampaignProgressManager(saveName);
             if(playerOne){
                 Greenfoot.setWorld(new WinScreen(player));

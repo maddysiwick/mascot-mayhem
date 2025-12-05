@@ -4,6 +4,7 @@ public class WinScreen extends World
 {
     private Player loser;
     private Player winner;
+    private GreenfootSound music=new GreenfootSound("winScreenMusic.wav");
     
     public WinScreen(Player loser)
     {    
@@ -12,6 +13,7 @@ public class WinScreen extends World
         this.loser=loser;
         winner=loser.getPlayer();
         drawBackground();
+        music.playLoop();
     }
     
     public void drawBackground()
