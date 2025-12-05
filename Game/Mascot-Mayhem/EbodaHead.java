@@ -19,6 +19,7 @@ public class EbodaHead extends Player
         manager=new EbodaManager();
         hitPoints=200;
         isEbodaHead=true;
+        baseSprite="ebodaHead.png";
         bio="The head of an extremely evil corporation";
     }
     public void act()

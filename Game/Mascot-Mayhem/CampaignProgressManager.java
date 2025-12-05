@@ -186,7 +186,7 @@ public class CampaignProgressManager
         }
     }
     
-    public Arena getLevel()
+    public World getLevel()
     {
         switch(currentLevel){
             case 10:
@@ -199,10 +199,9 @@ public class CampaignProgressManager
                 System.out.println("level 12 selected");
                 return new Arena(playerCharacter,4,true,2,true,12,saveName);
             case 13:
-                System.out.println("level 13 selected");
                 return new Arena(playerCharacter,saveName);
             case 14:
-                
+                return new WinScreen(playerCharacter,true);
         }
         System.out.println("level selection error: fell out of switch-case");
         System.out.println("    currentLevel value: "+currentLevel);

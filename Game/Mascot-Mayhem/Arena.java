@@ -95,4 +95,7 @@ public class Arena extends World
     public ActionOrderManager getQueue(){
         return queue;
     }
+    public boolean getCampaign(){
+        return campaign;
+    }
 }

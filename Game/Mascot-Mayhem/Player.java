@@ -421,12 +421,12 @@ public class Player extends Actor
     {
         ((Arena)getWorld()).getQueue().flagDeadCharacter();
         if(!campaign){
-            Greenfoot.setWorld(new WinScreen(this));
+            Greenfoot.setWorld(new WinScreen(this,((Arena)getWorld()).getCampaign()));
         }
         else{
             CampaignProgressManager manager=new CampaignProgressManager(saveName);
             if(playerOne){
-                Greenfoot.setWorld(new WinScreen(player));
+                Greenfoot.setWorld(new WinScreen(player,((Arena)getWorld()).getCampaign()));
             }
             else{
                 manager.nextLevel();
