@@ -18,7 +18,7 @@ public class Splash extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
-        setBackground("unnamed.png");
+        setBackground("splashScreen.png");
     }
     
     public void act()
@@ -27,7 +27,7 @@ public class Splash extends World
         {
             Greenfoot.setWorld(new Title()); 
         }
-        if (System.currentTimeMillis() >= (timeWelcomeScreenCreation + (9 * 1000)))
+        if (System.currentTimeMillis() >= (timeWelcomeScreenCreation + (1.75 * 1000)))
         {
             Greenfoot.setWorld(new Title()); 
         }
