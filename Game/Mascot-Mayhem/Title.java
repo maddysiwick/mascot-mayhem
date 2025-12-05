@@ -16,6 +16,7 @@ public class Title extends World
     private String input2;
     private String control;
     private AddedImage title;
+    private GreenfootSound music=new GreenfootSound("menuMusic.wav");
     
     public Title()
     {    
@@ -26,6 +27,7 @@ public class Title extends World
         addObject(selector, 465, 265);
         selector.turn(90);
         moveSelector();
+        music.playLoop();
     }
 
     public void act()
@@ -80,6 +82,7 @@ public class Title extends World
         input2=InputManager.getPlayerTwoInput(false);
         Greenfoot.delay(5);
         if(input1=="crouch"||input2=="crouch"){
+            Greenfoot.playSound("select.wav");
             if(optionSelected==4){
                 optionSelected=1;
             }
@@ -88,6 +91,7 @@ public class Title extends World
             }
         }
         else if(input1=="up"||input2=="up"){
+            Greenfoot.playSound("select.wav");
             if(optionSelected==1){
                 optionSelected=4;
             }
@@ -103,6 +107,8 @@ public class Title extends World
         input1=InputManager.getPlayerOneInput(false);
         input2=InputManager.getPlayerTwoInput(false);
         if(input1=="attack"||input2=="attack"){
+            Greenfoot.playSound("nextScreen.wav");
+            music.pause();
             switch(optionSelected){
                 case 1:
                     Greenfoot.setWorld(new SaveSelect()); 

@@ -18,6 +18,7 @@ public class Arena extends World
     private boolean campaign;
     private int currentLevel;
     private String saveName;
+    private GreenfootSound music=new GreenfootSound("fightMusic.wav");    
 
     /**
      * Constructor for objects of class Arena.
@@ -33,6 +34,7 @@ public class Arena extends World
         this.campaign=campaignBattle;
         this.currentLevel=currentLevel;
         this.saveName=saveName;
+        music.playLoop();
         prepare();
     }
     public Arena(int p1Selection,String saveName){
@@ -97,5 +99,8 @@ public class Arena extends World
     }
     public boolean getCampaign(){
         return campaign;
+    }
+    public void pauseMusic(){
+        music.pause();
     }
 }

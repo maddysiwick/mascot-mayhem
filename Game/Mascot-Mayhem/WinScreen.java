@@ -5,6 +5,7 @@ public class WinScreen extends World
     private Player loser;
     private Player winner;
     private boolean campaign;
+    private GreenfootSound music=new GreenfootSound("winScreenMusic.wav");
     
     public WinScreen(Player loser,boolean campaign)
     {    
@@ -23,6 +24,7 @@ public class WinScreen extends World
         winner=getPlayer(iwinner);
         this.campaign=campaign;
         drawBackground();
+        music.playLoop();
     }
     
     public void drawBackground()

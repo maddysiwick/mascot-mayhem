@@ -35,7 +35,7 @@ public class CharacterSelect extends World
     private String saveName;
     private CampaignProgressManager manager;
     private Color lightGrey = new Color(120,120,120);
-
+    private GreenfootSound music=new GreenfootSound("menuMusic.wav");
     
     public CharacterSelect(boolean campaign,String saveName,CampaignProgressManager manager)
     {    
@@ -51,6 +51,7 @@ public class CharacterSelect extends World
         manageBios(true);
         this.saveName=saveName;
         this.manager=manager;
+        music.playLoop();
     }
     public CharacterSelect(boolean campaign)
     {    
@@ -194,6 +195,7 @@ public class CharacterSelect extends World
         if(!p1Confirmed){
             switch(InputManager.getPlayerOneInput(false)){
                 case "left":
+                    Greenfoot.playSound("attack.wav");
                     if(p1Selection==1){
                         p1Selection=7;
                     }
@@ -202,6 +204,7 @@ public class CharacterSelect extends World
                     }
                     break;
                 case "right":
+                    Greenfoot.playSound("attack.wav");
                     if(p1Selection==7){
                         p1Selection=1;
                     }
@@ -215,6 +218,7 @@ public class CharacterSelect extends World
             if(!p2Confirmed){
                 switch(InputManager.getPlayerTwoInput(false)){
                     case "left":
+                        Greenfoot.playSound("attack.wav");
                         if(p2Selection==1){
                             p2Selection=7;
                         }
@@ -223,6 +227,7 @@ public class CharacterSelect extends World
                         }
                         break;
                     case "right":
+                        Greenfoot.playSound("attack.wav");
                         if(p2Selection==7){
                             p2Selection=1;
                         }
@@ -238,11 +243,13 @@ public class CharacterSelect extends World
     public void confirmSelections()
     {
         if(InputManager.getPlayerOneInput(false)=="attack"){
+            Greenfoot.playSound("select.wav");
             selector1.setImage("beeperGreen.png");
             p1Confirmed=true;
         }
         if(!campaign){
             if(InputManager.getPlayerTwoInput(false)=="attack"){
+                Greenfoot.playSound("select.wav");
                 p2Confirmed=true;
                 selector2.setImage("beeperGreen.png");
             }
@@ -255,11 +262,13 @@ public class CharacterSelect extends World
     public void unConfirmSelections()
     {
         if(InputManager.getPlayerOneInput(false)=="block"){
+            Greenfoot.playSound("unselect.wav");
             selector1.setImage("beeper.png");
             p1Confirmed=false;
         }
         if(!campaign){
             if(InputManager.getPlayerTwoInput(false)=="block"){
+                Greenfoot.playSound("unselect.wav");
                 selector2.setImage("beeper.png");
                 p2Confirmed=false;
             }
@@ -278,9 +287,13 @@ public class CharacterSelect extends World
     public void moveOn()
     {
         if(p1Confirmed&&p2Confirmed&&(InputManager.getPlayerOneInput(false)=="ultimate"||InputManager.getPlayerTwoInput(false)=="ultimate")&&!campaign){
+            Greenfoot.playSound("nextScreen.wav");
+            music.pause();
             Greenfoot.setWorld(new Arena(p1Selection,p2Selection,withAi,aiDifficulty,false,0,""));
         }
         else if(p1Confirmed&&campaign&&InputManager.getPlayerOneInput(false)=="ultimate"){
+            Greenfoot.playSound("nextScreen.wav");
+            music.pause();
             manager.writePlayer(p1Selection);
             manager.start();
         }
